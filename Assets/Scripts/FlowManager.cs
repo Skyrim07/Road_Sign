@@ -25,6 +25,7 @@ public class FlowManager : MonoBehaviour
         RuntimeData.isPaused = true;
         RuntimeData.timeScale = 0.0f;
         CommonReference.instance.pausePanel.SetState(true);
+        CommonReference.instance.pause_TitleText.textAnimator.PlayTypeWriter();
     }
 
     public void UnPause()

@@ -5,5 +5,6 @@ using UnityEngine;
 
 public class CommonReference : SKMonoSingleton<CommonReference>
 {
-    public SKUIPanel pausePanel;
+    public SKUIPanel startPanel, pausePanel;
+    public SKText pause_TitleText;
 }
