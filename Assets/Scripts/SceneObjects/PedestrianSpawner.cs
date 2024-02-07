@@ -3,15 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CarSpawner : MonoBehaviour
+public class PedestrianSpawner : MonoBehaviour
 {
     [SKFolder("Behaviour")]
-    public float angle;
-    public float spawnIntervalMin= 2, spawnIntervalMax = 5;
+    public float angle, speed;
+    public float spawnIntervalMin = 2, spawnIntervalMax = 5;
     public bool spawnAtStart = true;
 
     [SKFolder("References")]
-    public GameObject[] carPrefabs;
+    public GameObject[] pedPrefabs;
 
     private float interval;
     private float timer;
@@ -25,7 +25,7 @@ public class CarSpawner : MonoBehaviour
     private void Update()
     {
         timer += Time.deltaTime * RuntimeData.timeScale;
-        if(timer > interval)
+        if (timer > interval)
         {
             SpawnCar();
             timer = 0;
@@ -39,7 +39,9 @@ public class CarSpawner : MonoBehaviour
     }
     private void SpawnCar()
     {
-        GameObject car = Instantiate(carPrefabs[Random.Range(0, carPrefabs.Length)], transform.position, Quaternion.Euler(0, 0, angle));
+        Pedestrian ped = Instantiate(pedPrefabs[Random.Range(0, pedPrefabs.Length)], transform.position, Quaternion.Euler(0, 0, angle)).GetComponent<Pedestrian>();
+        ped.direction = SKUtils.Angle2Vector(angle);
+        ped.speed = speed;
 
     }
 }
