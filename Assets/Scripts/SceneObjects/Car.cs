@@ -1,6 +1,7 @@
 using SKCell;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 public class Car : MonoBehaviour
@@ -33,6 +34,7 @@ public class Car : MonoBehaviour
         {
             RaycastHit2D[] hits = Physics2D.RaycastAll(raycastPos.position, (transform.rotation * Vector2.up), raycastFwdLength);
             Debug.DrawLine(raycastPos.position, raycastPos.position + (transform.rotation * Vector2.up) * raycastFwdLength, Color.red, 0.02f);
+
 
             shouldStop |= CheckHitStop(hits);
             shouldStop &= isOnRoad;
@@ -113,7 +115,34 @@ public class Car : MonoBehaviour
         stop |= c != null;
         return stop;
     }
+    //okay i started writing it this way but now i think im gonna change it to the road knowing
+    //what sign(s) it has on it and then telling the car that info ? maybe ill decide later ig
+    private bool CheckForSigns(RaycastHit2D[] hits)
+    {
+        bool sign = false;
+        for(int i =0;i< hits.Length; i++)
+        {
+            if (hits[i].collider.GetComponent<Sign>() != null) {
+                SignBehavior(hits[i].collider.GetComponent<Sign>().SignType);
+                sign = true;
+            }
 
+        }
+        return sign;
+    }
+    private void SignBehavior(Sign.SignType type)
+    {
+        switch(type)
+        {
+            case Sign.SignType.Stop:
+                StopSign();
+            break;
+        }
+    }
+    private void StopSign()
+    {
+        Debug.Log("hit stop sign");
+    }
 
     private void OnEnterIntersection(Intersection intersection)
     {
