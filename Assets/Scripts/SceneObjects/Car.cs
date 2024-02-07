@@ -16,6 +16,7 @@ public class Car : MonoBehaviour
     private int targetWaypointIndex;
     private float speed, targetSpeed;
     private float rotationSpeed, rotationDelta;
+    private bool isOnRoad;
 
     private void Start()
     {
@@ -34,6 +35,7 @@ public class Car : MonoBehaviour
             Debug.DrawLine(raycastPos.position, raycastPos.position + (transform.rotation * Vector2.up) * raycastFwdLength, Color.red, 0.02f);
 
             shouldStop |= CheckHitStop(hits);
+            shouldStop &= isOnRoad;
         }
         if (shouldStop)
         {
@@ -51,6 +53,7 @@ public class Car : MonoBehaviour
             {
                 currentRoad = currentRoad.connectTo.Count==0?null:currentRoad.connectTo[Random.Range(0, currentRoad.connectTo.Count)];
                 targetWaypointIndex = 0;
+                isOnRoad = false;
                 PrepareEnterNewRoad();
             }
             if (currentRoad != null)
@@ -68,6 +71,7 @@ public class Car : MonoBehaviour
 
                     rotationDelta = 0;
                     targetWaypointIndex++;
+                    isOnRoad = true;
                 }
             }
         }
