@@ -12,12 +12,16 @@ public class Car : MonoBehaviour
     public float raycastFwdLength = 1f;
     [SerializeField] Transform[] raycastPoses;
 
+    //sign vars
+    [SerializeField] private float stopWaitTime = 3f;
+
 
     private Road currentRoad;
     private int targetWaypointIndex;
     private float speed, targetSpeed;
     private float rotationSpeed, rotationDelta;
     private bool isOnRoad;
+    private bool shouldStop;
 
     private void Start()
     {
@@ -29,7 +33,7 @@ public class Car : MonoBehaviour
 
 
         //Check for obstacles ahead
-        bool shouldStop = false;
+        shouldStop = false;
         foreach (var raycastPos in raycastPoses)
         {
             RaycastHit2D[] hits = Physics2D.RaycastAll(raycastPos.position, (transform.rotation * Vector2.up), raycastFwdLength);
@@ -53,10 +57,15 @@ public class Car : MonoBehaviour
         {
             if (targetWaypointIndex >= currentRoad.waypoints.Count)
             {
-                currentRoad = currentRoad.connectTo.Count==0?null:currentRoad.connectTo[Random.Range(0, currentRoad.connectTo.Count)];
-                targetWaypointIndex = 0;
-                isOnRoad = false;
-                PrepareEnterNewRoad();
+                if (currentRoad.mySignSlot.isOccupied)
+                {
+                    SignBehavior(currentRoad.mySignSlot.mySign);
+                }
+
+                    currentRoad = currentRoad.connectTo.Count == 0 ? null : currentRoad.connectTo[Random.Range(0, currentRoad.connectTo.Count)];
+                    targetWaypointIndex = 0;
+                    isOnRoad = false;
+                    PrepareEnterNewRoad();
             }
             if (currentRoad != null)
             {
@@ -116,27 +125,6 @@ public class Car : MonoBehaviour
         return stop;
     }
 
-    //private bool CheckForSigns(RaycastHit2D[] hits)
-    //{
-    //    bool sign = false;
-    //    for(int i =0;i< hits.Length; i++)
-    //    {
-    //        if (hits[i].collider.GetComponent<Sign>() != null) {
-    //            sign = true;
-    //        }
-
-    //    }
-    //    return sign;
-    //}
-    //private void SignBehavior(Sign.SignType type)
-    //{
-    //    switch(type)
-    //    {
-    //        case Sign.SignType.Stop:
-    //            StopSign();
-    //        break;
-    //    }
-    //}
     private void OnEnterIntersection(Intersection intersection)
     {
         List<Road> roads = intersection.roads;
@@ -163,6 +151,21 @@ public class Car : MonoBehaviour
         {
             OnEnterRoad(road);
         }
+    }
+    private void SignBehavior(Sign sign)
+    {
+        switch (sign.type)
+        {
+            case Sign.SignType.Stop:
+                StartCoroutine(StopSign());
+                break;
+        }
+    }
+    private IEnumerator StopSign()
+    {
+        Debug.Log("stop sign");
+        shouldStop = true;
+        yield return new WaitForSeconds(stopWaitTime);
     }
 
 }

@@ -9,7 +9,10 @@ public class SignSlot : MonoBehaviour
     public Sign.SignType mySignType;
     public GameObject signPrefab;
     public Sign mySign;
-
+    public Road myRoad;
+    private void Start()
+    {
+    }
     public void OnMouseDown()
     {
         //rn only accounts for stop signs, will change later once we get more
