@@ -9,4 +9,6 @@ public class Sign : MonoBehaviour
         Stop
     }
     public SignType type;
+
+    //will have index of different sign sprites that it assigns itself based on its type
 }

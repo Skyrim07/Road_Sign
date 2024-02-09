@@ -115,8 +115,7 @@ public class Car : MonoBehaviour
         stop |= c != null;
         return stop;
     }
-    ////okay i started writing it this way but now i think im gonna change it to the road knowing
-    ////what sign(s) it has on it and then telling the car that info ? maybe ill decide later ig
+
     //private bool CheckForSigns(RaycastHit2D[] hits)
     //{
     //    bool sign = false;
@@ -138,11 +137,6 @@ public class Car : MonoBehaviour
     //        break;
     //    }
     //}
-    private void StopSign()
-    {
-        Debug.Log("hit stop sign");
-    }
-
     private void OnEnterIntersection(Intersection intersection)
     {
         List<Road> roads = intersection.roads;

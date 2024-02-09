@@ -413,6 +413,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ffdb662016f9e449c12add7f47e627, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOccupied: 0
+  mySignType: 0
+  signPrefab: {fileID: 4879408326018744711, guid: 63a9f9b3b6d2e2e49a02ff38bbb8ddf6, type: 3}
 --- !u!1 &5487887563192219851
 GameObject:
   m_ObjectHideFlags: 0
