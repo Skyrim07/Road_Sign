@@ -7,6 +7,7 @@ public class Road : MonoBehaviour
     public List<Road> connectTo = new List<Road>();
     [HideInInspector]
     public List<Transform> waypoints = new List<Transform>();
+    
     void Start()
     {
         Transform wp = transform.Find("Waypoints");
