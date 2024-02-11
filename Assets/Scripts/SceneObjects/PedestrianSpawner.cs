@@ -39,7 +39,7 @@ public class PedestrianSpawner : MonoBehaviour
     }
     private void SpawnCar()
     {
-        Pedestrian ped = Instantiate(pedPrefabs[Random.Range(0, pedPrefabs.Length)], transform.position, Quaternion.Euler(0, 0, angle)).GetComponent<Pedestrian>();
+        Pedestrian ped = Instantiate(pedPrefabs[Random.Range(0, pedPrefabs.Length)], transform.position, Quaternion.identity).GetComponent<Pedestrian>();
         ped.direction = SKUtils.Angle2Vector(angle);
         ped.speed = speed;
 

@@ -11,9 +11,11 @@ public class Car : MonoBehaviour
     public float raycastFwdLength = 1f;
     [SerializeField] Transform[] raycastPoses;
 
+    public Queue<Transform> waypoints = new Queue<Transform>();
 
     private Road currentRoad;
-    private int targetWaypointIndex;
+    private int currentDirInRoad;
+    //private int targetWaypointIndex;
     private float speed, targetSpeed;
     private float rotationSpeed, rotationDelta;
     private bool isOnRoad;
@@ -49,30 +51,33 @@ public class Car : MonoBehaviour
         //Waypoint approaching
         if (currentRoad != null)
         {
-            if (targetWaypointIndex >= currentRoad.waypoints.Count)
+            if (waypoints.Count==0) // If there is nowhere to go
             {
-                currentRoad = currentRoad.connectTo.Count==0?null:currentRoad.connectTo[Random.Range(0, currentRoad.connectTo.Count)];
-                targetWaypointIndex = 0;
+                //currentRoad = currentRoad.connectTo.Count==0?null:currentRoad.connectTo[Random.Range(0, currentRoad.connectTo.Count)];
                 isOnRoad = false;
-                PrepareEnterNewRoad();
+                //PrepareEnterNewRoad();
             }
             if (currentRoad != null)
             {
-                Transform targetWaypoint = currentRoad.waypoints[targetWaypointIndex];
-                if (Vector2.Distance(transform.position, targetWaypoint.position) < 0.2f)
+                if( waypoints.TryPeek(out var targetWaypoint))
                 {
-                    Vector3 from = transform.position, to = targetWaypoint.position;
-                    Quaternion rfrom = transform.rotation, rto = targetWaypoint.rotation;
-                    SKUtils.StartProcedure(SKCurve.QuadraticDoubleIn, .2f, (t) =>
+                    if (Vector2.Distance(transform.position, targetWaypoint.position) < 0.2f)
                     {
-                        transform.rotation = Quaternion.Slerp(rfrom, rto, t);
-                        transform.position = Vector3.Lerp(from, to, t);
-                    });
+                        Vector3 from = transform.position, to = targetWaypoint.position;
+                        Quaternion rfrom = transform.rotation;
+                        Quaternion rto = Quaternion.Euler(0, 0, currentDirInRoad == 1 ? targetWaypoint.rotation.eulerAngles.z : 360 - targetWaypoint.rotation.eulerAngles.z);
+                        SKUtils.StartProcedure(SKCurve.QuadraticDoubleIn, .2f, (t) =>
+                        {
+                            transform.rotation = Quaternion.Slerp(rfrom, rto, t);
+                            transform.position = Vector3.Lerp(from, to, t);
+                        });
 
-                    rotationDelta = 0;
-                    targetWaypointIndex++;
-                    isOnRoad = true;
+                        rotationDelta = 0;
+                        waypoints.Dequeue();
+                        isOnRoad = true;
+                    }
                 }
+
             }
         }
 
@@ -86,12 +91,12 @@ public class Car : MonoBehaviour
     {
         if (currentRoad==null || currentRoad.waypoints.Count == 0) return;
         Transform from = transform;
-        Transform to = currentRoad.waypoints[targetWaypointIndex];
-        float distanceFactor = 1f; 
+        Transform to = waypoints.Peek();
+        float distanceFactor = 1.05f; 
         float dist = Vector2.Distance(from.position, to.position) * distanceFactor;
         float time = dist / maxSpeed;
         float currentAngle = from.eulerAngles.z;
-        float targetAngle = to.eulerAngles.z;
+        float targetAngle = currentDirInRoad == 1? to.eulerAngles.z : 360 - to.eulerAngles.z;
         float angleDifference = Mathf.DeltaAngle(currentAngle, targetAngle);
         rotationDelta = angleDifference / time;
     }
@@ -117,25 +122,70 @@ public class Car : MonoBehaviour
 
     private void OnEnterIntersection(Intersection intersection)
     {
-        List<Road> roads = intersection.roads;
-        Road targetRoad = roads[Random.Range(0,roads.Count)];
-        while(targetRoad == currentRoad)
+        Road targetRoad = intersection.GetRandomTargetRoadWithRestrictions(currentRoad);
+
+        if (targetRoad != null)
         {
-            targetRoad = roads[Random.Range(0, roads.Count)];
+            //Get the nearest waypoint of the target road
+            int nearestIndex = 0;
+            float nearest = float.MaxValue;
+            for (int i = 0; i < targetRoad.waypoints.Count; i++)
+            {
+                float dist = Vector2.Distance(transform.position, targetRoad.waypoints[i].position);
+                if (dist < nearest)
+                {
+                    nearestIndex = i;
+                    nearest = dist;
+                }
+            }
+            currentDirInRoad = nearestIndex == 0 ? 1 : -1;
+            waypoints.Clear();
+            waypoints.Enqueue(targetRoad.waypoints[nearestIndex]); //Go to the nearest waypoint of the target road
+            currentRoad = targetRoad;
+
+
+            PrepareEnterNewRoad();
         }
 
-        currentRoad = targetRoad;
     }
     private void OnEnterRoad(Road road)
     {
-        targetWaypointIndex = 0;
+        int nearestIndex = 0;
+        float nearest = float.MaxValue;
+        for (int i = 0; i < road.waypoints.Count; i++)
+        {
+            float dist = Vector2.Distance(transform.position, road.waypoints[i].position);
+            if(dist < nearest)
+            {
+                nearestIndex = i;
+                nearest = dist;
+            }
+        }
+        currentDirInRoad = nearestIndex == 0 ? 1 : -1;
+        waypoints.Enqueue(road.waypoints[1 - nearestIndex]); //Go to the other waypoint
         currentRoad = road;
+    }
+    private void OnHitPedestrian(Pedestrian p)
+    {
+        print("Collision with pedestrian!");
+    }
+    private void OnHitCar(Car car)
+    {
+        print("Collision with car!");
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent<Intersection>(out var intersection))
         {
-            //OnEnterIntersection(intersection);
+            OnEnterIntersection(intersection);
+        }
+        if (collision.TryGetComponent<Pedestrian>(out var pedestrain))
+        {
+            OnHitPedestrian(pedestrain);
+        }
+        if (collision.TryGetComponent<Car>(out var car))
+        {
+            OnHitCar(car);
         }
         if (collision.TryGetComponent<Road>(out var road))
         {
