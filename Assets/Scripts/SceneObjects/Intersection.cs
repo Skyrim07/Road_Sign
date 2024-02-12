@@ -8,6 +8,7 @@ public class Intersection : MonoBehaviour
     /// 0: down, 1: left, 2: up, 3: right
     /// </summary>
     public List<Road> roads = new List<Road>();
+    public List<Sign> signs = new List<Sign>();
 
 
     public Road GetRoadRightOf(Road road)
@@ -44,4 +45,3 @@ public class Intersection : MonoBehaviour
         return candidate[Random.Range(0, candidate.Count)]; 
     }
 }
-

@@ -1,6 +1,7 @@
 using SKCell;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 public class Car : MonoBehaviour
@@ -12,6 +13,9 @@ public class Car : MonoBehaviour
     [SerializeField] Transform[] raycastPoses;
 
     public Queue<Transform> waypoints = new Queue<Transform>();
+    //sign vars
+    [SerializeField] private float stopWaitTime = 1f;
+
 
     private Road currentRoad;
     private int currentDirInRoad;
@@ -19,6 +23,8 @@ public class Car : MonoBehaviour
     private float speed, targetSpeed;
     private float rotationSpeed, rotationDelta;
     private bool isOnRoad;
+    private bool shouldStop;
+    private bool watchingSign;
 
     private void Start()
     {
@@ -29,21 +35,14 @@ public class Car : MonoBehaviour
         speed = Mathf.Lerp(speed, targetSpeed, acceleration * .05f);
 
 
-        //Check for obstacles ahead
-        bool shouldStop = false;
-        foreach (var raycastPos in raycastPoses)
-        {
-            RaycastHit2D[] hits = Physics2D.RaycastAll(raycastPos.position, (transform.rotation * Vector2.up), raycastFwdLength);
-            Debug.DrawLine(raycastPos.position, raycastPos.position + (transform.rotation * Vector2.up) * raycastFwdLength, Color.red, 0.02f);
-
-            shouldStop |= CheckHitStop(hits);
-            shouldStop &= isOnRoad;
-        }
+        //Check for obstacles ahead'
+        shouldStop = false;
+        shouldStop = CheckForObstacles();
         if (shouldStop)
         {
             targetSpeed = 0;
         }
-        else
+        else if(!watchingSign)
         {
             targetSpeed = maxSpeed;
         }
@@ -51,8 +50,14 @@ public class Car : MonoBehaviour
         //Waypoint approaching
         if (currentRoad != null)
         {
+            
             if (waypoints.Count==0) // If there is nowhere to go
             {
+                if (!watchingSign && currentRoad.mySignSlot.isOccupied)
+                {
+                    watchingSign = true;
+                    SignBehavior(currentRoad.mySignSlot.mySign);
+                }
                 //currentRoad = currentRoad.connectTo.Count==0?null:currentRoad.connectTo[Random.Range(0, currentRoad.connectTo.Count)];
                 isOnRoad = false;
                 //PrepareEnterNewRoad();
@@ -65,7 +70,7 @@ public class Car : MonoBehaviour
                     {
                         Vector3 from = transform.position, to = targetWaypoint.position;
                         Quaternion rfrom = transform.rotation;
-                        Quaternion rto = Quaternion.Euler(0, 0, currentDirInRoad == 1 ? targetWaypoint.rotation.eulerAngles.z : 360 - targetWaypoint.rotation.eulerAngles.z);
+                        Quaternion rto = Quaternion.Euler(0, 0, currentDirInRoad == 1 ? targetWaypoint.rotation.eulerAngles.z : 180 - targetWaypoint.rotation.eulerAngles.z);
                         SKUtils.StartProcedure(SKCurve.QuadraticDoubleIn, .2f, (t) =>
                         {
                             transform.rotation = Quaternion.Slerp(rfrom, rto, t);
@@ -87,16 +92,31 @@ public class Car : MonoBehaviour
         transform.Rotate(0, 0, rotationFactor *rotationDelta * Time.fixedDeltaTime * RuntimeData.timeScale);
     }
 
+    private bool CheckForObstacles()
+    {
+        bool check = false;
+        foreach (var raycastPos in raycastPoses)
+        {
+            RaycastHit2D[] hits = Physics2D.RaycastAll(raycastPos.position, (transform.rotation * Vector2.up), raycastFwdLength);
+            Debug.DrawLine(raycastPos.position, raycastPos.position + (transform.rotation * Vector2.up) * raycastFwdLength, Color.red, 0.02f);
+
+
+            check |= CheckHitStop(hits);
+            check &= isOnRoad;
+        }
+        return check;
+        
+    }
     private void PrepareEnterNewRoad()
     {
         if (currentRoad==null || currentRoad.waypoints.Count == 0) return;
         Transform from = transform;
         Transform to = waypoints.Peek();
-        float distanceFactor = 1.05f; 
+        float distanceFactor = 1.06f; 
         float dist = Vector2.Distance(from.position, to.position) * distanceFactor;
         float time = dist / maxSpeed;
         float currentAngle = from.eulerAngles.z;
-        float targetAngle = currentDirInRoad == 1? to.eulerAngles.z : 360 - to.eulerAngles.z;
+        float targetAngle = currentDirInRoad == 1? to.eulerAngles.z : 180 - to.eulerAngles.z;
         float angleDifference = Mathf.DeltaAngle(currentAngle, targetAngle);
         rotationDelta = angleDifference / time;
     }
@@ -118,7 +138,6 @@ public class Car : MonoBehaviour
         stop |= c != null;
         return stop;
     }
-
 
     private void OnEnterIntersection(Intersection intersection)
     {
@@ -191,6 +210,22 @@ public class Car : MonoBehaviour
         {
             OnEnterRoad(road);
         }
+    }
+    private void SignBehavior(Sign sign)
+    {
+        switch (sign.type)
+        {
+            case Sign.SignType.Stop:
+                StartCoroutine(StopSign());
+                break;
+        }
+    }
+    private IEnumerator StopSign()
+    {
+        targetSpeed= 0;
+        shouldStop = CheckForObstacles();
+        yield return new WaitForSeconds(stopWaitTime);
+        watchingSign = false;
     }
 
 }

@@ -6,6 +6,8 @@ public class Road : MonoBehaviour
 {
     [HideInInspector]
     public List<Transform> waypoints = new List<Transform>();
+    public SignSlot mySignSlot;
+    
 
     public List<RoadRestriction> restrictions = new List<RoadRestriction>();
     void Start()
@@ -15,6 +17,9 @@ public class Road : MonoBehaviour
         { 
             waypoints.Add(wp.GetChild(i));
         }
+        //im not sure if we're planning on multiple sign slots or not but for now im just doing one
+        mySignSlot = transform.Find("Signs_Slots").GetChild(0).GetComponent<SignSlot>();
+        mySignSlot.myRoad = this;
     }
 
 
