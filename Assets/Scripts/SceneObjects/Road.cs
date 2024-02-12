@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Road : MonoBehaviour
 {
-    public List<Road> connectTo = new List<Road>();
     [HideInInspector]
     public List<Transform> waypoints = new List<Transform>();
     public SignSlot mySignSlot;
     
+
+    public List<RoadRestriction> restrictions = new List<RoadRestriction>();
     void Start()
     {
         Transform wp = transform.Find("Waypoints");
@@ -22,4 +23,10 @@ public class Road : MonoBehaviour
     }
 
 
+}
+
+
+public enum RoadRestriction
+{
+    NoRight, NoLeft, NoStraight
 }
