@@ -14,7 +14,7 @@ public class Car : MonoBehaviour
 
     public Queue<Transform> waypoints = new Queue<Transform>();
     //sign vars
-    [SerializeField] private float stopWaitTime = 10f;
+    [SerializeField] private float stopWaitTime = 3f;
 
 
     private Road currentRoad;
@@ -35,15 +35,29 @@ public class Car : MonoBehaviour
         speed = Mathf.Lerp(speed, targetSpeed, acceleration * .05f);
 
 
-        //Check for obstacles ahead
+        //Check for obstacles ahead'
         shouldStop = false;
-        CheckForObstacles();
+        shouldStop = CheckForObstacles();
+        if (shouldStop)
+        {
+            targetSpeed = 0;
+        }
+        else if(!watchingSign)
+        {
+            targetSpeed = maxSpeed;
+        }
 
         //Waypoint approaching
         if (currentRoad != null)
         {
+            
             if (waypoints.Count==0) // If there is nowhere to go
             {
+                if (!watchingSign && currentRoad.mySignSlot.isOccupied)
+                {
+                    watchingSign = true;
+                    SignBehavior(currentRoad.mySignSlot.mySign);
+                }
                 //currentRoad = currentRoad.connectTo.Count==0?null:currentRoad.connectTo[Random.Range(0, currentRoad.connectTo.Count)];
                 isOnRoad = false;
                 //PrepareEnterNewRoad();
@@ -78,25 +92,20 @@ public class Car : MonoBehaviour
         transform.Rotate(0, 0, rotationFactor *rotationDelta * Time.fixedDeltaTime * RuntimeData.timeScale);
     }
 
-    private void CheckForObstacles()
+    private bool CheckForObstacles()
     {
+        bool check = false;
         foreach (var raycastPos in raycastPoses)
         {
             RaycastHit2D[] hits = Physics2D.RaycastAll(raycastPos.position, (transform.rotation * Vector2.up), raycastFwdLength);
             Debug.DrawLine(raycastPos.position, raycastPos.position + (transform.rotation * Vector2.up) * raycastFwdLength, Color.red, 0.02f);
 
 
-            shouldStop |= CheckHitStop(hits);
-            shouldStop &= isOnRoad;
+            check |= CheckHitStop(hits);
+            check &= isOnRoad;
         }
-        if (shouldStop)
-        {
-            targetSpeed = 0;
-        }
-        else
-        {
-            targetSpeed = maxSpeed;
-        }
+        return check;
+        
     }
     private void PrepareEnterNewRoad()
     {
@@ -213,9 +222,10 @@ public class Car : MonoBehaviour
     }
     private IEnumerator StopSign()
     {
-        Debug.Log("stop sign");
+        targetSpeed= 0;
+        shouldStop = CheckForObstacles();
         yield return new WaitForSeconds(stopWaitTime);
-        //CheckForObstacles();
+        watchingSign = false;
     }
 
 }
