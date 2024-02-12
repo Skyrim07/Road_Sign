@@ -13,7 +13,7 @@ public class Car : MonoBehaviour
     [SerializeField] Transform[] raycastPoses;
 
     //sign vars
-    [SerializeField] private float stopWaitTime = 3f;
+    [SerializeField] private float stopWaitTime = 10f;
 
 
     private Road currentRoad;
@@ -22,6 +22,7 @@ public class Car : MonoBehaviour
     private float rotationSpeed, rotationDelta;
     private bool isOnRoad;
     private bool shouldStop;
+    private bool watchingSign;
 
     private void Start()
     {
@@ -34,6 +35,53 @@ public class Car : MonoBehaviour
 
         //Check for obstacles ahead
         shouldStop = false;
+        CheckForObstacles();
+
+        //Waypoint approaching
+        if (currentRoad != null)
+        {
+            
+                if (targetWaypointIndex >= currentRoad.waypoints.Count)
+                {
+                if (currentRoad.mySignSlot.isOccupied)
+                {
+                    //SignBehavior(currentRoad.mySignSlot.mySign);
+                }
+                currentRoad = currentRoad.connectTo.Count == 0 ? null : currentRoad.connectTo[Random.Range(0, currentRoad.connectTo.Count)];
+                    targetWaypointIndex = 0;
+                    isOnRoad = false;
+                    
+                    PrepareEnterNewRoad();
+                }
+                if (currentRoad != null)
+                {
+                    Transform targetWaypoint = currentRoad.waypoints[targetWaypointIndex];
+                    if (Vector2.Distance(transform.position, targetWaypoint.position) < 0.2f)
+                    {
+                        Vector3 from = transform.position, to = targetWaypoint.position;
+                        Quaternion rfrom = transform.rotation, rto = targetWaypoint.rotation;
+                        SKUtils.StartProcedure(SKCurve.QuadraticDoubleIn, .2f, (t) =>
+                        {
+                            transform.rotation = Quaternion.Slerp(rfrom, rto, t);
+                            transform.position = Vector3.Lerp(from, to, t);
+                        });
+
+                        rotationDelta = 0;
+                        targetWaypointIndex++;
+                        isOnRoad = true;
+                    }
+                }
+            
+        }
+
+        //Movement
+        transform.Translate((transform.rotation * Vector2.up) * speed * Time.fixedDeltaTime * RuntimeData.timeScale, Space.World);
+        float rotationFactor = speed / maxSpeed;
+        transform.Rotate(0, 0, rotationFactor *rotationDelta * Time.fixedDeltaTime * RuntimeData.timeScale);
+    }
+
+    private void CheckForObstacles()
+    {
         foreach (var raycastPos in raycastPoses)
         {
             RaycastHit2D[] hits = Physics2D.RaycastAll(raycastPos.position, (transform.rotation * Vector2.up), raycastFwdLength);
@@ -51,48 +99,7 @@ public class Car : MonoBehaviour
         {
             targetSpeed = maxSpeed;
         }
-
-        //Waypoint approaching
-        if (currentRoad != null)
-        {
-            if (targetWaypointIndex >= currentRoad.waypoints.Count)
-            {
-                if (currentRoad.mySignSlot.isOccupied)
-                {
-                    SignBehavior(currentRoad.mySignSlot.mySign);
-                }
-
-                    currentRoad = currentRoad.connectTo.Count == 0 ? null : currentRoad.connectTo[Random.Range(0, currentRoad.connectTo.Count)];
-                    targetWaypointIndex = 0;
-                    isOnRoad = false;
-                    PrepareEnterNewRoad();
-            }
-            if (currentRoad != null)
-            {
-                Transform targetWaypoint = currentRoad.waypoints[targetWaypointIndex];
-                if (Vector2.Distance(transform.position, targetWaypoint.position) < 0.2f)
-                {
-                    Vector3 from = transform.position, to = targetWaypoint.position;
-                    Quaternion rfrom = transform.rotation, rto = targetWaypoint.rotation;
-                    SKUtils.StartProcedure(SKCurve.QuadraticDoubleIn, .2f, (t) =>
-                    {
-                        transform.rotation = Quaternion.Slerp(rfrom, rto, t);
-                        transform.position = Vector3.Lerp(from, to, t);
-                    });
-
-                    rotationDelta = 0;
-                    targetWaypointIndex++;
-                    isOnRoad = true;
-                }
-            }
-        }
-
-        //Movement
-        transform.Translate((transform.rotation * Vector2.up) * speed * Time.fixedDeltaTime * RuntimeData.timeScale, Space.World);
-        float rotationFactor = speed / maxSpeed;
-        transform.Rotate(0, 0, rotationFactor *rotationDelta * Time.fixedDeltaTime * RuntimeData.timeScale);
     }
-
     private void PrepareEnterNewRoad()
     {
         if (currentRoad==null || currentRoad.waypoints.Count == 0) return;
@@ -164,8 +171,8 @@ public class Car : MonoBehaviour
     private IEnumerator StopSign()
     {
         Debug.Log("stop sign");
-        shouldStop = true;
         yield return new WaitForSeconds(stopWaitTime);
+        //CheckForObstacles();
     }
 
 }
