@@ -14,7 +14,7 @@ public class Car : MonoBehaviour
 
     public Queue<Transform> waypoints = new Queue<Transform>();
     //sign vars
-    [SerializeField] private float stopWaitTime = 3f;
+    [SerializeField] private float stopWaitTime = 1f;
 
 
     private Road currentRoad;
@@ -70,7 +70,7 @@ public class Car : MonoBehaviour
                     {
                         Vector3 from = transform.position, to = targetWaypoint.position;
                         Quaternion rfrom = transform.rotation;
-                        Quaternion rto = Quaternion.Euler(0, 0, currentDirInRoad == 1 ? targetWaypoint.rotation.eulerAngles.z : 360 - targetWaypoint.rotation.eulerAngles.z);
+                        Quaternion rto = Quaternion.Euler(0, 0, currentDirInRoad == 1 ? targetWaypoint.rotation.eulerAngles.z : 180 - targetWaypoint.rotation.eulerAngles.z);
                         SKUtils.StartProcedure(SKCurve.QuadraticDoubleIn, .2f, (t) =>
                         {
                             transform.rotation = Quaternion.Slerp(rfrom, rto, t);
@@ -112,11 +112,11 @@ public class Car : MonoBehaviour
         if (currentRoad==null || currentRoad.waypoints.Count == 0) return;
         Transform from = transform;
         Transform to = waypoints.Peek();
-        float distanceFactor = 1.05f; 
+        float distanceFactor = 1.06f; 
         float dist = Vector2.Distance(from.position, to.position) * distanceFactor;
         float time = dist / maxSpeed;
         float currentAngle = from.eulerAngles.z;
-        float targetAngle = currentDirInRoad == 1? to.eulerAngles.z : 360 - to.eulerAngles.z;
+        float targetAngle = currentDirInRoad == 1? to.eulerAngles.z : 180 - to.eulerAngles.z;
         float angleDifference = Mathf.DeltaAngle(currentAngle, targetAngle);
         rotationDelta = angleDifference / time;
     }
