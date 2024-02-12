@@ -14,7 +14,7 @@ public class Car : MonoBehaviour
 
     public Queue<Transform> waypoints = new Queue<Transform>();
     //sign vars
-    [SerializeField] private float stopWaitTime = 1f;
+    [SerializeField] private float stopWaitTime = 6f;
 
 
     private Road currentRoad;
@@ -25,6 +25,7 @@ public class Car : MonoBehaviour
     private bool isOnRoad;
     private bool shouldStop;
     private bool watchingSign;
+    private bool otherCarWatchingSign;
 
     private void Start()
     {
@@ -35,14 +36,16 @@ public class Car : MonoBehaviour
         speed = Mathf.Lerp(speed, targetSpeed, acceleration * .05f);
 
 
-        //Check for obstacles ahead'
+        //Check for obstacles ahead
         shouldStop = false;
+        otherCarWatchingSign= false;
         shouldStop = CheckForObstacles();
-        if (shouldStop)
+
+        if (shouldStop || watchingSign || otherCarWatchingSign)
         {
             targetSpeed = 0;
         }
-        else if(!watchingSign)
+        else
         {
             targetSpeed = maxSpeed;
         }
@@ -70,7 +73,7 @@ public class Car : MonoBehaviour
                     {
                         Vector3 from = transform.position, to = targetWaypoint.position;
                         Quaternion rfrom = transform.rotation;
-                        Quaternion rto = Quaternion.Euler(0, 0, currentDirInRoad == 1 ? targetWaypoint.rotation.eulerAngles.z : 180 - targetWaypoint.rotation.eulerAngles.z);
+                        Quaternion rto = Quaternion.Euler(0, 0, currentDirInRoad == 1 ? targetWaypoint.rotation.eulerAngles.z : 180 + targetWaypoint.rotation.eulerAngles.z);
                         SKUtils.StartProcedure(SKCurve.QuadraticDoubleIn, .2f, (t) =>
                         {
                             transform.rotation = Quaternion.Slerp(rfrom, rto, t);
@@ -90,7 +93,9 @@ public class Car : MonoBehaviour
         transform.Translate((transform.rotation * Vector2.up) * speed * Time.fixedDeltaTime * RuntimeData.timeScale, Space.World);
         float rotationFactor = speed / maxSpeed;
         transform.Rotate(0, 0, rotationFactor *rotationDelta * Time.fixedDeltaTime * RuntimeData.timeScale);
+
     }
+
 
     private bool CheckForObstacles()
     {
@@ -116,7 +121,7 @@ public class Car : MonoBehaviour
         float dist = Vector2.Distance(from.position, to.position) * distanceFactor;
         float time = dist / maxSpeed;
         float currentAngle = from.eulerAngles.z;
-        float targetAngle = currentDirInRoad == 1? to.eulerAngles.z : 180 - to.eulerAngles.z;
+        float targetAngle = currentDirInRoad == 1? to.eulerAngles.z : 180 + to.eulerAngles.z;
         float angleDifference = Mathf.DeltaAngle(currentAngle, targetAngle);
         rotationDelta = angleDifference / time;
     }
@@ -136,7 +141,20 @@ public class Car : MonoBehaviour
         bool stop = false;
         Car c = hit.transform.GetComponent<Car>();
         stop |= c != null;
+        if(stop)
+        {
+            otherCarWatchingSign |= CheckForSignWatch(c);
+        }
         return stop;
+    }
+    private bool CheckForSignWatch(Car car)
+    {
+        bool signWatch = false;
+        if(car.watchingSign || car.otherCarWatchingSign)
+        {
+            signWatch = true;
+        }
+        return signWatch;
     }
 
     private void OnEnterIntersection(Intersection intersection)
@@ -223,8 +241,8 @@ public class Car : MonoBehaviour
     private IEnumerator StopSign()
     {
         targetSpeed= 0;
-        shouldStop = CheckForObstacles();
-        yield return new WaitForSeconds(stopWaitTime);
+        watchingSign = true;
+        yield return new WaitForSeconds(stopWaitTime/20);
         watchingSign = false;
     }
 
