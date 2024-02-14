@@ -117,7 +117,7 @@ public class Car : MonoBehaviour
         if (currentRoad==null || currentRoad.waypoints.Count == 0) return;
         Transform from = transform;
         Transform to = waypoints.Peek();
-        float distanceFactor = 1.06f; 
+        float distanceFactor = 1.07f; 
         float dist = Vector2.Distance(from.position, to.position) * distanceFactor;
         float time = dist / maxSpeed;
         float currentAngle = from.eulerAngles.z;

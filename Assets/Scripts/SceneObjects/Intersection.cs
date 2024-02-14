@@ -42,6 +42,11 @@ public class Intersection : MonoBehaviour
                 candidate.Remove(GetRoadStraightOf(from));
         }
 
-        return candidate[Random.Range(0, candidate.Count)]; 
+        Road res = candidate[Random.Range(0, candidate.Count)];
+        while (res == null)
+        {
+            res = candidate[Random.Range(0, candidate.Count)];
+        }
+        return res;
     }
 }
