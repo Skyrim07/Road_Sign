@@ -14,7 +14,7 @@ public class Car : MonoBehaviour
 
     public Queue<Transform> waypoints = new Queue<Transform>();
     //sign vars
-    [SerializeField] private float stopWaitTime = 1f;
+    [SerializeField] private float stopWaitTime = 6f;
 
 
     private Road currentRoad;
@@ -25,7 +25,7 @@ public class Car : MonoBehaviour
     private bool isOnRoad;
     private bool shouldStop;
     private bool watchingSign;
-
+    private bool otherCarWatchingSign;
     private void Start()
     {
         targetSpeed = maxSpeed;
@@ -36,13 +36,14 @@ public class Car : MonoBehaviour
 
 
         //Check for obstacles ahead'
-        shouldStop = false;
+        shouldStop = false; 
+        otherCarWatchingSign = false;
         shouldStop = CheckForObstacles();
-        if (shouldStop)
+        if (shouldStop || watchingSign || otherCarWatchingSign)
         {
             targetSpeed = 0;
         }
-        else if(!watchingSign)
+        else
         {
             targetSpeed = maxSpeed;
         }
@@ -136,9 +137,21 @@ public class Car : MonoBehaviour
         bool stop = false;
         Car c = hit.transform.GetComponent<Car>();
         stop |= c != null;
+        if (stop)
+        {
+            otherCarWatchingSign |= CheckForSignWatch(c);
+        }
         return stop;
     }
-
+    private bool CheckForSignWatch(Car car)
+    {
+        bool signWatch = false;
+        if (car.watchingSign || car.otherCarWatchingSign)
+        {
+            signWatch = true;
+        }
+        return signWatch;
+    }
     private void OnEnterIntersection(Intersection intersection)
     {
         Road targetRoad = intersection.GetRandomTargetRoadWithRestrictions(currentRoad);
