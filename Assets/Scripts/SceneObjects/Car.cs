@@ -238,8 +238,8 @@ public class Car : MonoBehaviour
     private IEnumerator StopSign()
     {
         targetSpeed= 0;
-        shouldStop = CheckForObstacles();
-        yield return new WaitForSeconds(stopWaitTime);
+        watchingSign = true;
+        yield return new WaitForSeconds(stopWaitTime / 20);
         watchingSign = false;
     }
 
