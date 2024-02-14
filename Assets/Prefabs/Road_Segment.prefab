@@ -188,6 +188,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1932633214061316310}
+  - component: {fileID: 6186613282281783535}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Untagged
@@ -211,6 +212,20 @@ Transform:
   m_Father: {fileID: 1932633215275262600}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6186613282281783535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1932633214061316309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69bbf8edbcaee6f48a50085b36b4630a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1932633214061316309}
+  active: 0
 --- !u!1 &1932633215275262607
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,6 +275,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypoints: []
+  mySignSlot: {fileID: 0}
+  restrictions: 
 --- !u!61 &1932633215275262601
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -413,6 +430,8 @@ MonoBehaviour:
   isOccupied: 0
   mySignType: 0
   signPrefab: {fileID: 4879408326018744711, guid: 63a9f9b3b6d2e2e49a02ff38bbb8ddf6, type: 3}
+  mySign: {fileID: 0}
+  myRoad: {fileID: 0}
 --- !u!1 &5487887563192219851
 GameObject:
   m_ObjectHideFlags: 0
