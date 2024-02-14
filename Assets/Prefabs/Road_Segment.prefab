@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1932633213323274791}
   m_Layer: 0
-  m_Name: WP
+  m_Name: startWP
   m_TagString: Untagged
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1932633213628955655}
   m_Layer: 0
-  m_Name: WP (1)
+  m_Name: endWP
   m_TagString: Untagged
   m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
