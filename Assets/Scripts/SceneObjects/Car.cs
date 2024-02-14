@@ -15,6 +15,9 @@ public class Car : MonoBehaviour
     public Queue<Transform> waypoints = new Queue<Transform>();
     //sign vars
     [SerializeField] private float stopWaitTime = 12f;
+    private bool watchingSign;
+    private bool otherCarWatchingSign;
+    private bool exitingIntersection;
 
 
     private Road currentRoad;
@@ -24,8 +27,7 @@ public class Car : MonoBehaviour
     private float rotationSpeed, rotationDelta;
     private bool isOnRoad;
     private bool shouldStop;
-    private bool watchingSign;
-    private bool otherCarWatchingSign;
+
     private void Start()
     {
         targetSpeed = maxSpeed;
@@ -37,6 +39,7 @@ public class Car : MonoBehaviour
 
         //Check for obstacles ahead'
         shouldStop = false; 
+        exitingIntersection= false;
         otherCarWatchingSign = false;
         shouldStop = CheckForObstacles();
         if (shouldStop || watchingSign || otherCarWatchingSign)
@@ -51,10 +54,11 @@ public class Car : MonoBehaviour
         //Waypoint approaching
         if (currentRoad != null)
         {
-            
+            //Debug.Log(waypoints.Count);
+            //Debug.Log(isOnRoad);
             if (waypoints.Count==0) // If there is nowhere to go
             {
-                if (!watchingSign && currentRoad.mySignSlot.isOccupied)
+                if (!watchingSign && currentRoad.mySignSlot.isOccupied && !exitingIntersection)
                 {
                     watchingSign = true;
                     SignBehavior(currentRoad.mySignSlot.mySign);
@@ -67,6 +71,7 @@ public class Car : MonoBehaviour
             {
                 if( waypoints.TryPeek(out var targetWaypoint))
                 {
+                    Debug.Log(targetWaypoint + ": " + targetWaypoint.parent.parent);
                     if (Vector2.Distance(transform.position, targetWaypoint.position) < 0.2f)
                     {
                         Vector3 from = transform.position, to = targetWaypoint.position;
@@ -137,7 +142,9 @@ public class Car : MonoBehaviour
         bool stop = false;
         Car c = hit.transform.GetComponent<Car>();
         stop |= c != null;
-        if (stop)
+        Pedestrian p = hit.transform.GetComponent<Pedestrian>();
+        stop |= p != null;
+        if (c!=null)
         {
             otherCarWatchingSign |= CheckForSignWatch(c);
         }
