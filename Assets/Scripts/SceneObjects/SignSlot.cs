@@ -23,5 +23,10 @@ public class SignSlot : MonoBehaviour
             mySign = Instantiate(signPrefab, transform.position,transform.rotation,this.transform).GetComponent<Sign>();
             mySign.type= mySignType;
         }
+        else
+        {
+            isOccupied = false;
+            Destroy(mySign.gameObject);
+        }
     }
 }
