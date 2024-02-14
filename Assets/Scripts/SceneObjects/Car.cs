@@ -14,7 +14,7 @@ public class Car : MonoBehaviour
 
     public Queue<Transform> waypoints = new Queue<Transform>();
     //sign vars
-    [SerializeField] private float stopWaitTime = 6f;
+    [SerializeField] private float stopWaitTime = 1f;
 
 
     private Road currentRoad;
@@ -25,7 +25,6 @@ public class Car : MonoBehaviour
     private bool isOnRoad;
     private bool shouldStop;
     private bool watchingSign;
-    private bool otherCarWatchingSign;
 
     private void Start()
     {
@@ -36,16 +35,14 @@ public class Car : MonoBehaviour
         speed = Mathf.Lerp(speed, targetSpeed, acceleration * .05f);
 
 
-        //Check for obstacles ahead
+        //Check for obstacles ahead'
         shouldStop = false;
-        otherCarWatchingSign= false;
         shouldStop = CheckForObstacles();
-
-        if (shouldStop || watchingSign || otherCarWatchingSign)
+        if (shouldStop)
         {
             targetSpeed = 0;
         }
-        else
+        else if(!watchingSign)
         {
             targetSpeed = maxSpeed;
         }
@@ -93,9 +90,7 @@ public class Car : MonoBehaviour
         transform.Translate((transform.rotation * Vector2.up) * speed * Time.fixedDeltaTime * RuntimeData.timeScale, Space.World);
         float rotationFactor = speed / maxSpeed;
         transform.Rotate(0, 0, rotationFactor *rotationDelta * Time.fixedDeltaTime * RuntimeData.timeScale);
-
     }
-
 
     private bool CheckForObstacles()
     {
@@ -141,20 +136,7 @@ public class Car : MonoBehaviour
         bool stop = false;
         Car c = hit.transform.GetComponent<Car>();
         stop |= c != null;
-        if(stop)
-        {
-            otherCarWatchingSign |= CheckForSignWatch(c);
-        }
         return stop;
-    }
-    private bool CheckForSignWatch(Car car)
-    {
-        bool signWatch = false;
-        if(car.watchingSign || car.otherCarWatchingSign)
-        {
-            signWatch = true;
-        }
-        return signWatch;
     }
 
     private void OnEnterIntersection(Intersection intersection)
@@ -243,8 +225,8 @@ public class Car : MonoBehaviour
     private IEnumerator StopSign()
     {
         targetSpeed= 0;
-        watchingSign = true;
-        yield return new WaitForSeconds(stopWaitTime/20);
+        shouldStop = CheckForObstacles();
+        yield return new WaitForSeconds(stopWaitTime);
         watchingSign = false;
     }
 
