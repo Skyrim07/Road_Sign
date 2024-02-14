@@ -26,7 +26,6 @@ public class Car : MonoBehaviour
     private bool shouldStop;
     private bool watchingSign;
     private bool otherCarWatchingSign;
-
     private void Start()
     {
         targetSpeed = maxSpeed;
@@ -36,11 +35,10 @@ public class Car : MonoBehaviour
         speed = Mathf.Lerp(speed, targetSpeed, acceleration * .05f);
 
 
-        //Check for obstacles ahead
-        shouldStop = false;
-        otherCarWatchingSign= false;
+        //Check for obstacles ahead'
+        shouldStop = false; 
+        otherCarWatchingSign = false;
         shouldStop = CheckForObstacles();
-
         if (shouldStop || watchingSign || otherCarWatchingSign)
         {
             targetSpeed = 0;
@@ -93,9 +91,7 @@ public class Car : MonoBehaviour
         transform.Translate((transform.rotation * Vector2.up) * speed * Time.fixedDeltaTime * RuntimeData.timeScale, Space.World);
         float rotationFactor = speed / maxSpeed;
         transform.Rotate(0, 0, rotationFactor *rotationDelta * Time.fixedDeltaTime * RuntimeData.timeScale);
-
     }
-
 
     private bool CheckForObstacles()
     {
@@ -141,7 +137,7 @@ public class Car : MonoBehaviour
         bool stop = false;
         Car c = hit.transform.GetComponent<Car>();
         stop |= c != null;
-        if(stop)
+        if (stop)
         {
             otherCarWatchingSign |= CheckForSignWatch(c);
         }
@@ -150,13 +146,12 @@ public class Car : MonoBehaviour
     private bool CheckForSignWatch(Car car)
     {
         bool signWatch = false;
-        if(car.watchingSign || car.otherCarWatchingSign)
+        if (car.watchingSign || car.otherCarWatchingSign)
         {
             signWatch = true;
         }
         return signWatch;
     }
-
     private void OnEnterIntersection(Intersection intersection)
     {
         Road targetRoad = intersection.GetRandomTargetRoadWithRestrictions(currentRoad);
@@ -244,7 +239,7 @@ public class Car : MonoBehaviour
     {
         targetSpeed= 0;
         watchingSign = true;
-        yield return new WaitForSeconds(stopWaitTime/20);
+        yield return new WaitForSeconds(stopWaitTime / 20);
         watchingSign = false;
     }
 

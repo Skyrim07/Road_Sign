@@ -25,7 +25,7 @@ public class SignSlot : MonoBehaviour
         }
         else
         {
-            isOccupied= false;
+            isOccupied = false;
             Destroy(mySign.gameObject);
         }
     }
