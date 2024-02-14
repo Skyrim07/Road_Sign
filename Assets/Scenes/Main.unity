@@ -1480,7 +1480,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 776128518}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.17, y: 0.66, z: 0}
+  m_LocalPosition: {x: -9.17, y: 0.66, z: 0.32}
   m_LocalScale: {x: 0.54038, y: 0.54038, z: 0.54038}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1752,7 +1752,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 827030821}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.19, y: 0.66, z: 0}
+  m_LocalPosition: {x: 1.19, y: 0.66, z: 0.32000002}
   m_LocalScale: {x: 0.54038, y: 0.54038, z: 0.54038}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3940,9 +3940,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angle: 90
-  speed: 0.2
-  spawnIntervalMin: 2
-  spawnIntervalMax: 5
+  speed: 0.4
+  spawnIntervalMin: 5
+  spawnIntervalMax: 8
   spawnAtStart: 1
   pedPrefabs:
   - {fileID: 4998703115235159051, guid: 69fe8635ad228c14b8273ff9471c08a6, type: 3}
