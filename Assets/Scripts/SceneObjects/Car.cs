@@ -205,10 +205,12 @@ public class Car : MonoBehaviour
     private void OnHitPedestrian(Pedestrian p)
     {
         print("Collision with pedestrian!");
+        FlowManager.instance.OnCollisionHappens();
     }
     private void OnHitCar(Car car)
     {
         print("Collision with car!");
+        FlowManager.instance.OnCollisionHappens();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
