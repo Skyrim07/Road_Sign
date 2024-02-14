@@ -2,8 +2,9 @@ using SKCell;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class FlowManager : MonoBehaviour
+public class FlowManager : SKMonoSingleton<FlowManager>
 {
     private void Start()
     {
@@ -33,5 +34,17 @@ public class FlowManager : MonoBehaviour
         RuntimeData.isPaused = false;
         RuntimeData.timeScale = 1.0f;
         CommonReference.instance.pausePanel.SetState(false);
+    }
+
+    public void OnCollisionHappens()
+    {
+        RuntimeData.timeScale = 0;
+        UIManager.instance.SetState_FailPanel(true);
+    }
+
+    public void RestartLevel()
+    {
+        RuntimeData.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
