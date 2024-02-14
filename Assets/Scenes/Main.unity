@@ -3959,11 +3959,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262600, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.021293
+      value: -11.03
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262600, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.81
+      value: 0.123477064
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262600, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3971,19 +3971,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262600, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262600, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262600, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262600, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000057518473
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262600, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3995,7 +3995,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262600, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -359.999
+      value: -180
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262602, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
       propertyPath: connectTo.Array.size

@@ -14,7 +14,7 @@ public class Car : MonoBehaviour
 
     public Queue<Transform> waypoints = new Queue<Transform>();
     //sign vars
-    [SerializeField] private float stopWaitTime = 6f;
+    [SerializeField] private float stopWaitTime = 12f;
 
 
     private Road currentRoad;
@@ -239,7 +239,7 @@ public class Car : MonoBehaviour
     {
         targetSpeed= 0;
         watchingSign = true;
-        yield return new WaitForSeconds(stopWaitTime / 20);
+        yield return new WaitForSeconds(stopWaitTime);
         watchingSign = false;
     }
 
