@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using SKCell;
 
 public class SignSlot : MonoBehaviour
 {
@@ -20,8 +21,10 @@ public class SignSlot : MonoBehaviour
         {
             isOccupied= true;
             mySignType = Sign.SignType.Stop;
-            mySign = Instantiate(signPrefab, transform.position,transform.rotation,this.transform).GetComponent<Sign>();
+            mySign = Instantiate(signPrefab, transform.position - Vector3.forward,transform.rotation,this.transform).GetComponent<Sign>();
             mySign.type= mySignType;
+
+            SKAudioManager.instance.PlaySound("signplace1");
         }
         else
         {
