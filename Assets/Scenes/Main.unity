@@ -3620,6 +3620,7 @@ GameObject:
   - component: {fileID: 1706483843}
   - component: {fileID: 1706483842}
   - component: {fileID: 1706483845}
+  - component: {fileID: 1706483846}
   m_Layer: 0
   m_Name: SKCore
   m_TagString: Untagged
@@ -3692,6 +3693,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5117ef9252636547bc20f018028a270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1706483846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1706483840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f8b4aa72d0a24e4cb04ad4ae4393e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicAudioSource: {fileID: 0}
+  audioSource: {fileID: 0}
+  music_ids: []
+  BGMs: []
 --- !u!1 &1726976003
 GameObject:
   m_ObjectHideFlags: 0
