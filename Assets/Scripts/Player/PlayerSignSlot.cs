@@ -14,8 +14,6 @@ public class PlayerSignSlot : SKMonoSingleton<PlayerSignSlot>
     {
         signBG.sprite = PlayerLogic.instance.sign == null? null : GetSpriteFromShape(PlayerLogic.instance.sign.shape);
         signBG.color = PlayerLogic.instance.sign == null ? Color.white: GetColorFromSignColor(PlayerLogic.instance.sign.color);
-
-        print(signBG.color);
     }
 
     private Color GetColorFromSignColor(SignColor signColor)
@@ -40,6 +38,8 @@ public class PlayerSignSlot : SKMonoSingleton<PlayerSignSlot>
                 return CommonReference.instance.sprite_octogon;
             case SignShape.Octogon:
                 return CommonReference.instance.sprite_octogon;
+            case SignShape.Diamond:
+                return CommonReference.instance.sprite_diamond;
             default:
                 return CommonReference.instance.sprite_octogon;
         }
