@@ -7,6 +7,9 @@ public class UIManager : SKMonoSingleton<UIManager>
 {
     [SerializeField] SKUIPanel colorFactoryPanel, shapeFactoryPanel;
     [SerializeField] SKUIPanel failPanel;
+    [SerializeField] SKSlider progressBar;
+
+    
 
     public void SetState_FailPanel(bool active)
     {

@@ -5065,6 +5065,7 @@ MonoBehaviour:
   colorFactoryPanel: {fileID: 2049121076}
   shapeFactoryPanel: {fileID: 282044979}
   failPanel: {fileID: 767465038}
+  progressBar: {fileID: 1355330117}
 --- !u!1 &1312084202
 GameObject:
   m_ObjectHideFlags: 0
@@ -5292,7 +5293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialized: 1
   value: 0.32
-  initialValue: 0
+  initialValue: 0.25
   style: 0
   linearDirection: 0
   circularPivot: 2
