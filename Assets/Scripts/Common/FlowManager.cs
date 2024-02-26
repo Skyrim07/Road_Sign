@@ -3,11 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static Unity.VisualScripting.Icons;
 
 public class FlowManager : SKMonoSingleton<FlowManager>
 {
+    SceneTitle sceneTitle;
     private void Start()
     {
+        Application.targetFrameRate = 60;
+        sceneTitle = (SceneTitle)PlayerPrefs.GetInt("StartScene");
+        LoadScene(sceneTitle);
+
         SKUtils.AddKeyDownAction(KeyCode.LeftAlt, () =>
         {
             SKConsole.Toggle();
@@ -21,6 +27,10 @@ public class FlowManager : SKMonoSingleton<FlowManager>
         });
     }
 
+    public void LoadScene(SceneTitle scene)
+    {
+        SKSceneManager.instance.LoadSceneAsync("loading", scene.ToString());
+    }
     public void Pause()
     {
         RuntimeData.isPaused = true;
