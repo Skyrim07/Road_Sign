@@ -7,4 +7,8 @@ public class CommonReference : SKMonoSingleton<CommonReference>
 {
     public SKUIPanel startPanel, pausePanel;
     public SKText pause_TitleText;
+
+    public Color red, blue;
+
+    public Sprite sprite_octogon, sprite_diamond;
 }

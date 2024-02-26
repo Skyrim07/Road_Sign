@@ -71,7 +71,7 @@ public class Car : MonoBehaviour
             {
                 if( waypoints.TryPeek(out var targetWaypoint))
                 {
-                    Debug.Log(targetWaypoint + ": " + targetWaypoint.parent.parent);
+                    //Debug.Log(targetWaypoint + ": " + targetWaypoint.parent.parent);
                     if (Vector2.Distance(transform.position, targetWaypoint.position) < 0.2f)
                     {
                         Vector3 from = transform.position, to = targetWaypoint.position;
