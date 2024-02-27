@@ -10,6 +10,7 @@ public class PlayerSignSlot : SKMonoSingleton<PlayerSignSlot>
     {
         UpdateVisual();
     }
+
     public void UpdateVisual()
     {
         signBG.sprite = PlayerLogic.instance.sign == null? null : GetSpriteFromShape(PlayerLogic.instance.sign.shape);

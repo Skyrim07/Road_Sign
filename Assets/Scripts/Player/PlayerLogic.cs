@@ -6,6 +6,8 @@ using SKCell;
 public class PlayerLogic : SKMonoSingleton<PlayerLogic>
 {
     public RoadSign sign;
+    private KeyCode discardSign = KeyCode.X;
+
     public void OnGetColor(SignColor color)
     {
         if (sign == null) 
@@ -15,7 +17,19 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
         sign.color = color;
         PlayerSignSlot.instance.UpdateVisual();
     }
-
+    private void Update()
+    {
+        if (Input.GetKeyDown(discardSign) && sign != null)
+        {
+            DiscardSign(sign);
+        }
+    }
+    public void DiscardSign(RoadSign sign)
+    {
+        sign.shape = SignShape.None;
+        sign.color = SignColor.None;
+        PlayerSignSlot.instance.UpdateVisual();
+    }
     public void OnGetShape(SignShape shape)
     {
         if (sign == null)
