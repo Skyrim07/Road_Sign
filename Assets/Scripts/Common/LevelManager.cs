@@ -19,6 +19,17 @@ public class LevelManager : SKMonoSingleton<LevelManager>
     public void SetProgressValue(float val01)
     {
         RuntimeData.currentProgress = val01;
+        RuntimeData.currentProgress = Mathf.Clamp01(RuntimeData.currentProgress);
         UIManager.instance.SetValue_ProgressBar(val01);
+
+        if (RuntimeData.currentProgress >= 1.0f)
+        {
+            OnLevelComplete();
+        }
+    }
+
+    public void OnLevelComplete()
+    {
+        print("level complete!");
     }
 }
