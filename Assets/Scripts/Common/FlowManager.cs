@@ -26,7 +26,11 @@ public class FlowManager : SKMonoSingleton<FlowManager>
                 Pause();
         });
     }
-
+    public void LoadMainMenu()
+    {
+        LoadScene(SceneTitle.MainMenu);
+        UnPause();
+    }
     public void LoadScene(SceneTitle scene)
     {
         SKSceneManager.instance.LoadSceneAsync("loading", scene.ToString());
