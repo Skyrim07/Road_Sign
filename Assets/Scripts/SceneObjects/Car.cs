@@ -214,6 +214,11 @@ public class Car : MonoBehaviour
         print("Collision with car!");
         FlowManager.instance.OnCollisionHappens();
     }
+    private void OnHitPlayer(PlayerMovement player)
+    {
+        print("Collision with player");
+        FlowManager.instance.OnPlayerCollision();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent<Intersection>(out var intersection))
@@ -231,6 +236,10 @@ public class Car : MonoBehaviour
         if (collision.TryGetComponent<Road>(out var road))
         {
             OnEnterRoad(road);
+        }
+        if(collision.TryGetComponent<PlayerMovement>(out var player))
+        {
+            OnHitPlayer(player);
         }
     }
     private void SignBehavior(Sign sign)

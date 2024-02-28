@@ -24,10 +24,11 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
             DiscardSign(sign);
         }
     }
-    public void DiscardSign(RoadSign sign)
+    public void DiscardSign(RoadSign discardedSign)
     {
-        sign.shape = SignShape.None;
-        sign.color = SignColor.None;
+        discardedSign.shape = SignShape.None;
+        discardedSign.color = SignColor.None;
+        discardedSign = null;
         PlayerSignSlot.instance.UpdateVisual();
     }
     public void OnGetShape(SignShape shape)

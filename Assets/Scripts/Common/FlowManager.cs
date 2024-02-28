@@ -51,6 +51,11 @@ public class FlowManager : SKMonoSingleton<FlowManager>
         RuntimeData.timeScale = 0;
         UIManager.instance.SetState_FailPanel(true);
     }
+    public void OnPlayerCollision()
+    {
+        RuntimeData.timeScale = 0;
+        UIManager.instance.SetState_DeathPanel(true);
+    }
 
     public void RestartLevel()
     {

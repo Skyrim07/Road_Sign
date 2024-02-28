@@ -24,7 +24,6 @@ public class PlayerMovement : MonoBehaviour
     {
         playerInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         playerInput.Normalize();
-        if (lose) { playerInput = Vector2.zero; }
     }
     private void FixedUpdate()
     {
