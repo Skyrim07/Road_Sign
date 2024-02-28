@@ -1228,10 +1228,10 @@ RectTransform:
   m_Father: {fileID: 714227469}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -228, y: -2946}
-  m_SizeDelta: {x: 370.235, y: 225.041}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 1052, y: 604}
+  m_SizeDelta: {x: 370.235, y: 225.04102}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &158079573
 Animator:
@@ -1301,6 +1301,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: FlowManager, Assembly-CSharp
         m_MethodName: RestartLevel
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 714227470}
+        m_TargetAssemblyTypeName: SKCell.SKUIPanel, Assembly-CSharp
+        m_MethodName: SetState
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4111,7 +4123,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &767465037
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8426,6 +8438,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: FlowManager, Assembly-CSharp
         m_MethodName: RestartLevel
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 385009911}
+        m_TargetAssemblyTypeName: SKCell.SKUIPanel, Assembly-CSharp
+        m_MethodName: SetState
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

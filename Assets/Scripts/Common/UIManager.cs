@@ -16,7 +16,7 @@ public class UIManager : SKMonoSingleton<UIManager>
 
     public void SetState_FailPanel(bool active)
     {
-        failPanel.SetState(active);
+        tenCrashPanel.SetState(active);
     }
     public void SetState_DeathPanel(bool active)
     {
