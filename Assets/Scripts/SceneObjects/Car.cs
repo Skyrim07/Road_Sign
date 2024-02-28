@@ -220,6 +220,12 @@ public class Car : MonoBehaviour
         print("Collision with player");
         FlowManager.instance.OnPlayerCollision();
     }
+    private void OnHitDestination(Destination dest)
+    {
+        print("Reach destination!");
+        LevelManager.instance.AddProgressValue(.1f);
+        Destroy(gameObject);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent<Intersection>(out var intersection))
@@ -237,6 +243,10 @@ public class Car : MonoBehaviour
         if (collision.TryGetComponent<Road>(out var road))
         {
             OnEnterRoad(road);
+        }
+        if (collision.TryGetComponent<Destination>(out var dest))
+        {
+            OnHitDestination(dest);
         }
         if(collision.TryGetComponent<PlayerMovement>(out var player))
         {

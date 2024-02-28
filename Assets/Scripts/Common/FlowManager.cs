@@ -25,20 +25,28 @@ public class FlowManager : SKMonoSingleton<FlowManager>
             if (RuntimeData.isPaused)
                 UnPause();
             else
+            {
                 Pause();
+                CommonReference.instance.pausePanel.SetState(true);
+               // CommonReference.instance.pause_TitleText.textAnimator.PlayTypeWriter();
+            }
+
         });
     }
-
+    public void LoadMainMenu()
+    {
+        LoadScene(SceneTitle.MainMenu);
+        UnPause();
+    }
     public void LoadScene(SceneTitle scene)
     {
         SKSceneManager.instance.LoadSceneAsync("loading", scene.ToString());
+  
     }
     public void Pause()
     {
         RuntimeData.isPaused = true;
         RuntimeData.timeScale = 0.0f;
-        CommonReference.instance.pausePanel.SetState(true);
-        CommonReference.instance.pause_TitleText.textAnimator.PlayTypeWriter();
     }
 
     public void UnPause()
@@ -84,4 +92,10 @@ public class FlowManager : SKMonoSingleton<FlowManager>
         RuntimeData.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+}
+
+
+public class EventRef
+{
+    public static int ON_LOAD_LEVEL = 0;
 }
