@@ -23,7 +23,12 @@ public class FlowManager : SKMonoSingleton<FlowManager>
             if (RuntimeData.isPaused)
                 UnPause();
             else
+            {
                 Pause();
+                CommonReference.instance.pausePanel.SetState(true);
+               // CommonReference.instance.pause_TitleText.textAnimator.PlayTypeWriter();
+            }
+
         });
     }
     public void LoadMainMenu()
@@ -40,8 +45,6 @@ public class FlowManager : SKMonoSingleton<FlowManager>
     {
         RuntimeData.isPaused = true;
         RuntimeData.timeScale = 0.0f;
-        CommonReference.instance.pausePanel.SetState(true);
-        CommonReference.instance.pause_TitleText.textAnimator.PlayTypeWriter();
     }
 
     public void UnPause()
