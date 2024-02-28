@@ -207,12 +207,16 @@ public class Car : MonoBehaviour
     private void OnHitPedestrian(Pedestrian p)
     {
         print("Collision with pedestrian!");
-        FlowManager.instance.OnCollisionHappens();
+        FlowManager.instance.OnCollisionHappens(1f, p.gameObject);
     }
     private void OnHitCar(Car car)
     {
         print("Collision with car!");
-        FlowManager.instance.OnCollisionHappens();
+        FlowManager.instance.OnCollisionHappens(0.5f, gameObject);
+    }
+    private void OnHitPlayer(PlayerLogic player)
+    {
+        FlowManager.instance.OnPlayerCollision();
     }
     private void OnHitDestination(Destination dest)
     {
@@ -241,6 +245,10 @@ public class Car : MonoBehaviour
         if (collision.TryGetComponent<Destination>(out var dest))
         {
             OnHitDestination(dest);
+        }
+        if(collision.TryGetComponent<PlayerLogic>(out var player))
+        {
+            OnHitPlayer(player);
         }
     }
     private void SignBehavior(Sign sign)
