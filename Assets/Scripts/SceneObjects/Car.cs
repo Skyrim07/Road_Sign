@@ -207,12 +207,12 @@ public class Car : MonoBehaviour
     private void OnHitPedestrian(Pedestrian p)
     {
         print("Collision with pedestrian!");
-        FlowManager.instance.OnCollisionHappens();
+        FlowManager.instance.OnCollisionHappens(1f, p.gameObject);
     }
     private void OnHitCar(Car car)
     {
         print("Collision with car!");
-        FlowManager.instance.OnCollisionHappens();
+        FlowManager.instance.OnCollisionHappens(0.5f, gameObject);
     }
     private void OnHitDestination(Destination dest)
     {
