@@ -214,12 +214,6 @@ public class Car : MonoBehaviour
         print("Collision with car!");
         FlowManager.instance.OnCollisionHappens();
     }
-    private void OnHitDestination(Destination dest)
-    {
-        print("Reach destination!");
-        LevelManager.instance.AddProgressValue(.1f);
-        Destroy(gameObject);
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent<Intersection>(out var intersection))
@@ -238,9 +232,15 @@ public class Car : MonoBehaviour
         {
             OnEnterRoad(road);
         }
+<<<<<<< HEAD
         if (collision.TryGetComponent<Destination>(out var dest))
         {
             OnHitDestination(dest);
+=======
+        if(collision.TryGetComponent<PlayerMovement>(out var player))
+        {
+            OnHitPlayer(player);
+>>>>>>> parent of 87dbbd8 (Merge branch 'main' into julia-branch)
         }
     }
     private void SignBehavior(Sign sign)

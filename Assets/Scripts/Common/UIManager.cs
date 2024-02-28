@@ -9,10 +9,7 @@ public class UIManager : SKMonoSingleton<UIManager>
     [SerializeField] SKUIPanel failPanel;
     [SerializeField] SKSlider progressBar;
 
-    public void SetValue_ProgressBar(float value01)
-    {
-        progressBar.SetValue(value01);
-    }
+    
 
     public void SetState_FailPanel(bool active)
     {

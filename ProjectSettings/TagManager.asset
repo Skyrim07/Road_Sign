@@ -7,7 +7,6 @@ TagManager:
   - Car
   - ColorFactory
   - ShapeFactory
-  - Destination
   layers:
   - Default
   - TransparentFX

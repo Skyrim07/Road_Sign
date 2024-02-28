@@ -4,7 +4,7 @@ using UnityEngine;
 using SKCell;
 public class PlayerSignSlot : SKMonoSingleton<PlayerSignSlot>
 {
-    [SerializeField] SpriteRenderer signBG, signSprite;
+    [SerializeField] SpriteRenderer signBG;
 
     private void Start()
     {
@@ -15,20 +15,8 @@ public class PlayerSignSlot : SKMonoSingleton<PlayerSignSlot>
     {
         signBG.sprite = PlayerLogic.instance.sign == null? null : GetSpriteFromShape(PlayerLogic.instance.sign.shape);
         signBG.color = PlayerLogic.instance.sign == null ? Color.white: GetColorFromSignColor(PlayerLogic.instance.sign.color);
-        signSprite.sprite = PlayerLogic.instance.sign == null ? null : GetSpriteFromSignType(PlayerLogic.instance.sign.type);
     }
-    private Sprite GetSpriteFromSignType(SignType type)
-    {
-        switch (type)
-        {
-            case SignType.None:
-                return null;
-            case SignType.Stop:
-                return CommonReference.instance.sprite_StopSign;
-            default:
-                return null;
-        }
-    }
+
     private Color GetColorFromSignColor(SignColor signColor)
     {
         switch (signColor)
@@ -48,7 +36,7 @@ public class PlayerSignSlot : SKMonoSingleton<PlayerSignSlot>
         switch (shape)
         {
             case SignShape.None:
-                return null;
+                return CommonReference.instance.sprite_octogon;
             case SignShape.Octogon:
                 return CommonReference.instance.sprite_octogon;
             case SignShape.Diamond:

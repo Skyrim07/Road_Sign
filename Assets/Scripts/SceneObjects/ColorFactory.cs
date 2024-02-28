@@ -43,11 +43,6 @@ public class ColorFactory : SKMonoSingleton<ColorFactory>
         PlayerLogic.instance.OnGetColor(c);
     }
 }
-public enum SignType
-{
-    None,
-    Stop
-}
 
 public enum SignColor
 {

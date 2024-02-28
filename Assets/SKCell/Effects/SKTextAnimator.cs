@@ -81,7 +81,6 @@ namespace SKCell
         /// </summary>
         public void PlayTypeWriter()
         {
-            if(text != null)
             UpdateText(text.text);
         }
         private void PlayTypeWriterInternal()
