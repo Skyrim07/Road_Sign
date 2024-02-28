@@ -42,8 +42,7 @@ public class Car : MonoBehaviour
         exitingIntersection= false;
         otherCarWatchingSign = false;
         shouldStop = CheckForObstacles();
-
-        if (shouldStop && watchingSign || otherCarWatchingSign)
+        if (shouldStop || watchingSign || otherCarWatchingSign)
         {
             targetSpeed = 0;
         }
@@ -208,17 +207,12 @@ public class Car : MonoBehaviour
     private void OnHitPedestrian(Pedestrian p)
     {
         print("Collision with pedestrian!");
-        FlowManager.instance.OnCollisionHappens(1f, p.gameObject);
+        FlowManager.instance.OnCollisionHappens();
     }
     private void OnHitCar(Car car)
     {
         print("Collision with car!");
-        FlowManager.instance.OnCollisionHappens(0.5f, car.gameObject);
-    }
-    private void OnHitPlayer(PlayerMovement player)
-    {
-        print("Collision with player");
-        FlowManager.instance.OnPlayerCollision();
+        FlowManager.instance.OnCollisionHappens();
     }
     private void OnHitDestination(Destination dest)
     {
@@ -247,10 +241,6 @@ public class Car : MonoBehaviour
         if (collision.TryGetComponent<Destination>(out var dest))
         {
             OnHitDestination(dest);
-        }
-        if(collision.TryGetComponent<PlayerMovement>(out var player))
-        {
-            OnHitPlayer(player);
         }
     }
     private void SignBehavior(Sign sign)

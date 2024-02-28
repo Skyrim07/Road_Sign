@@ -27,9 +27,8 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
         {
             DiscardSign(sign);
         }
-
     }
-    public void DiscardSign(RoadSign discardedSign)
+    public void DiscardSign(RoadSign sign)
     {
         sign.shape = SignShape.None;
         sign.color = SignColor.None;
