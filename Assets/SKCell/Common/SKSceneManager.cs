@@ -115,7 +115,7 @@ namespace SKCell
             //Load complete
             async.allowSceneActivation = true;
             onNextSceneLoaded.Invoke();
-
+            EventDispatcher.Dispatch(EventDispatcher.Common, EventRef.ON_LOAD_LEVEL);
             yield return new WaitForSeconds(0.8f);
             loadFader.SetState(SKUIPanelState.Inactive);
 

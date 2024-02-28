@@ -8,4 +8,6 @@ public class RuntimeData : MonoBehaviour
     public static float deltaTime {  get { return timeScale * Time.deltaTime; } }
     public static float fixedDeltaTime {  get { return timeScale * Time.fixedDeltaTime; } }
     public static bool isPaused = false;
+
+    public static float currentProgress;
 }

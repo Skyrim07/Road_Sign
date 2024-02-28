@@ -30,6 +30,7 @@ public class FlowManager : SKMonoSingleton<FlowManager>
     public void LoadScene(SceneTitle scene)
     {
         SKSceneManager.instance.LoadSceneAsync("loading", scene.ToString());
+  
     }
     public void Pause()
     {
@@ -57,4 +58,10 @@ public class FlowManager : SKMonoSingleton<FlowManager>
         RuntimeData.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+}
+
+
+public class EventRef
+{
+    public static int ON_LOAD_LEVEL = 0;
 }

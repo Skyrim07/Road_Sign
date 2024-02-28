@@ -8,6 +8,23 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
     public RoadSign sign;
     private KeyCode discardSign = KeyCode.X;
 
+    private void Start()
+    {
+        EventDispatcher.AddListener(EventDispatcher.Common, EventRef.ON_LOAD_LEVEL, new SKEvent(() =>
+        {
+            PlayerLogic.instance.SetProgressValue(0);
+        }));
+    }
+
+    public void AddProgressValue(float delta01)
+    {
+        SetProgressValue(RuntimeData.currentProgress + delta01);
+    }
+    public void SetProgressValue(float val01)
+    {
+        RuntimeData.currentProgress = val01;
+        UIManager.instance.SetValue_ProgressBar(val01);
+    }
     public void OnGetColor(SignColor color)
     {
         if (sign == null) 
