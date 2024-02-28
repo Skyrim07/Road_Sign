@@ -72,6 +72,11 @@ public class FlowManager : SKMonoSingleton<FlowManager>
             LevelFail();
         }
     }
+    public void OnPlayerCollision()
+    {
+        RuntimeData.timeScale = 0;
+        UIManager.instance.SetState_DeathPanel(true);
+    }
     public void LevelFail()
     {
         RuntimeData.timeScale = 0;
