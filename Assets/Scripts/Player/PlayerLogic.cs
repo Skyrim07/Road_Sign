@@ -8,6 +8,7 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
     public RoadSign sign;
     private KeyCode discardSign = KeyCode.X;
 
+
     public void OnGetColor(SignColor color)
     {
         if (sign == null) 
@@ -23,6 +24,7 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
         {
             DiscardSign(sign);
         }
+
     }
     public void DiscardSign(RoadSign discardedSign)
     {

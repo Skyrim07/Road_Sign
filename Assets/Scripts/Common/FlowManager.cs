@@ -8,6 +8,8 @@ using static Unity.VisualScripting.Icons;
 public class FlowManager : SKMonoSingleton<FlowManager>
 {
     SceneTitle sceneTitle;
+    public int crashCount;
+    private int crashCountMax = 10;
     private void Start()
     {
         Application.targetFrameRate = 60;
@@ -48,13 +50,23 @@ public class FlowManager : SKMonoSingleton<FlowManager>
 
     public void OnCollisionHappens()
     {
-        RuntimeData.timeScale = 0;
-        UIManager.instance.SetState_FailPanel(true);
+        //RuntimeData.timeScale = 0;
+        //UIManager.instance.SetState_FailPanel(true);
+        crashCount++;
+        if(crashCount >= crashCountMax)
+        {
+            LevelFail();
+        }
     }
     public void OnPlayerCollision()
     {
         RuntimeData.timeScale = 0;
         UIManager.instance.SetState_DeathPanel(true);
+    }
+    public void LevelFail()
+    {
+        RuntimeData.timeScale = 0;
+        UIManager.instance.SetState_FailPanel(true);
     }
 
     public void RestartLevel()
