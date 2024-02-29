@@ -70,12 +70,12 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
     {
         if (collision.CompareTag("ColorFactory"))
         {
-            if(sign.color== SignColor.None)
+            if(sign == null || sign.color== SignColor.None)
             UIManager.instance.SetState_ColorFactoryPanel(true);
         }
         if (collision.CompareTag("ShapeFactory"))
         {
-            if (sign.shape == SignShape.None)
+            if (sign == null || sign.shape == SignShape.None)
                 UIManager.instance.SetState_ShapeFactoryPanel(true);
         }
     }

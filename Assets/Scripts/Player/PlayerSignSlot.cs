@@ -4,7 +4,7 @@ using UnityEngine;
 using SKCell;
 public class PlayerSignSlot : SKMonoSingleton<PlayerSignSlot>
 {
-    [SerializeField] SpriteRenderer signBG, signSprite;
+    [SerializeField] SpriteRenderer signBG, signSprite, paint;
 
     private void Start()
     {
@@ -15,7 +15,10 @@ public class PlayerSignSlot : SKMonoSingleton<PlayerSignSlot>
     {
         signBG.sprite = PlayerLogic.instance.sign == null? null : GetSpriteFromShape(PlayerLogic.instance.sign.shape);
         signBG.color = PlayerLogic.instance.sign == null ? Color.white: GetColorFromSignColor(PlayerLogic.instance.sign.color);
+        paint.color = PlayerLogic.instance.sign == null ? Color.white: GetColorFromSignColor(PlayerLogic.instance.sign.color);
         signSprite.sprite = PlayerLogic.instance.sign == null ? null : GetSpriteFromSignType(PlayerLogic.instance.sign.type);
+
+        //paint.gameObject.SetActive(PlayerLogic.instance.sign == null || PlayerLogic.instance.sign.type == SignType.None);
     }
     private Sprite GetSpriteFromSignType(SignType type)
     {
