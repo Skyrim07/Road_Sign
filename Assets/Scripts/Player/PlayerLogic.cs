@@ -12,6 +12,7 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
    
     public void OnGetColor(SignColor color)
     {
+        SKAudioManager.instance.PlaySound("paint3");
         if (sign == null) 
         {
             sign = new RoadSign();
@@ -69,11 +70,13 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
     {
         if (collision.CompareTag("ColorFactory"))
         {
+            if(sign.color== SignColor.None)
             UIManager.instance.SetState_ColorFactoryPanel(true);
         }
         if (collision.CompareTag("ShapeFactory"))
         {
-            UIManager.instance.SetState_ShapeFactoryPanel(true);
+            if (sign.shape == SignShape.None)
+                UIManager.instance.SetState_ShapeFactoryPanel(true);
         }
     }
 }
