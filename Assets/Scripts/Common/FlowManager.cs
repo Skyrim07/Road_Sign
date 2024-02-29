@@ -97,6 +97,8 @@ public class FlowManager : SKMonoSingleton<FlowManager>
         yield return new WaitForEndOfFrame();
         Destroy(crash);
     }
+
+    //ill change this later to be more specific im just tired rn lol
     public IEnumerator WaitToLoad(int sec)
     {
         yield return new WaitForSeconds(sec);
