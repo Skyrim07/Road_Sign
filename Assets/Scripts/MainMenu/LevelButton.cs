@@ -1,3 +1,4 @@
+using SKCell;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class LevelButton : MonoBehaviour
     [SerializeField] public Button button;
     public void OnSelect()
     {
+        SKAudioManager.instance.PlaySound("UI3");
         button.interactable = false;
         FlowManager.instance.LoadScene(scene);
     }
