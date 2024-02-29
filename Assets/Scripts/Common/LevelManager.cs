@@ -31,5 +31,6 @@ public class LevelManager : SKMonoSingleton<LevelManager>
     public void OnLevelComplete()
     {
         print("level complete!");
+        UIManager.instance.SetState_WinPanel(true);
     }
 }

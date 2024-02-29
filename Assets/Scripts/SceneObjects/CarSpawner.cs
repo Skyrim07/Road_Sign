@@ -28,6 +28,7 @@ public class CarSpawner : MonoBehaviour
         if(timer > interval)
         {
             SpawnCar();
+            GetNewInterval();
             timer = 0;
         }
 

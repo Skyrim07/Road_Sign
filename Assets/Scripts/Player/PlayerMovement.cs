@@ -48,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
         {
             hitByCar = true;
             lose = true;
+            SKAudioManager.instance.PlaySound("die");
         }
     }
 
