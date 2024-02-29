@@ -213,6 +213,7 @@ public class Car : MonoBehaviour
     {
         print("Collision with car!");
         FlowManager.instance.OnCollisionHappens(0.5f, gameObject);
+        Destroy(gameObject);
     }
     private void OnHitPlayer(PlayerLogic player)
     {
