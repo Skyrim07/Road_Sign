@@ -5267,7 +5267,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 34ca674e197e672408d59db911a296f4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 89702ac0f429e544c87e2d4638e89943, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6538,6 +6538,7 @@ MonoBehaviour:
   colorFactoryPanel: {fileID: 2049121076}
   shapeFactoryPanel: {fileID: 282044979}
   failPanel: {fileID: 767465038}
+  winPanel: {fileID: 1083432564}
   deathPanel: {fileID: 763748792}
   ticketPanel: {fileID: 73153339}
   progressBar: {fileID: 1355330117}
@@ -7085,7 +7086,7 @@ MonoBehaviour:
   backgroundColor: {r: 0.1, g: 0.1, b: 0.1, a: 0.3}
   fillColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
   fillColorTransition: 1
-  fillColorTransitionThreshold: 0.9
+  fillColorTransitionThreshold: 1
   fillColor2: {r: 0.2, g: 0.8, b: 0.4, a: 1}
   fillColorSmoothLerp: 1
   fillColorLerpSpeed: 0.1
@@ -7736,7 +7737,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 55cb1f8be3e12794db4b92da3e8f30c0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0da2ff21183e1824f8e47bcca507c27a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
