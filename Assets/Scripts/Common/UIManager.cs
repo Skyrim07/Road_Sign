@@ -9,7 +9,7 @@ public class UIManager : SKMonoSingleton<UIManager>
     [SerializeField] SKUIPanel failPanel;
     [SerializeField] SKUIPanel tutorialPanel;
 
-    [SerializeField] SKUIPanel failPanel, winPanel;
+    [SerializeField] SKUIPanel winPanel;
     [SerializeField] SKUIPanel deathPanel, ticketPanel;
     [SerializeField] SKSlider progressBar;
 
