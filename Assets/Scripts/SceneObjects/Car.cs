@@ -221,7 +221,7 @@ public class Car : MonoBehaviour
     private void OnHitDestination(Destination dest)
     {
         print("Reach destination!");
-        LevelManager.instance.AddProgressValue(.1f);
+        LevelManager.instance.AddProgressValue(.05f);
         Destroy(gameObject);
     }
     private void OnTriggerEnter2D(Collider2D collision)

@@ -6,7 +6,7 @@ using UnityEngine;
 public class UIManager : SKMonoSingleton<UIManager> 
 {
     [SerializeField] SKUIPanel colorFactoryPanel, shapeFactoryPanel;
-    [SerializeField] SKUIPanel failPanel;
+    [SerializeField] SKUIPanel failPanel, winPanel;
     [SerializeField] SKUIPanel deathPanel, ticketPanel;
     [SerializeField] SKSlider progressBar;
 
@@ -18,6 +18,10 @@ public class UIManager : SKMonoSingleton<UIManager>
     public void SetState_FailPanel(bool active)
     {
         ticketPanel.SetState(active);
+    }
+    public void SetState_WinPanel(bool active)
+    {
+        winPanel.SetState(active);
     }
     public void SetState_DeathPanel(bool active)
     {
