@@ -62,7 +62,7 @@ public class FlowManager : SKMonoSingleton<FlowManager>
         //RuntimeData.timeScale = 0;
         //UIManager.instance.SetState_FailPanel(true);
         crashCount += increase;
-        print(crashCount);
+        LevelManager.instance.AddProgressValue(-.15f);
         if(crash != null)
         {
             StartCoroutine(WaitToDestroy(crash));
