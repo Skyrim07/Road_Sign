@@ -17,6 +17,7 @@ public class FlowManager : SKMonoSingleton<FlowManager>
         sceneTitle = (SceneTitle)PlayerPrefs.GetInt("StartScene");
         LoadScene(sceneTitle);
 
+
         SKUtils.AddKeyDownAction(KeyCode.LeftAlt, () =>
         {
             SKConsole.Toggle();
@@ -34,6 +35,11 @@ public class FlowManager : SKMonoSingleton<FlowManager>
 
         });
     }
+    public void LoadTutorialPanel()
+    {
+        Pause();
+        UIManager.instance.SetState_TutorialPanel(true);
+    }
     public void LoadMainMenu()
     {
         LoadScene(SceneTitle.MainMenu);
@@ -42,7 +48,11 @@ public class FlowManager : SKMonoSingleton<FlowManager>
     public void LoadScene(SceneTitle scene)
     {
         SKSceneManager.instance.LoadSceneAsync("loading", scene.ToString());
-  
+        if(scene == SceneTitle.Level1)
+        {
+            StartCoroutine(WaitToLoad(3));
+        }
+
     }
     public void Pause()
     {
@@ -87,7 +97,11 @@ public class FlowManager : SKMonoSingleton<FlowManager>
         yield return new WaitForEndOfFrame();
         Destroy(crash);
     }
-
+    public IEnumerator WaitToLoad(int sec)
+    {
+        yield return new WaitForSeconds(sec);
+        LoadTutorialPanel();
+    }
     public void RestartLevel()
     {
         RuntimeData.timeScale = 1;
