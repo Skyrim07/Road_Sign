@@ -48,7 +48,11 @@ public enum SignType
     None,
     Stop
 }
-
+public enum SignBehaviourType
+{
+    Car,
+    Road
+}
 public enum SignColor
 {
     None,

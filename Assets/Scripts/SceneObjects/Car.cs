@@ -9,13 +9,23 @@ public class Car : MonoBehaviour
     public float maxSpeed = 3f;
     public float acceleration = 1f;
 
-    public float raycastFwdLength = 1f;
+    public float raycastFwdLength = 1f, raycastSignLength = 3f;
+    [SerializeField] Transform centerPos;
     [SerializeField] Transform[] raycastPoses;
+    [SerializeField] Transform[] visionPoints;
+    public float turnDistanceFactor = 1.2f;
 
     public Queue<Transform> waypoints = new Queue<Transform>();
+
+
+
     //sign vars
+    //private bool isInStopSign;
+
+
     [SerializeField] private float stopWaitTime = 12f;
-    private bool watchingSign;
+    private bool isInStopSign;
+
     private bool otherCarWatchingSign;
     private bool exitingIntersection;
 
@@ -27,6 +37,8 @@ public class Car : MonoBehaviour
     private float rotationSpeed, rotationDelta;
     private bool isOnRoad;
     private bool shouldStop;
+
+    List<Sign> watchedSigns = new List<Sign>();
 
     private void Start()
     {
@@ -42,7 +54,10 @@ public class Car : MonoBehaviour
         exitingIntersection= false;
         otherCarWatchingSign = false;
         shouldStop = CheckForObstacles();
-        if (shouldStop || watchingSign || otherCarWatchingSign)
+        CheckForSigns();
+        shouldStop |= isInStopSign;
+
+        if (shouldStop)
         {
             targetSpeed = 0;
         }
@@ -58,14 +73,10 @@ public class Car : MonoBehaviour
             //Debug.Log(isOnRoad);
             if (waypoints.Count==0) // If there is nowhere to go
             {
-                if (!watchingSign && currentRoad.mySignSlot.isOccupied && !exitingIntersection)
+                if ( !exitingIntersection)
                 {
-                    watchingSign = true;
-                    SignBehavior(currentRoad.mySignSlot.mySign);
                 }
-                //currentRoad = currentRoad.connectTo.Count==0?null:currentRoad.connectTo[Random.Range(0, currentRoad.connectTo.Count)];
                 isOnRoad = false;
-                //PrepareEnterNewRoad();
             }
             if (currentRoad != null)
             {
@@ -98,6 +109,23 @@ public class Car : MonoBehaviour
         transform.Rotate(0, 0, rotationFactor *rotationDelta * Time.fixedDeltaTime * RuntimeData.timeScale);
     }
 
+    private void CheckForSigns()
+    {
+        RaycastHit2D[] hits = Physics2D.RaycastAll(centerPos.position, (transform.rotation * Vector2.right), raycastSignLength);
+        Debug.DrawLine(centerPos.position, centerPos.position + (transform.rotation * Vector2.right) * raycastSignLength, Color.red, 0.02f);
+        foreach(var hit in hits)
+        {
+            if(hit.transform!=null && hit.transform.CompareTag("SignSlot"))
+            {
+                SignSlot slot = hit.transform.GetComponent<SignSlot>();
+                if(slot.road == currentRoad)
+                    foreach(var sign in slot.signs)
+                    {
+                        SignBehavior(sign);
+                    }
+            }
+        }
+    }
     private bool CheckForObstacles()
     {
         bool check = false;
@@ -118,7 +146,7 @@ public class Car : MonoBehaviour
         if (currentRoad==null || currentRoad.waypoints.Count == 0) return;
         Transform from = transform;
         Transform to = waypoints.Peek();
-        float distanceFactor = 1.07f; 
+        float distanceFactor = turnDistanceFactor; 
         float dist = Vector2.Distance(from.position, to.position) * distanceFactor;
         float time = dist / maxSpeed;
         float currentAngle = from.eulerAngles.z;
@@ -144,16 +172,18 @@ public class Car : MonoBehaviour
         stop |= c != null;
         Pedestrian p = hit.transform.GetComponent<Pedestrian>();
         stop |= p != null;
+        /*
         if (c!=null)
         {
             otherCarWatchingSign |= CheckForSignWatch(c);
         }
+        */
         return stop;
     }
     private bool CheckForSignWatch(Car car)
     {
         bool signWatch = false;
-        if (car.watchingSign || car.otherCarWatchingSign)
+        if (car.isInStopSign || car.otherCarWatchingSign)
         {
             signWatch = true;
         }
@@ -211,7 +241,6 @@ public class Car : MonoBehaviour
     }
     private void OnHitCar(Car car)
     {
-        print("Collision with car!");
         FlowManager.instance.OnCollisionHappens(0.5f, gameObject);
         Destroy(gameObject);
     }
@@ -254,19 +283,39 @@ public class Car : MonoBehaviour
     }
     private void SignBehavior(Sign sign)
     {
-        switch (sign.type)
+        if (sign == null) return;
+        if (watchedSigns.Contains(sign))
+            return;
+
+        watchedSigns.Add(sign);
+        if(sign.type == SignType.Stop)
         {
-            case Sign.SignType.Stop:
-                StartCoroutine(StopSign());
-                break;
+            StartCoroutine(StopSign());
         }
     }
+
     private IEnumerator StopSign()
     {
-        targetSpeed= 0;
-        watchingSign = true;
+        print("stop");
+        targetSpeed = 0;
+        isInStopSign = true;
         yield return new WaitForSeconds(stopWaitTime);
-        watchingSign = false;
+
+        bool isFree = false;
+        while (!isFree)
+        {
+            isFree = true;
+            for (int i = 0; i < raycastPoses.Length; i++)
+            {
+                Vector2 dir = visionPoints[i].position - raycastPoses[i].position;
+                RaycastHit2D hit = Physics2D.Raycast(raycastPoses[i].position, dir.normalized, dir.magnitude);
+                if (hit.transform != null && hit.transform.CompareTag("Car") && hit.transform.CompareTag("Pedestrian"))
+                    isFree = false;
+            }
+            yield return new WaitForSeconds(.2f);
+        }
+
+        isInStopSign = false;
     }
 
 }

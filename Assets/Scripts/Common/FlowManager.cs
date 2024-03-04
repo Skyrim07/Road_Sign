@@ -80,6 +80,7 @@ public class FlowManager : SKMonoSingleton<FlowManager>
     }
     public void OnPlayerCollision()
     {
+        PlayerLogic.instance.DestroySign();
         RuntimeData.timeScale = 0;
         UIManager.instance.SetState_DeathPanel(true);
     }

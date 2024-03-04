@@ -13,4 +13,6 @@ public class CommonReference : SKMonoSingleton<CommonReference>
     public Sprite sprite_transparent,sprite_octogon, sprite_diamond;
 
     public Sprite sprite_StopSign;
+
+    public GameObject stopSignPF;
 }

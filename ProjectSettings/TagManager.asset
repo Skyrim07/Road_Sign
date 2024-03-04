@@ -8,6 +8,8 @@ TagManager:
   - ColorFactory
   - ShapeFactory
   - Destination
+  - SignSlot
+  - Pedestrian
   layers:
   - Default
   - TransparentFX
@@ -44,4 +46,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 617987091
+    locked: 0
+  - name: Foreground
+    uniqueID: 494805439
     locked: 0

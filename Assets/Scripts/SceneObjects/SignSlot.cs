@@ -5,31 +5,104 @@ using SKCell;
 
 public class SignSlot : MonoBehaviour
 {
-    public bool isOccupied = false;
-    //not sure if we want to have more than one sign in the same slot but rn its just one
-    public Sign.SignType mySignType;
-    public GameObject signPrefab;
-    public Sign mySign;
-    public Road myRoad;
+    public List<Sign> signs = new List<Sign>();
+    public Road road;
+    public float angle;
+
+    [SerializeField] Animator indicatorAnim, cancelAnim;
+    [SerializeField] Animator invalidSignAnim;
+
+    private bool isPlayerIn;
     private void Start()
     {
-    }
-    public void OnMouseDown()
-    {
-        //rn only accounts for stop signs, will change later once we get more
-        if(!isOccupied)
-        {
-            isOccupied= true;
-            mySignType = Sign.SignType.Stop;
-            mySign = Instantiate(signPrefab, transform.position - Vector3.forward,transform.rotation,this.transform).GetComponent<Sign>();
-            mySign.type= mySignType;
 
-            SKAudioManager.instance.PlaySound("signplace1");
+    }
+
+    private void Update()
+    {
+        if (isPlayerIn)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (signs.Count == 0)
+                    PlayerPlaceSign();
+                else
+                    PlayerDestroySign();
+            }
+        }
+    }
+
+    private void PlayerDestroySign()
+    {
+        foreach (var sign in signs)
+        {
+            Destroy(sign.gameObject);
+        }
+        signs.Clear();
+    }
+    private void PlayerPlaceSign()
+    {
+        if(PlayerLogic.HasValidSign())
+        {
+            indicatorAnim.Disappear();
+            InstantiateSignObject(PlayerLogic.instance.sign.type);
+            PlayerLogic.instance.DestroySign();
         }
         else
         {
-            isOccupied = false;
-            Destroy(mySign.gameObject);
+           
+        }
+    }
+
+    private void InstantiateSignObject(SignType sign)
+    {
+        if(sign ==SignType.Stop)
+        {
+            GameObject inst = Instantiate(CommonReference.instance.stopSignPF, transform);
+            inst.transform.Rotate(0, 0, angle);
+            signs.Add(inst.GetComponent<Sign>());
+        }
+    }
+
+    private void OnPlayerEnter()
+    {
+        isPlayerIn = true;
+        if (signs.Count == 0)
+        {
+            if (PlayerLogic.HasValidSign())
+            {
+                indicatorAnim.Appear();
+            }
+            else
+            {
+                invalidSignAnim.Appear();
+            }
+        }
+        else
+        {
+            cancelAnim.Appear();
+        }
+
+    }
+    private void OnPlayerExit()
+    {
+        isPlayerIn = false;
+        cancelAnim.Disappear();
+        indicatorAnim.Disappear();
+        invalidSignAnim.Disappear();
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            OnPlayerEnter();
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            OnPlayerExit();
         }
     }
 }

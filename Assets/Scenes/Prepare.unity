@@ -389,7 +389,7 @@ GameObject:
   - component: {fileID: 59502543}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3314,6 +3314,7 @@ MonoBehaviour:
   sprite_octogon: {fileID: 21300000, guid: d31d42daf1c3a7045975da4ab8c0f733, type: 3}
   sprite_diamond: {fileID: 21300000, guid: 02277804dda16ab4fa108b013b257fa7, type: 3}
   sprite_StopSign: {fileID: 21300000, guid: 10494b142dedec54188406c85c1d525b, type: 3}
+  stopSignPF: {fileID: 1431314900385517537, guid: fd4a76fe8c0c72840ac17fdba5a27b96, type: 3}
 --- !u!1 &541392006
 GameObject:
   m_ObjectHideFlags: 0

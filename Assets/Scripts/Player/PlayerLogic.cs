@@ -9,7 +9,15 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
     public RoadSign sign;
     private KeyCode discardSign = KeyCode.X;
 
-   
+   public static bool HasValidSign()
+    {
+        return PlayerLogic.instance.sign != null && PlayerLogic.instance.sign.type != SignType.None;
+    }
+    public void DestroySign()
+    {
+        sign = null;
+        PlayerSignSlot.instance.UpdateVisual();
+    }
     public void OnGetColor(SignColor color)
     {
         SKAudioManager.instance.PlaySound("paint3");
