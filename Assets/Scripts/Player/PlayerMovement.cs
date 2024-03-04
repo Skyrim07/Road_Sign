@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        rb.velocity = playerInput * (Mathf.Lerp(speed, maxSpeed, accel));
+        rb.velocity = playerInput * (Mathf.Lerp(speed, maxSpeed, accel)) * RuntimeData.timeScale;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

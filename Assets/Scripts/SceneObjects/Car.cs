@@ -10,7 +10,7 @@ public class Car : MonoBehaviour
     public float acceleration = 1f;
 
     public float raycastFwdLength = 1f, raycastSignLength = 3f;
-    [SerializeField] Transform centerPos;
+    [SerializeField] Transform centerPos,frontPos;
     [SerializeField] Transform[] raycastPoses;
     [SerializeField] Transform[] visionPoints;
     public float turnDistanceFactor = 1.2f;
@@ -296,7 +296,6 @@ public class Car : MonoBehaviour
 
     private IEnumerator StopSign()
     {
-        print("stop");
         targetSpeed = 0;
         isInStopSign = true;
         yield return new WaitForSeconds(stopWaitTime);
@@ -305,11 +304,12 @@ public class Car : MonoBehaviour
         while (!isFree)
         {
             isFree = true;
-            for (int i = 0; i < raycastPoses.Length; i++)
+            for (int i = 0; i < visionPoints.Length; i++)
             {
-                Vector2 dir = visionPoints[i].position - raycastPoses[i].position;
-                RaycastHit2D hit = Physics2D.Raycast(raycastPoses[i].position, dir.normalized, dir.magnitude);
-                if (hit.transform != null && hit.transform.CompareTag("Car") && hit.transform.CompareTag("Pedestrian"))
+                Vector2 dir = visionPoints[i].position -frontPos.position;
+                RaycastHit2D hit = Physics2D.Raycast(frontPos.position, dir.normalized, dir.magnitude);
+                Debug.DrawLine(frontPos.position, frontPos.position +(Vector3) dir * dir.magnitude, Color.blue, .2f);
+                if (hit.transform != null && (hit.transform.CompareTag("Car") || hit.transform.CompareTag("Pedestrian")))
                     isFree = false;
             }
             yield return new WaitForSeconds(.2f);

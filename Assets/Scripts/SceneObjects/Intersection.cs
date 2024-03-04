@@ -30,17 +30,21 @@ public class Intersection : MonoBehaviour
     public Road GetRandomTargetRoadWithRestrictions(Road from)
     {
         List<Road> candidate = new List<Road>(roads);
-        if(candidate.Contains(from))
-            candidate.Remove(from);
-        foreach(RoadRestriction r in from.restrictions)
+        if (from != null)
         {
-            if (r == RoadRestriction.NoRight)
-                candidate.Remove(GetRoadRightOf(from));
-            if (r == RoadRestriction.NoLeft)
-                candidate.Remove(GetRoadLeftOf(from));
-            if (r == RoadRestriction.NoStraight)
-                candidate.Remove(GetRoadStraightOf(from));
+            if (candidate.Contains(from))
+                candidate.Remove(from);
+            foreach (RoadRestriction r in from.restrictions)
+            {
+                if (r == RoadRestriction.NoRight)
+                    candidate.Remove(GetRoadRightOf(from));
+                if (r == RoadRestriction.NoLeft)
+                    candidate.Remove(GetRoadLeftOf(from));
+                if (r == RoadRestriction.NoStraight)
+                    candidate.Remove(GetRoadStraightOf(from));
+            }
         }
+
 
         Road res = candidate[Random.Range(0, candidate.Count)];
         while (res == null)
