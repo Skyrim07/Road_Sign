@@ -890,6 +890,8 @@ MonoBehaviour:
   spawnAtStart: 1
   carPrefabs:
   - {fileID: 1462646810527717736, guid: f8acbddce3b7e5346a7a33352a2b92b5, type: 3}
+  - {fileID: 1462646810527717736, guid: 2cc501cbd5ec8f84b9ac0e1a5ef1bc62, type: 3}
+  - {fileID: 1462646810527717736, guid: 8a6f2b58f28c0654ab9c44e6bf24b8ed, type: 3}
 --- !u!4 &857089626
 Transform:
   m_ObjectHideFlags: 0
@@ -1479,6 +1481,7 @@ MonoBehaviour:
   spawnAtStart: 1
   carPrefabs:
   - {fileID: 1462646810527717736, guid: f8acbddce3b7e5346a7a33352a2b92b5, type: 3}
+  - {fileID: 1462646810527717736, guid: 2cc501cbd5ec8f84b9ac0e1a5ef1bc62, type: 3}
 --- !u!4 &1385872647
 Transform:
   m_ObjectHideFlags: 0
