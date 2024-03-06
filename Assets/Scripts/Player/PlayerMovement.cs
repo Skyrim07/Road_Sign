@@ -39,7 +39,8 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        rb.velocity = playerInput * (Mathf.Lerp(speed, maxSpeed, accel)) * RuntimeData.timeScale;
+        rb.velocity += playerInput * (Mathf.Lerp(speed, maxSpeed, accel)) * RuntimeData.timeScale;
+        rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, 0, maxSpeed), Mathf.Clamp(rb.velocity.y, 0, maxSpeed)).normalized;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -49,6 +50,10 @@ public class PlayerMovement : MonoBehaviour
             hitByCar = true;
             lose = true;
             SKAudioManager.instance.PlaySound("die");
+        }
+        else
+        {
+
         }
     }
 
