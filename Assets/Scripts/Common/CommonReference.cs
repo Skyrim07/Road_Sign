@@ -15,4 +15,6 @@ public class CommonReference : SKMonoSingleton<CommonReference>
     public Sprite sprite_StopSign;
 
     public GameObject stopSignPF;
+
+    public GameObject carExplosionFx;
 }

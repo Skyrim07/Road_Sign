@@ -3315,6 +3315,7 @@ MonoBehaviour:
   sprite_diamond: {fileID: 21300000, guid: 02277804dda16ab4fa108b013b257fa7, type: 3}
   sprite_StopSign: {fileID: 21300000, guid: 10494b142dedec54188406c85c1d525b, type: 3}
   stopSignPF: {fileID: 1431314900385517537, guid: fd4a76fe8c0c72840ac17fdba5a27b96, type: 3}
+  carExplosionFx: {fileID: 3166828853555324025, guid: ec602449a53dcbc40b65cc4d3eed83e2, type: 3}
 --- !u!1 &541392006
 GameObject:
   m_ObjectHideFlags: 0
