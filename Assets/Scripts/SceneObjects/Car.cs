@@ -46,7 +46,7 @@ public class Car : MonoBehaviour
     private float rotationSpeed, rotationDelta;
     private bool isOnRoad;
     private bool shouldStop;
-    private float timer;
+    private float wiggleTimer;
 
     List<Sign> watchedSigns = new List<Sign>();
 
@@ -56,7 +56,6 @@ public class Car : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        timer += Time.fixedDeltaTime;
         speed = Mathf.Lerp(speed, targetSpeed, acceleration * .05f);
 
 
@@ -74,6 +73,7 @@ public class Car : MonoBehaviour
         }
         else
         {
+
             targetSpeed = maxSpeed;
         }
 
@@ -94,13 +94,14 @@ public class Car : MonoBehaviour
                 if( waypoints.TryPeek(out var targetWaypoint))
                 {
                     //Debug.Log(targetWaypoint + ": " + targetWaypoint.parent.parent);
-                    if (Vector2.Distance(transform.position, targetWaypoint.position) < 0.2f)
+                    if (Vector2.Distance(transform.position, targetWaypoint.position) < 0.35f)
                     {
                         Vector3 from = transform.position, to = targetWaypoint.position;
                         Quaternion rfrom = transform.rotation;
                         Quaternion rto = Quaternion.Euler(0, 0, currentDirInRoad == 1 ? targetWaypoint.rotation.eulerAngles.z : 180 + targetWaypoint.rotation.eulerAngles.z);
                         SKUtils.StartProcedure(SKCurve.QuadraticDoubleIn, .2f, (t) =>
                         {
+                            wiggleTimer = 0;
                             transform.rotation = Quaternion.Slerp(rfrom, rto, t);
                             transform.position = Vector3.Lerp(from, to, t);
                         });
@@ -120,9 +121,15 @@ public class Car : MonoBehaviour
         transform.Rotate(0, 0, rotationFactor *rotationDelta * Time.fixedDeltaTime * RuntimeData.timeScale);
 
         //Wiggle
+
+        if (targetSpeed != 0)
+        {
+            wiggleTimer += Time.fixedDeltaTime;
+            float w = Mathf.Cos(wiggleTimer * wiggleFrequency) * wiggleAmplitude;
+            transform.Rotate(new Vector3(0, 0, w));
+        }
+
    
-        float w = Mathf.Cos(timer * wiggleFrequency) * wiggleAmplitude;
-        transform.Rotate(new Vector3(0, 0, w));
     }
 
     private void CheckForSigns()
@@ -211,6 +218,7 @@ public class Car : MonoBehaviour
 
         if (targetRoad != null)
         {
+            wiggleTimer = 0;
             //Get the nearest waypoint of the target road
             int nearestIndex = 0;
             float nearest = float.MaxValue;
