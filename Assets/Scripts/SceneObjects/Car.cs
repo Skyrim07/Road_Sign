@@ -120,9 +120,10 @@ public class Car : MonoBehaviour
         transform.Rotate(0, 0, rotationFactor *rotationDelta * Time.fixedDeltaTime * RuntimeData.timeScale);
 
         //Wiggle
-   
+   /*
         float w = Mathf.Cos(timer * wiggleFrequency) * wiggleAmplitude;
         transform.Rotate(new Vector3(0, 0, w));
+   */
     }
 
     private void CheckForSigns()
