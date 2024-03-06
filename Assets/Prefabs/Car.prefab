@@ -181,8 +181,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 2
   acceleration: 2
-  wiggleFrequency: 0
-  wiggleAmplitude: 0
+  wiggleFrequency: 3
+  wiggleAmplitude: 0.1
   turnDistanceFactor: 1.15
   raycastFwdLength: 1
   raycastSignLength: 3
