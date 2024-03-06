@@ -182,7 +182,7 @@ MonoBehaviour:
   maxSpeed: 2.2
   acceleration: 2
   wiggleFrequency: 5
-  wiggleAmplitude: 1
+  wiggleAmplitude: 0.3
   turnDistanceFactor: 1.1
   raycastFwdLength: 1
   raycastSignLength: 3

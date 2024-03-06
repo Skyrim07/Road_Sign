@@ -46,7 +46,7 @@ public class Car : MonoBehaviour
     private float rotationSpeed, rotationDelta;
     private bool isOnRoad;
     private bool shouldStop;
-    private int wiggleDirection = 1;
+    private float timer;
 
     List<Sign> watchedSigns = new List<Sign>();
 
@@ -56,6 +56,7 @@ public class Car : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        timer += Time.fixedDeltaTime;
         speed = Mathf.Lerp(speed, targetSpeed, acceleration * .05f);
 
 
@@ -119,13 +120,9 @@ public class Car : MonoBehaviour
         transform.Rotate(0, 0, rotationFactor *rotationDelta * Time.fixedDeltaTime * RuntimeData.timeScale);
 
         //Wiggle
-        /*
-        float w = Mathf.Sin(Time.time * wiggleFrequency) * wiggleAmplitude;
-        w += wiggleDirection * wiggleFrequency;
-        if (w >= 1) wiggleDirection = -1;
-        if (w <=0) wiggleDirection = 1;
+   
+        float w = Mathf.Cos(timer * wiggleFrequency) * wiggleAmplitude;
         transform.Rotate(new Vector3(0, 0, w));
-        */
     }
 
     private void CheckForSigns()
