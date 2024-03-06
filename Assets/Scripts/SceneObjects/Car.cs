@@ -297,22 +297,31 @@ public class Car : MonoBehaviour
     private IEnumerator StopSign()
     {
         targetSpeed = 0;
+        float freeTime = 0;
         isInStopSign = true;
         yield return new WaitForSeconds(stopWaitTime);
 
         bool isFree = false;
         while (!isFree)
         {
-            isFree = true;
+            freeTime += .2f * RuntimeData.timeScale;
             for (int i = 0; i < visionPoints.Length; i++)
-            {
-                Vector2 dir = visionPoints[i].position -frontPos.position;
-                RaycastHit2D hit = Physics2D.Raycast(frontPos.position, dir.normalized, dir.magnitude);
+            { 
+               Vector2 dir = visionPoints[i].position -frontPos.position;
+                RaycastHit2D[] hits = Physics2D.RaycastAll(frontPos.position, dir.normalized, dir.magnitude);
+                foreach(var hit in hits)
+                {
+                    if (hit.transform != null && (hit.transform.CompareTag("Car") || hit.transform.CompareTag("Pedestrian")))
+                    {
+                        freeTime = 0;
+                        break;
+                    }
+                }
                 Debug.DrawLine(frontPos.position, frontPos.position +(Vector3) dir * dir.magnitude, Color.blue, .2f);
-                if (hit.transform != null && (hit.transform.CompareTag("Car") || hit.transform.CompareTag("Pedestrian")))
-                    isFree = false;
             }
-            yield return new WaitForSeconds(.2f);
+            if (freeTime >= .6f)
+                isFree = true;
+            yield return new WaitForSeconds(.2f * RuntimeData.timeScale);
         }
 
         isInStopSign = false;
