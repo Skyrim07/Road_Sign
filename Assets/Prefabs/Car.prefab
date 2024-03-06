@@ -181,6 +181,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 2
   acceleration: 2
+  wiggleFrequency: 0
+  wiggleAmplitude: 0
+  turnDistanceFactor: 1.15
   raycastFwdLength: 1
   raycastSignLength: 3
   centerPos: {fileID: 1770381220961591518}
@@ -197,7 +200,6 @@ MonoBehaviour:
   - {fileID: 4202380546566953159}
   - {fileID: 3361890020118603046}
   - {fileID: 8412624990041622893}
-  turnDistanceFactor: 1.15
   stopWaitTime: 1
 --- !u!61 &1462646810527717718
 BoxCollider2D:

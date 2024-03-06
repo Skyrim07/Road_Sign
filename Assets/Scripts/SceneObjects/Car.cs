@@ -6,14 +6,23 @@ using Unity.VisualScripting;
 using UnityEngine;
 public class Car : MonoBehaviour
 {
+    [SKFolder("Basic Behaviour")]
     public float maxSpeed = 3f;
     public float acceleration = 1f;
 
+    [SKFolder("Wiggle")]
+    public float wiggleFrequency = 1f;
+    public float wiggleAmplitude = 1f;
+
+    [SKFolder("Advanced Behaviour")]
+    public float turnDistanceFactor = 1.2f;
     public float raycastFwdLength = 1f, raycastSignLength = 3f;
+
+    [SKFolder("References")]
     [SerializeField] Transform centerPos,frontPos;
     [SerializeField] Transform[] raycastPoses;
     [SerializeField] Transform[] visionPoints;
-    public float turnDistanceFactor = 1.2f;
+   
 
     public Queue<Transform> waypoints = new Queue<Transform>();
 
@@ -37,6 +46,7 @@ public class Car : MonoBehaviour
     private float rotationSpeed, rotationDelta;
     private bool isOnRoad;
     private bool shouldStop;
+    private int wiggleDirection = 1;
 
     List<Sign> watchedSigns = new List<Sign>();
 
@@ -107,6 +117,15 @@ public class Car : MonoBehaviour
         transform.Translate((transform.rotation * Vector2.up) * speed * Time.fixedDeltaTime * RuntimeData.timeScale, Space.World);
         float rotationFactor = speed / maxSpeed;
         transform.Rotate(0, 0, rotationFactor *rotationDelta * Time.fixedDeltaTime * RuntimeData.timeScale);
+
+        //Wiggle
+        /*
+        float w = Mathf.Sin(Time.time * wiggleFrequency) * wiggleAmplitude;
+        w += wiggleDirection * wiggleFrequency;
+        if (w >= 1) wiggleDirection = -1;
+        if (w <=0) wiggleDirection = 1;
+        transform.Rotate(new Vector3(0, 0, w));
+        */
     }
 
     private void CheckForSigns()
