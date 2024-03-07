@@ -56,6 +56,7 @@ public class SignSlot : MonoBehaviour
 
     private void InstantiateSignObject(SignType sign)
     {
+        SKAudioManager.instance.PlaySound("signplace1");
         if(sign ==SignType.Stop)
         {
             GameObject inst = Instantiate(CommonReference.instance.stopSignPF, transform);
