@@ -71,8 +71,6 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
     public void OnSignCreated(SignType type)
     {
         sign.type = SignType.Stop;
-        sign.shape = SignShape.None;
-        sign.color = SignColor.None;
         NewSignPanel.instance.SetState(true);
         FlowManager.instance.Pause();
     }

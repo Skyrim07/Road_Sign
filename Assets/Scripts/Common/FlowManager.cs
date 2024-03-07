@@ -73,8 +73,6 @@ public class FlowManager : SKMonoSingleton<FlowManager>
         crashCount += increase;
         LevelManager.instance.AddProgressValue(-.15f);
 
-        GameObject fx = Instantiate(CommonReference.instance.carExplosionFx, crash.transform.position, Quaternion.identity);
-        Destroy(fx, 5);
         if(crashCount >= crashCountMax)
         {
             LevelFail();
