@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 617e08515010e9f439963e4379d7b4be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 2.5
+  maxSpeed: 2
   acceleration: 2
   raycastFwdLength: 1
   raycastSignLength: 3
