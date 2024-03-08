@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float maxSpeed = 2f;
     //[SerializeField] private float accel = 0.5f;
     [SerializeField] private float moveForce = 5f;
+    [SerializeField] private float bounceForce = 8f;
     [SerializeField] private float drag = 2f;
     public AnimationCurve playerMovementCurve;
 
@@ -49,13 +50,21 @@ public class PlayerMovement : MonoBehaviour
         float playerY = Input.GetAxisRaw("Vertical");
 
         //disable diagonal movement
-        if (playerX != 0 && playerY != 0)
-        {
-            if (Mathf.Abs(playerX) > Mathf.Abs(playerY))
-                playerY = 0;
-            else
-                playerX = 0;
-        }
+        //if (playerX != 0 && playerY != 0)
+        //{
+        //    if (Mathf.Abs(playerX) > Mathf.Abs(playerY))
+        //    {
+        //        playerY = 0;
+        //        rb.velocity = new Vector2(playerX, 0);
+        //    }
+
+        //    else
+        //    {
+        //        playerX = 0;
+        //        rb.velocity = new Vector2(0, playerY);
+        //    }
+
+        //}
 
         playerInput = new Vector2(playerX, playerY).normalized;
 
@@ -81,9 +90,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("collide");
         Vector2 normal = collision.contacts[0].normal;
         Vector2 dir = Vector2.Reflect(rb.velocity.normalized, normal).normalized;
-        rb.velocity = dir * maxSpeed;
+        rb.AddForce(dir * bounceForce, ForceMode2D.Impulse);
 
         if (collision.gameObject.CompareTag("Car"))
         {
