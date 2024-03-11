@@ -424,9 +424,9 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: b3f571ba33ece2c43b2cba48c9f3799d, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -447,8 +447,9 @@ MonoBehaviour:
   lose: 0
   playerLogic: {fileID: 0}
   maxSpeed: 5
-  moveForce: 8
-  drag: 5
+  moveForce: 10
+  bounceForce: 50
+  drag: 6
   playerMovementCurve:
     serializedVersion: 2
     m_Curve:

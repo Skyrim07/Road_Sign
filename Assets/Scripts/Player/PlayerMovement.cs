@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(playerInput.sqrMagnitude > 0)
         {
-            float orientation = SKUtils.Vector2Angle(playerInput);
+            float orientation = Mathf.Atan2(playerInput.y, playerInput.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0, 0, orientation - 90);
         }
 
@@ -102,6 +102,5 @@ public class PlayerMovement : MonoBehaviour
             SKAudioManager.instance.PlaySound("die");
         }
     }
-
 
 }
