@@ -90,10 +90,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("collide");
-        Vector2 normal = collision.contacts[0].normal;
-        Vector2 dir = Vector2.Reflect(rb.velocity.normalized, normal).normalized;
-        rb.AddForce(dir * bounceForce, ForceMode2D.Impulse);
+        //Debug.Log("collide");
+        //Vector2 normal = collision.contacts[0].normal;
+        //Vector2 dir = Vector2.Reflect(rb.velocity.normalized, normal).normalized;
+        //rb.AddForce(dir * bounceForce, ForceMode2D.Impulse);
 
         if (collision.gameObject.CompareTag("Car"))
         {
