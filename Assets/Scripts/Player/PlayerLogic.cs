@@ -7,8 +7,10 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
 {
 
     public RoadSign sign;
+    private bool inFactory;
     private KeyCode discardSign = KeyCode.X;
 
+    public bool InFactory() { return inFactory; }
    public static bool HasValidSign()
     {
         return PlayerLogic.instance.sign != null && PlayerLogic.instance.sign.type != SignType.None;
@@ -29,6 +31,7 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
     
         CheckSignCreation();
         PlayerSignSlot.instance.UpdateVisual();
+        inFactory = false;
     }
     private void Update()
     {
@@ -54,6 +57,7 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
 
         CheckSignCreation();
         PlayerSignSlot.instance.UpdateVisual();
+        inFactory = false;
     }
 
     /// <summary>
@@ -78,13 +82,19 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
     {
         if (collision.CompareTag("ColorFactory"))
         {
-            if(sign == null || sign.color== SignColor.None)
-            UIManager.instance.SetState_ColorFactoryPanel(true);
+            if (sign == null || sign.color == SignColor.None)
+            {
+                UIManager.instance.SetState_ColorFactoryPanel(true);
+                inFactory = true;
+            }
         }
         if (collision.CompareTag("ShapeFactory"))
         {
             if (sign == null || sign.shape == SignShape.None)
+            {
                 UIManager.instance.SetState_ShapeFactoryPanel(true);
+                inFactory = true;
+            }
         }
     }
 }
