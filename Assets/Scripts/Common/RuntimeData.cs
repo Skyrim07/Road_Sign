@@ -14,5 +14,5 @@ public class RuntimeData : MonoBehaviour
     public static float playerHealth;
 
     public static float crashCount;
-    public static float crashCountMax = 20;
+    public static float crashCountMax = 10;
 }
