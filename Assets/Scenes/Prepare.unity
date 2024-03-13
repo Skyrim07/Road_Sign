@@ -864,7 +864,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!1 &94931273
 GameObject:
@@ -4743,7 +4743,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enterOnStart: 0
   isOn: 0
-  preset: 2
+  preset: 0
 --- !u!225 &696941143
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -5401,7 +5401,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!1 &767465036
 GameObject:
