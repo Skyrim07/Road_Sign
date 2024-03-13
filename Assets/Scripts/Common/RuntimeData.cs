@@ -10,4 +10,6 @@ public class RuntimeData : MonoBehaviour
     public static bool isPaused = false;
 
     public static float currentProgress;
+
+    public static float playerHealth;
 }

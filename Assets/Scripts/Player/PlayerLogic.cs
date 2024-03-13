@@ -13,6 +13,16 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
     {
         return PlayerLogic.instance.sign != null && PlayerLogic.instance.sign.type != SignType.None;
     }
+    public void AddHealth(int delta)
+    {
+        RuntimeData.playerHealth+= delta;
+        UIManager.instance.UpdateLifeIcon();
+    }
+    public void SetHealth(int hp)
+    {
+        RuntimeData.playerHealth = hp;
+        UIManager.instance.UpdateLifeIcon();
+    }
     public void DestroySign()
     {
         sign = null;

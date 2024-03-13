@@ -85,6 +85,7 @@ public class FlowManager : SKMonoSingleton<FlowManager>
         PlayerLogic.instance.DestroySign();
         RuntimeData.timeScale = 0;
         UIManager.instance.SetState_DeathPanel(true);
+        PlayerLogic.instance.AddHealth(-1);
     }
     public void LevelFail()
     {
