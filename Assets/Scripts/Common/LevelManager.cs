@@ -10,10 +10,34 @@ public class LevelManager : SKMonoSingleton<LevelManager>
         {
             PlayerLogic.instance.SetHealth(3);
             RuntimeData.crashCount = 0;
+            RuntimeData.currentSignCount = 0;
             UIManager.instance.UpdateCrashIndicator();
+            SKUtils.InvokeAction(1f, () =>
+            {
+                LoadSignSlots();
+            });
+     
         }));
     }
 
+    private void LoadSignSlots()
+    {
+        RuntimeData.signCountMax = GameObject.FindObjectsOfType<SignSlot>().Length;
+    }
+    public void OnPlaceSlot()
+    {
+        RuntimeData.currentSignCount++;
+        print(RuntimeData.currentSignCount + "   " + RuntimeData.signCountMax);
+        if(RuntimeData.currentSignCount >= RuntimeData.signCountMax)
+        {
+            OnLevelComplete();
+        }
+
+    }
+    public void OnDeleteSlot()
+    {
+        RuntimeData.currentSignCount--;
+    }
     public void AddProgressValue(float delta01)
     {
         SetProgressValue(RuntimeData.currentProgress + delta01);
