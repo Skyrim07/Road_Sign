@@ -48,12 +48,14 @@ public class UIManager : SKMonoSingleton<UIManager>
     }
     public void SetState_ColorFactoryPanel(bool active)
     {
+        RuntimeData.timeScale = active?0:1;
         colorFactoryPanel.SetState(active);
         if(active)
         ColorFactory.instance.Init();
     }
     public void SetState_ShapeFactoryPanel(bool active)
     {
+        RuntimeData.timeScale = active ? 0 : 1;
         shapeFactoryPanel.SetState(active);
         if (active)
             ShapeFactory.instance.Init();

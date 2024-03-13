@@ -114,6 +114,7 @@ public class FlowManager : SKMonoSingleton<FlowManager>
     public void RestartLevel()
     {
         RuntimeData.timeScale = 1;
+        PlayerLogic.instance.SetHealth(3);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

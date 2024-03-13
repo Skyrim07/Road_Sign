@@ -26,7 +26,7 @@ public class LevelManager : SKMonoSingleton<LevelManager>
 
         if (RuntimeData.currentProgress >= 1.0f)
         {
-            OnLevelComplete();
+            //OnLevelComplete();
         }
     }
 

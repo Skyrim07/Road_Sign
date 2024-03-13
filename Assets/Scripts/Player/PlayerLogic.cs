@@ -108,7 +108,7 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
 
     public void EnterShapeFactory()
     {
-        if (sign == null || sign.color == SignColor.None)
+        if (sign == null || sign.shape == SignShape.None)
         {
             UIManager.instance.SetState_ShapeFactoryPanel(true);
             inFactory = true;
@@ -117,7 +117,7 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
     }
     public void EnterColorFactory()
     {
-        if (sign == null || sign.shape == SignShape.None)
+        if (sign == null || sign.color == SignColor.None)
         {
             UIManager.instance.SetState_ColorFactoryPanel(true);
             inFactory = true;
