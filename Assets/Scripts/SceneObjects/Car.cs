@@ -6,14 +6,23 @@ using Unity.VisualScripting;
 using UnityEngine;
 public class Car : MonoBehaviour
 {
+    [SKFolder("Basic Behaviour")]
     public float maxSpeed = 3f;
     public float acceleration = 1f;
 
+    [SKFolder("Wiggle")]
+    public float wiggleFrequency = 1f;
+    public float wiggleAmplitude = 1f;
+
+    [SKFolder("Advanced Behaviour")]
+    public float turnDistanceFactor = 1.2f;
     public float raycastFwdLength = 1f, raycastSignLength = 3f;
+
+    [SKFolder("References")]
     [SerializeField] Transform centerPos,frontPos;
     [SerializeField] Transform[] raycastPoses;
     [SerializeField] Transform[] visionPoints;
-    public float turnDistanceFactor = 1.2f;
+   
 
     public Queue<Transform> waypoints = new Queue<Transform>();
 
@@ -37,6 +46,7 @@ public class Car : MonoBehaviour
     private float rotationSpeed, rotationDelta;
     private bool isOnRoad;
     private bool shouldStop;
+    private float wiggleTimer;
 
     List<Sign> watchedSigns = new List<Sign>();
 
@@ -63,6 +73,7 @@ public class Car : MonoBehaviour
         }
         else
         {
+
             targetSpeed = maxSpeed;
         }
 
@@ -83,13 +94,14 @@ public class Car : MonoBehaviour
                 if( waypoints.TryPeek(out var targetWaypoint))
                 {
                     //Debug.Log(targetWaypoint + ": " + targetWaypoint.parent.parent);
-                    if (Vector2.Distance(transform.position, targetWaypoint.position) < 0.2f)
+                    if (Vector2.Distance(transform.position, targetWaypoint.position) < 0.35f)
                     {
                         Vector3 from = transform.position, to = targetWaypoint.position;
                         Quaternion rfrom = transform.rotation;
                         Quaternion rto = Quaternion.Euler(0, 0, currentDirInRoad == 1 ? targetWaypoint.rotation.eulerAngles.z : 180 + targetWaypoint.rotation.eulerAngles.z);
                         SKUtils.StartProcedure(SKCurve.QuadraticDoubleIn, .2f, (t) =>
                         {
+                            wiggleTimer = 0;
                             transform.rotation = Quaternion.Slerp(rfrom, rto, t);
                             transform.position = Vector3.Lerp(from, to, t);
                         });
@@ -107,6 +119,17 @@ public class Car : MonoBehaviour
         transform.Translate((transform.rotation * Vector2.up) * speed * Time.fixedDeltaTime * RuntimeData.timeScale, Space.World);
         float rotationFactor = speed / maxSpeed;
         transform.Rotate(0, 0, rotationFactor *rotationDelta * Time.fixedDeltaTime * RuntimeData.timeScale);
+
+        //Wiggle
+
+        if (targetSpeed != 0)
+        {
+            wiggleTimer += Time.fixedDeltaTime;
+            float w = Mathf.Cos(wiggleTimer * wiggleFrequency) * wiggleAmplitude;
+            transform.Rotate(new Vector3(0, 0, w));
+        }
+
+   
     }
 
     private void CheckForSigns()
@@ -195,6 +218,7 @@ public class Car : MonoBehaviour
 
         if (targetRoad != null)
         {
+            wiggleTimer = 0;
             //Get the nearest waypoint of the target road
             int nearestIndex = 0;
             float nearest = float.MaxValue;
@@ -297,22 +321,31 @@ public class Car : MonoBehaviour
     private IEnumerator StopSign()
     {
         targetSpeed = 0;
+        float freeTime = 0;
         isInStopSign = true;
         yield return new WaitForSeconds(stopWaitTime);
 
         bool isFree = false;
         while (!isFree)
         {
-            isFree = true;
+            freeTime += .2f * RuntimeData.timeScale;
             for (int i = 0; i < visionPoints.Length; i++)
-            {
-                Vector2 dir = visionPoints[i].position -frontPos.position;
-                RaycastHit2D hit = Physics2D.Raycast(frontPos.position, dir.normalized, dir.magnitude);
+            { 
+               Vector2 dir = visionPoints[i].position -frontPos.position;
+                RaycastHit2D[] hits = Physics2D.RaycastAll(frontPos.position, dir.normalized, dir.magnitude);
+                foreach(var hit in hits)
+                {
+                    if (hit.transform != null && (hit.transform.CompareTag("Car") || hit.transform.CompareTag("Pedestrian")))
+                    {
+                        freeTime = 0;
+                        break;
+                    }
+                }
                 Debug.DrawLine(frontPos.position, frontPos.position +(Vector3) dir * dir.magnitude, Color.blue, .2f);
-                if (hit.transform != null && (hit.transform.CompareTag("Car") || hit.transform.CompareTag("Pedestrian")))
-                    isFree = false;
             }
-            yield return new WaitForSeconds(.2f);
+            if (freeTime >= .6f)
+                isFree = true;
+            yield return new WaitForSeconds(.2f * RuntimeData.timeScale);
         }
 
         isInStopSign = false;

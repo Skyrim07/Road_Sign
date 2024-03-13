@@ -169,7 +169,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.2}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -427,11 +427,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3ffdb662016f9e449c12add7f47e627, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOccupied: 0
-  mySignType: 0
-  signPrefab: {fileID: 4879408326018744711, guid: 63a9f9b3b6d2e2e49a02ff38bbb8ddf6, type: 3}
-  mySign: {fileID: 0}
-  myRoad: {fileID: 0}
+  signs: []
+  road: {fileID: 0}
+  angle: 0
+  indicatorAnim: {fileID: 0}
+  cancelAnim: {fileID: 0}
+  invalidSignAnim: {fileID: 0}
 --- !u!1 &5487887563192219851
 GameObject:
   m_ObjectHideFlags: 0
