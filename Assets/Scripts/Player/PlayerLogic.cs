@@ -97,22 +97,30 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
     {
         if (collision.CompareTag("ColorFactory"))
         {
-            if(sign == null || sign.color== SignColor.None)
-            {
-                UIManager.instance.SetState_ColorFactoryPanel(true);
-                inFactory = true;
-            }
+
             
         }
         if (collision.CompareTag("ShapeFactory"))
         {
-            if (sign == null || sign.shape == SignShape.None)
-            {
-                UIManager.instance.SetState_ShapeFactoryPanel(true);
-                inFactory = true;
-            }
-                
 
+        }
+    }
+
+    public void EnterShapeFactory()
+    {
+        if (sign == null || sign.color == SignColor.None)
+        {
+            UIManager.instance.SetState_ShapeFactoryPanel(true);
+            inFactory = true;
+        }
+
+    }
+    public void EnterColorFactory()
+    {
+        if (sign == null || sign.shape == SignShape.None)
+        {
+            UIManager.instance.SetState_ColorFactoryPanel(true);
+            inFactory = true;
         }
     }
 }
