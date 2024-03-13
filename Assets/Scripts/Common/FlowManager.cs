@@ -44,6 +44,7 @@ public class FlowManager : SKMonoSingleton<FlowManager>
     }
     public void LoadScene(SceneTitle scene)
     {
+        RuntimeData.currentScene = scene;
         SKSceneManager.instance.LoadSceneAsync("loading", scene.ToString());
         if(scene == SceneTitle.Level1)
         {
@@ -115,7 +116,7 @@ public class FlowManager : SKMonoSingleton<FlowManager>
     {
         RuntimeData.timeScale = 1;
         PlayerLogic.instance.SetHealth(3);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        LoadScene(RuntimeData.currentScene);
     }
 }
 

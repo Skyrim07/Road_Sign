@@ -34,11 +34,15 @@ public class SignSlot : MonoBehaviour
 
     private void PlayerDestroySign()
     {
-        foreach (var sign in signs)
+        if(signs.Count > 0)
         {
-            Destroy(sign.gameObject);
+            foreach (var sign in signs)
+            {
+                Destroy(sign.gameObject);
+            }
+            LevelManager.instance.OnDeleteSlot();
+            signs.Clear();
         }
-        signs.Clear();
     }
     private void PlayerPlaceSign()
     {
@@ -47,6 +51,8 @@ public class SignSlot : MonoBehaviour
             indicatorAnim.Disappear();
             InstantiateSignObject(PlayerLogic.instance.sign.type);
             PlayerLogic.instance.DestroySign();
+
+            LevelManager.instance.OnPlaceSlot();
         }
         else
         {
