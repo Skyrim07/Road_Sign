@@ -10,4 +10,9 @@ public class RuntimeData : MonoBehaviour
     public static bool isPaused = false;
 
     public static float currentProgress;
+
+    public static float playerHealth;
+
+    public static float crashCount;
+    public static float crashCountMax = 10;
 }

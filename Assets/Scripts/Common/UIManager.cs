@@ -11,9 +11,23 @@ public class UIManager : SKMonoSingleton<UIManager>
     [SerializeField] SKUIPanel tutPanel;
     [SerializeField] SKSlider progressBar;
 
+    [SerializeField] CrashIndicator crashIndicator;
+    [SerializeField] Transform lifeIconContainer;
+
+    private LifeIcon[] lifeIcons;
+
+    private void Start()
+    {
+        lifeIcons = new LifeIcon[lifeIconContainer.childCount];
+        for (int i = 0; i < lifeIconContainer.childCount; i++)
+        {
+            lifeIcons[i] = lifeIconContainer.GetChild(i).GetComponent<LifeIcon>();  
+        }
+
+    }
     public void SetValue_ProgressBar(float value01)
     {
-        progressBar.SetValue(value01);
+       // progressBar.SetValue(value01);
     }
 
     public void SetState_FailPanel(bool active)
@@ -43,5 +57,18 @@ public class UIManager : SKMonoSingleton<UIManager>
         shapeFactoryPanel.SetState(active);
         if (active)
             ShapeFactory.instance.Init();
+    }
+
+    public void UpdateLifeIcon()
+    {
+        for(int i=0;i<lifeIconContainer.childCount;i++)
+        {
+            lifeIcons[i].SetState(i < RuntimeData.playerHealth);
+        }
+    }
+
+    public void UpdateCrashIndicator()
+    {
+        crashIndicator.SetValue((int)RuntimeData.crashCount, (int)RuntimeData.crashCountMax);
     }
 }
