@@ -8,8 +8,6 @@ using UnityEngine.SceneManagement;
 public class FlowManager : SKMonoSingleton<FlowManager>
 {
     SceneTitle sceneTitle;
-    [SerializeField] private float crashCount;
-    [SerializeField] private float crashCountMax = 10f;
 
     private void Start()
     {
@@ -70,21 +68,21 @@ public class FlowManager : SKMonoSingleton<FlowManager>
     {
         //RuntimeData.timeScale = 0;
         //UIManager.instance.SetState_FailPanel(true);
-        crashCount += increase;
+        RuntimeData.crashCount += increase;
         LevelManager.instance.AddProgressValue(-.15f);
 
         GameObject fx = Instantiate(CommonReference.instance.carExplosionFx, crash.transform.position, Quaternion.identity);
         Destroy(fx, 5);
-        if(crashCount >= crashCountMax)
+        if (RuntimeData.crashCount >= RuntimeData.crashCountMax)
         {
             LevelFail();
         }
+
+        UIManager.instance.UpdateCrashIndicator();
     }
     public void OnPlayerCollision()
     {
         PlayerLogic.instance.DestroySign();
-        RuntimeData.timeScale = 0;
-
         PlayerLogic.instance.AddHealth(-1);
 
         if (RuntimeData.playerHealth <= 0)
@@ -95,6 +93,7 @@ public class FlowManager : SKMonoSingleton<FlowManager>
 
     public void OnPlayerDeath()
     {
+        RuntimeData.timeScale = 0;
         UIManager.instance.SetState_DeathPanel(true);
     }
     public void LevelFail()

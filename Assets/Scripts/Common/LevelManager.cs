@@ -9,6 +9,8 @@ public class LevelManager : SKMonoSingleton<LevelManager>
         EventDispatcher.AddListener(EventDispatcher.Common, EventRef.ON_LOAD_LEVEL, new SKEvent(() =>
         {
             PlayerLogic.instance.SetHealth(3);
+            RuntimeData.crashCount = 0;
+            UIManager.instance.UpdateCrashIndicator();
         }));
     }
 
