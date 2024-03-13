@@ -493,7 +493,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: a026f2ba78ced0d42817c0f7832bdc62, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -512,8 +512,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitByCar: 0
   lose: 0
-  maxSpeed: 4
-  accel: 0.04
+  playerLogic: {fileID: 0}
+  maxSpeed: 5
+  moveForce: 10
+  bounceForce: 50
+  drag: 6
+  playerMovementCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   anim: {fileID: 59502543}
 --- !u!61 &59502540
 BoxCollider2D:
