@@ -160,7 +160,8 @@ public class PlayerMovement : MonoBehaviour
             spriteRend.color = ogCol;
             yield return new WaitForSeconds(hurtFlashTime);
         }
-        stopPlayerInput= false;
+        spriteRend.color = ogCol;
+        stopPlayerInput = false;
     }
 
 }
