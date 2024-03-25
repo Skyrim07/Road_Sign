@@ -270,8 +270,8 @@ public class Car : MonoBehaviour
     }
     private void OnHitPlayer(PlayerMovement player)
     {
-        FlowManager.instance.OnPlayerCollision();
-        player.HitByCar(transform);
+        //FlowManager.instance.OnPlayerCollision();
+        player.HitByCar(transform, speed);
     }
     private void OnHitDestination(Destination dest)
     {

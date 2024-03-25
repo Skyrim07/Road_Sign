@@ -134,13 +134,24 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
-    public void HitByCar(Transform carPos)
+    public void HitByCar(Transform carPos, float speed)
     {
-        stopPlayerInput = true;
-        StartCoroutine(PlayerHitWait());
+        //only hurt and bounce back if car is moving
+        float bounce = bounceForce;
+        Debug.Log(speed);
+        if(speed >= 0.1f)
+        {
+            FlowManager.instance.OnPlayerCollision();
+            stopPlayerInput = true;
+            StartCoroutine(PlayerHitWait());
+        }
+        else
+        {
+            bounce = bounceForce / 4;
+        }
         Vector2 bounceDir = (transform.position - carPos.position).normalized;
         rb.velocity = Vector2.zero;
-        rb.AddForce(bounceDir * bounceForce, ForceMode2D.Impulse);
+        rb.AddForce(bounceDir * bounce, ForceMode2D.Impulse);
     }
 
     public void CameraCalculations()
