@@ -23,7 +23,7 @@ public class ColorFactory : SKMonoSingleton<ColorFactory>
     private void Update()
     {
         if (!isMoving) return;
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKey(KeyCode.Space))
         {
             StopRotation();
         }
