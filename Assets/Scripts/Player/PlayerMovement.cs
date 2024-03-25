@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     [SKFolder("Player Hurt")]
     [SerializeField] private float hurtFlashAmt;
     [SerializeField] private float hurtFlashTime;
+    private Color ogCol;
 
     private float playerHitWait = 1.5f;
 
@@ -43,6 +44,8 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerLogic = GetComponent<PlayerLogic>();
         spriteRend= GetComponent<SpriteRenderer>();
+        ogCol = spriteRend.color;
+
 
     }
     private void Update()
@@ -150,7 +153,6 @@ public class PlayerMovement : MonoBehaviour
     }
     private IEnumerator PlayerHitWait()
     {
-        Color ogCol = spriteRend.color;
         //yield return new WaitForSeconds(playerHitWait * Time.timeScale);
 
         for(int i=0; i< hurtFlashAmt; i++)
