@@ -5,7 +5,7 @@ using SKCell;
 
 public class ShapeFactoryObject : MonoBehaviour
 {
-
+    public bool isEnterDirectly = false;
     [SerializeField] Animator indicatorAnim;
 
     private bool isPlayerIn;
@@ -16,6 +16,7 @@ public class ShapeFactoryObject : MonoBehaviour
 
     private void Update()
     {
+        return;
         if (isPlayerIn)
         {
             if (Input.GetKeyDown(KeyCode.E))
@@ -37,7 +38,11 @@ public class ShapeFactoryObject : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (isEnterDirectly)
+        {
+            PlayerLogic.instance.EnterShapeFactory();
+        }
+        else
         {
             OnPlayerEnter();
         }

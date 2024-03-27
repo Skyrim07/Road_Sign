@@ -5,7 +5,7 @@ using SKCell;
 
 public class ColorFactoryObject : MonoBehaviour
 {
-
+    public bool isEnterDirectly = false;
     [SerializeField] Animator indicatorAnim;
 
     private bool isPlayerIn;
@@ -16,6 +16,7 @@ public class ColorFactoryObject : MonoBehaviour
 
     private void Update()
     {
+        return;
         if (isPlayerIn)
         {
             if (Input.GetKeyDown(KeyCode.E))
@@ -39,7 +40,14 @@ public class ColorFactoryObject : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            OnPlayerEnter();
+            if (isEnterDirectly)
+            {
+                PlayerLogic.instance.EnterColorFactory();
+            }
+            else {
+                OnPlayerEnter();
+            }
+     
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
