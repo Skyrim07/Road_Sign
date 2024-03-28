@@ -26,6 +26,7 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
     }
     public void DestroySign()
     {
+        SKAudioManager.instance.PlaySound("signdelete");
         sign = null;
         PlayerSignSlot.instance.UpdateVisual();
     }

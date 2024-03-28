@@ -22,7 +22,7 @@ public class SignSlot : MonoBehaviour
     {
         if (isPlayerIn)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 if (signs.Count == 0)
                     PlayerPlaceSign();
