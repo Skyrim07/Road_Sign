@@ -87,11 +87,15 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
 
     public void OnSignCreated(SignType type)
     {
-        sign.type = SignType.Stop;
+        sign.type = type;
         sign.shape = SignShape.None;
         sign.color = SignColor.None;
-        NewSignPanel.instance.SetState(true);
+        if (!RuntimeData.signsDiscovered.Contains(type))
+        {
+            NewSignPanel.instance.SetState(true);
+        }
         FlowManager.instance.Pause();
+        SKUtils.InsertToList(RuntimeData.signsDiscovered, type, false);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
