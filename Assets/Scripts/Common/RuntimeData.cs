@@ -20,4 +20,6 @@ public class RuntimeData : MonoBehaviour
     public static int currentSignCount;
     public static int signCountMax;
 
+    public static List<SignType> signsDiscovered = new List<SignType>();
+
 }
