@@ -1,4 +1,6 @@
 using SKCell;
+
+busing SKCell;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -58,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
         {
             float orientation = Mathf.Atan2(playerInput.y, playerInput.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0, 0, orientation - 90);
+            SKAudioManager.instance.PlaySound("footgrassalt");
         }
 
         if (lose) { playerInput = Vector2.zero; }
@@ -127,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
         {
             hitByCar = true;
             lose = true;
-            SKAudioManager.instance.PlaySound("die");
+            SKAudioManager.instance.PlaySound("hit");
 
             Debug.Log("collide");
             
