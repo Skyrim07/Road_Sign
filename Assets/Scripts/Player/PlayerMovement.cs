@@ -1,6 +1,7 @@
 using SKCell;
+using UnityEngine;
 
-busing SKCell;
+using SKCell;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -60,7 +61,6 @@ public class PlayerMovement : MonoBehaviour
         {
             float orientation = Mathf.Atan2(playerInput.y, playerInput.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0, 0, orientation - 90);
-            SKAudioManager.instance.PlaySound("footgrassalt");
         }
 
         if (lose) { playerInput = Vector2.zero; }
