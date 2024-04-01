@@ -54,12 +54,14 @@ public class FlowManager : SKMonoSingleton<FlowManager>
     }
     public void Pause()
     {
+        SKAudioManager.instance.PlaySound("honkpause1");
         RuntimeData.isPaused = true;
         RuntimeData.timeScale = 0.0f;
     }
 
     public void UnPause()
     {
+        SKAudioManager.instance.PlaySound("honkunpause1");
         RuntimeData.isPaused = false;
         RuntimeData.timeScale = 1.0f;
         CommonReference.instance.pausePanel.SetState(false);
@@ -83,6 +85,8 @@ public class FlowManager : SKMonoSingleton<FlowManager>
     }
     public void OnPlayerCollision()
     {
+        SKAudioManager.instance.PlaySound("hit");
+        
         PlayerLogic.instance.DestroySign();
         PlayerLogic.instance.AddHealth(-1);
 
