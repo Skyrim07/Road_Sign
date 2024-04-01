@@ -1,4 +1,5 @@
 using SKCell;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -12,12 +13,17 @@ public class PlayerMovement : MonoBehaviour
     public PlayerLogic playerLogic;
 
     [SKFolder("Movement Values")]
-    [SerializeField] private float maxSpeed = 2f;
+    [SerializeField] private float maxSpeed = 4f;
     //[SerializeField] private float accel = 0.5f;
-    [SerializeField] private float moveForce = 5f;
-    [SerializeField] private float bounceForce = 8f;
-    [SerializeField] private float drag = 2f;
+    [SerializeField] private float moveForce = 10f;
+    [SerializeField] private float dashForce = 15f;
+    [SerializeField] private float dashDuration = 0.3f;
+    [SerializeField] private float bounceForce = 100f;
+    [SerializeField] private float drag = 8f;
     public AnimationCurve playerMovementCurve;
+    private bool isDashing;
+    private float lastDashTime;
+    private KeyCode dashControl = KeyCode.LeftShift;
 
 
     [SKFolder("Player Hurt")]
@@ -61,6 +67,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (lose) { playerInput = Vector2.zero; }
+
+
     }
     private void FixedUpdate()
     {
@@ -75,6 +83,21 @@ public class PlayerMovement : MonoBehaviour
             clampedPos = new Vector2(Mathf.Clamp(clampedPos.x, cameraRect.xMin, cameraRect.xMax), Mathf.Clamp(clampedPos.y, cameraRect.yMin, cameraRect.yMax));
 
             transform.position = clampedPos;
+        }
+        if (Input.GetKeyDown(dashControl) && Time.time > lastDashTime + dashDuration)
+        {
+            isDashing = true;
+            lastDashTime = Time.time;
+        }
+        if (isDashing && Time.time < lastDashTime + dashDuration)
+        {
+            Vector2 dashDirection = playerInput.normalized;
+            rb.velocity = dashDirection * dashForce;
+            return;
+        }
+        if (isDashing && Time.time >= lastDashTime + dashDuration)
+        {
+            isDashing = false;
         }
 
 
@@ -134,6 +157,12 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+    //private void Dash()
+    //{
+    //    Vector2 dir = playerInput.normalized;
+    //    rb.velocity = Vector2.zero;
+    //    rb.AddForce(dir * dashForce, ForceMode2D.Impulse);
+    //}
     public void HitByCar(Transform carPos, float speed)
     {
         //only hurt and bounce back if car is moving

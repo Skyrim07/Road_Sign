@@ -552,10 +552,12 @@ MonoBehaviour:
   hitByCar: 0
   lose: 0
   playerLogic: {fileID: 0}
-  maxSpeed: 5
+  maxSpeed: 4
   moveForce: 10
+  dashForce: 15
+  dashDuration: 0.3
   bounceForce: 100
-  drag: 6
+  drag: 8
   playerMovementCurve:
     serializedVersion: 2
     m_Curve:
@@ -9427,7 +9429,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1472272369}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 7b2a869edd1a8394ca32a120c178ed26, type: 2}
   m_CullingMode: 0
