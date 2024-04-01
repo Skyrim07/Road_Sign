@@ -22,9 +22,13 @@ public class FlowManager : SKMonoSingleton<FlowManager>
         SKUtils.AddKeyDownAction(KeyCode.Escape, () =>
         {
             if (RuntimeData.isPaused)
+            {
+                SKAudioManager.instance.PlaySound("honkunpause1");
                 UnPause();
+            }
             else
             {
+                SKAudioManager.instance.PlaySound("honkpause1");
                 Pause();
                 CommonReference.instance.pausePanel.SetState(true);
                // CommonReference.instance.pause_TitleText.textAnimator.PlayTypeWriter();
@@ -54,14 +58,12 @@ public class FlowManager : SKMonoSingleton<FlowManager>
     }
     public void Pause()
     {
-        SKAudioManager.instance.PlaySound("honkpause1");
         RuntimeData.isPaused = true;
         RuntimeData.timeScale = 0.0f;
     }
 
     public void UnPause()
     {
-        SKAudioManager.instance.PlaySound("honkunpause1");
         RuntimeData.isPaused = false;
         RuntimeData.timeScale = 1.0f;
         CommonReference.instance.pausePanel.SetState(false);
@@ -104,6 +106,8 @@ public class FlowManager : SKMonoSingleton<FlowManager>
     public void LevelFail()
     {
         RuntimeData.timeScale = 0;
+        SKAudioManager.instance.StopMusic();
+        SKAudioManager.instance.PlaySound("guilty");
         UIManager.instance.SetState_FailPanel(true);
     }
     public IEnumerator WaitToDestroy(GameObject crash)
