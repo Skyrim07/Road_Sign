@@ -554,8 +554,8 @@ MonoBehaviour:
   playerLogic: {fileID: 0}
   maxSpeed: 4
   moveForce: 10
-  dashForce: 15
-  dashDuration: 0.3
+  dashForce: 12
+  dashDuration: 0.15
   bounceForce: 100
   drag: 8
   playerMovementCurve:
