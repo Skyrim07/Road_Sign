@@ -26,7 +26,6 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
     }
     public void DestroySign()
     {
-        SKAudioManager.instance.PlaySound("signdelete");
         sign = null;
         PlayerSignSlot.instance.UpdateVisual();
     }
@@ -52,6 +51,8 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
     }
     public void DiscardSign(RoadSign sign)
     {
+        SKAudioManager.instance.PlaySound("signdelete");
+
         sign.shape = SignShape.None;
         sign.color = SignColor.None;
         sign.type = SignType.None;
