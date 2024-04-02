@@ -42,8 +42,8 @@ public class PlayerMovement : MonoBehaviour
     private bool stopPlayerInput;
 
     private Rect cameraRect;
-    private Vector3 cameraPos;
-    private Vector3 bottomLeft, topRight;
+    [SerializeField] private Vector3 cameraPos;
+    [SerializeField] private Vector3 bottomLeft, topRight;
 
     private void Start()
     {
@@ -51,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
         playerLogic = GetComponent<PlayerLogic>();
         spriteRend= GetComponent<SpriteRenderer>();
         ogCol = spriteRend.color;
+        CameraCalculations();
 
 
     }
@@ -75,7 +76,6 @@ public class PlayerMovement : MonoBehaviour
 
         float playerX = Input.GetAxisRaw("Horizontal");
         float playerY = Input.GetAxisRaw("Vertical");
-
 
         if(cameraRect != null)
         {
@@ -185,6 +185,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void CameraCalculations()
     {
+        Debug.Log("camera calc");
         cameraPos = Camera.main.transform.position;
         bottomLeft = Camera.main.ScreenToWorldPoint(cameraPos);
         topRight = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth + cameraPos.x, Camera.main.pixelHeight + cameraPos.y));
