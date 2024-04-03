@@ -62,6 +62,8 @@ public class FlowManager : SKMonoSingleton<FlowManager>
         SKAudioManager.instance.PlaySound("honkpause1");
         RuntimeData.isPaused = true;
         RuntimeData.timeScale = 0.0f;
+
+        print("pause");
     }
 
     public void UnPause()
@@ -70,6 +72,8 @@ public class FlowManager : SKMonoSingleton<FlowManager>
         RuntimeData.isPaused = false;
         RuntimeData.timeScale = 1.0f;
         CommonReference.instance.pausePanel.SetState(false);
+
+        print("unpause");
     }
 
     public void OnCollisionHappens(float increase, GameObject crash)
