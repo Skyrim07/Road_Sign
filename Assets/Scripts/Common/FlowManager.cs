@@ -87,7 +87,7 @@ public class FlowManager : SKMonoSingleton<FlowManager>
     {
         SKAudioManager.instance.PlaySound("hit");
         
-        PlayerLogic.instance.DestroySign();
+        //PlayerLogic.instance.DestroySign();
         PlayerLogic.instance.AddHealth(-1);
 
         if (RuntimeData.playerHealth <= 0)
