@@ -333,9 +333,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3624143310775136550}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.11645126, y: -1.5354004, z: 0.9739634}
-  m_LocalScale: {x: 0.38677776, y: 0.38677776, z: 0.38677776}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3624143309788489487}
@@ -481,6 +481,9 @@ MonoBehaviour:
   hurtFlashAmt: 3
   hurtFlashTime: 0.2
   anim: {fileID: 3624143310775136545}
+  cameraPos: {x: 0, y: 0, z: 0}
+  bottomLeft: {x: 0, y: 0, z: 0}
+  topRight: {x: 0, y: 0, z: 0}
 --- !u!50 &3624143310775136548
 Rigidbody2D:
   serializedVersion: 4
