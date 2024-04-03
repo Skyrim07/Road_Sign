@@ -42,6 +42,11 @@ public class FlowManager : SKMonoSingleton<FlowManager>
         LoadScene(SceneTitle.MainMenu);
         UnPause();
     }
+
+    public void LoadNextLevel()
+    {
+        LoadScene((SceneTitle)((int)RuntimeData.currentScene + 1));
+    }
     public void LoadScene(SceneTitle scene)
     {
         RuntimeData.currentScene = scene;
