@@ -184,7 +184,7 @@ MonoBehaviour:
   wiggleFrequency: 5
   wiggleAmplitude: 0.4
   turnDistanceFactor: 1.1
-  raycastFwdLength: 1
+  raycastFwdLength: 0.7
   raycastSignLength: 3
   centerPos: {fileID: 1770381220961591518}
   frontPos: {fileID: 8283711346973474811}
