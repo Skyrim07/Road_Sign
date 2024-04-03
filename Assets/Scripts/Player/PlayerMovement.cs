@@ -73,10 +73,12 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-
+        if(cameraPos != Camera.main.transform.position)
+        {
+            CameraCalculations();
+        }
         float playerX = Input.GetAxisRaw("Horizontal");
         float playerY = Input.GetAxisRaw("Vertical");
-
         if(cameraRect != null)
         {
             Vector2 clampedPos = transform.position;
