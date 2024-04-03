@@ -104,7 +104,7 @@ public class FlowManager : SKMonoSingleton<FlowManager>
     public void LevelFail()
     {
         RuntimeData.timeScale = 0;
-        UIManager.instance.SetState_FailPanel(true);
+        UIManager.instance.SetState_CrashPanel(true);
     }
     public IEnumerator WaitToDestroy(GameObject crash)
     {
