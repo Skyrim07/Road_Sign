@@ -69,13 +69,13 @@ public class FlowManager : SKMonoSingleton<FlowManager>
 
     public void OnCollisionHappens(float increase, GameObject crash)
     {
-        //RuntimeData.timeScale = 0;
-        //UIManager.instance.SetState_FailPanel(true);
-        RuntimeData.crashCount += increase;
-        LevelManager.instance.AddProgressValue(-.15f);
-
         GameObject fx = Instantiate(CommonReference.instance.carExplosionFx, crash.transform.position, Quaternion.identity);
         Destroy(fx, 5);
+
+        if (RuntimeData.isLevelComplete) return;
+
+        RuntimeData.crashCount += increase;
+        LevelManager.instance.AddProgressValue(-.15f);
         if (RuntimeData.crashCount >= RuntimeData.crashCountMax)
         {
             LevelFail();
@@ -86,8 +86,9 @@ public class FlowManager : SKMonoSingleton<FlowManager>
     public void OnPlayerCollision()
     {
         SKAudioManager.instance.PlaySound("hit");
-        
-        //PlayerLogic.instance.DestroySign();
+
+        if (RuntimeData.isLevelComplete) return;
+
         PlayerLogic.instance.AddHealth(-1);
 
         if (RuntimeData.playerHealth <= 0)
@@ -98,6 +99,7 @@ public class FlowManager : SKMonoSingleton<FlowManager>
 
     public void OnPlayerDeath()
     {
+        if (RuntimeData.isLevelComplete) return;
         RuntimeData.timeScale = 0;
         UIManager.instance.SetState_DeathPanel(true);
     }
