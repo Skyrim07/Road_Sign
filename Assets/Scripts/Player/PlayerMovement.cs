@@ -192,7 +192,7 @@ public class PlayerMovement : MonoBehaviour
         bottomLeft = Camera.main.ScreenToWorldPoint(cameraPos);
         topRight = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth + cameraPos.x, Camera.main.pixelHeight + cameraPos.y));
         cameraRect = new Rect(bottomLeft.x, bottomLeft.y, topRight.x - bottomLeft.x, topRight.y - bottomLeft.y);
-        transform.position = cameraPos;
+        //transform.position = cameraPos;
     }
     private IEnumerator PlayerHitWait()
     {
