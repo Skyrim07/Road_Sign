@@ -95,9 +95,10 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
         if (!RuntimeData.signsDiscovered.Contains(type))
         {
             NewSignPanel.instance.SetState(true);
+
+            FlowManager.instance.Pause();
+            SKUtils.InsertToList(RuntimeData.signsDiscovered, type, false);
         }
-        FlowManager.instance.Pause();
-        SKUtils.InsertToList(RuntimeData.signsDiscovered, type, false);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
