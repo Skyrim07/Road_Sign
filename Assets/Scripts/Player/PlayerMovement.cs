@@ -88,6 +88,8 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetKeyDown(dashControl) && Time.time > lastDashTime + dashDuration)
         {
+            SKAudioManager.instance.PlaySound("dash cartoony");
+
             isDashing = true;
             lastDashTime = Time.time;
         }
@@ -129,6 +131,7 @@ public class PlayerMovement : MonoBehaviour
         float moveCurve = playerMovementCurve.Evaluate(Time.time);
 
         rb.AddForce(playerInput * moveForce * moveCurve, ForceMode2D.Force);
+
 
         if (rb.velocity.magnitude > maxSpeed)
         {
