@@ -117,6 +117,8 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
     {
         if (sign == null || sign.shape == SignShape.None)
         {
+            SKAudioManager.instance.PlaySound("door flapping alt");
+
             UIManager.instance.SetState_ShapeFactoryPanel(true);
             inFactory = true;
         }
@@ -126,6 +128,8 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
     {
         if (sign == null || sign.color == SignColor.None)
         {
+            SKAudioManager.instance.PlaySound("door flapping alt");
+
             UIManager.instance.SetState_ColorFactoryPanel(true);
             inFactory = true;
         }
