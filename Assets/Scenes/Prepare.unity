@@ -552,12 +552,12 @@ MonoBehaviour:
   hitByCar: 0
   lose: 0
   playerLogic: {fileID: 0}
-  maxSpeed: 5
-  moveForce: 10
-  dashForce: 15
+  maxSpeed: 4
+  moveForce: 8
+  dashForce: 10
   dashDuration: 0.3
   bounceForce: 100
-  drag: 6
+  drag: 10
   playerMovementCurve:
     serializedVersion: 2
     m_Curve:

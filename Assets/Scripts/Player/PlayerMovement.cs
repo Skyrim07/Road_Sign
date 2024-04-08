@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     [SKFolder("Player Hurt")]
     [SerializeField] private float hurtFlashAmt;
     [SerializeField] private float hurtFlashTime;
+    private bool invincible;
     private Color ogCol;
 
     private float playerHitWait = 1.5f;
@@ -173,7 +174,7 @@ public class PlayerMovement : MonoBehaviour
         //only hurt and bounce back if car is moving
         float bounce = bounceForce;
         Debug.Log(speed);
-        if(speed >= 0.1f)
+        if(speed >= 0.1f && !invincible)
         {
             FlowManager.instance.OnPlayerCollision();
             stopPlayerInput = true;
@@ -200,7 +201,7 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator PlayerHitWait()
     {
         //yield return new WaitForSeconds(playerHitWait * Time.timeScale);
-
+        invincible = true;
         for(int i=0; i< hurtFlashAmt; i++)
         {
             spriteRend.color = Color.red;
@@ -210,6 +211,7 @@ public class PlayerMovement : MonoBehaviour
         }
         spriteRend.color = ogCol;
         stopPlayerInput = false;
+        invincible = false;
     }
 
 }
