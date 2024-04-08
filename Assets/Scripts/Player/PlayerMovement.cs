@@ -1,7 +1,5 @@
 using SKCell;
-using UnityEngine;
-
-using SKCell;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -15,17 +13,23 @@ public class PlayerMovement : MonoBehaviour
     public PlayerLogic playerLogic;
 
     [SKFolder("Movement Values")]
-    [SerializeField] private float maxSpeed = 2f;
+    [SerializeField] private float maxSpeed = 4f;
     //[SerializeField] private float accel = 0.5f;
-    [SerializeField] private float moveForce = 5f;
-    [SerializeField] private float bounceForce = 8f;
-    [SerializeField] private float drag = 2f;
+    [SerializeField] private float moveForce = 10f;
+    [SerializeField] private float dashForce = 15f;
+    [SerializeField] private float dashDuration = 0.3f;
+    [SerializeField] private float bounceForce = 100f;
+    [SerializeField] private float drag = 8f;
     public AnimationCurve playerMovementCurve;
+    private bool isDashing;
+    private float lastDashTime;
+    private KeyCode dashControl = KeyCode.LeftShift;
 
 
     [SKFolder("Player Hurt")]
     [SerializeField] private float hurtFlashAmt;
     [SerializeField] private float hurtFlashTime;
+    private bool invincible;
     private Color ogCol;
 
     private float playerHitWait = 1.5f;
@@ -39,8 +43,8 @@ public class PlayerMovement : MonoBehaviour
     private bool stopPlayerInput;
 
     private Rect cameraRect;
-    private Vector3 cameraPos;
-    private Vector3 bottomLeft, topRight;
+    [SerializeField] private Vector3 cameraPos;
+    [SerializeField] private Vector3 bottomLeft, topRight;
 
     private void Start()
     {
@@ -48,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
         playerLogic = GetComponent<PlayerLogic>();
         spriteRend= GetComponent<SpriteRenderer>();
         ogCol = spriteRend.color;
+        CameraCalculations();
 
 
     }
@@ -64,20 +69,40 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (lose) { playerInput = Vector2.zero; }
+
+
     }
     private void FixedUpdate()
     {
-
+        if(cameraPos != Camera.main.transform.position)
+        {
+            CameraCalculations();
+        }
         float playerX = Input.GetAxisRaw("Horizontal");
         float playerY = Input.GetAxisRaw("Vertical");
-
-
         if(cameraRect != null)
         {
             Vector2 clampedPos = transform.position;
             clampedPos = new Vector2(Mathf.Clamp(clampedPos.x, cameraRect.xMin, cameraRect.xMax), Mathf.Clamp(clampedPos.y, cameraRect.yMin, cameraRect.yMax));
 
             transform.position = clampedPos;
+        }
+        if (Input.GetKeyDown(dashControl) && Time.time > lastDashTime + dashDuration)
+        {
+            SKAudioManager.instance.PlaySound("dash cartoony");
+
+            isDashing = true;
+            lastDashTime = Time.time;
+        }
+        if (isDashing && Time.time < lastDashTime + dashDuration)
+        {
+            Vector2 dashDirection = playerInput.normalized;
+            rb.velocity = dashDirection * dashForce;
+            return;
+        }
+        if (isDashing && Time.time >= lastDashTime + dashDuration)
+        {
+            isDashing = false;
         }
 
 
@@ -108,6 +133,7 @@ public class PlayerMovement : MonoBehaviour
 
         rb.AddForce(playerInput * moveForce * moveCurve, ForceMode2D.Force);
 
+
         if (rb.velocity.magnitude > maxSpeed)
         {
             rb.velocity = rb.velocity.normalized * maxSpeed;
@@ -130,19 +156,25 @@ public class PlayerMovement : MonoBehaviour
         {
             hitByCar = true;
             lose = true;
-            SKAudioManager.instance.PlaySound("hit");
+            SKAudioManager.instance.PlaySound("die");
 
             Debug.Log("collide");
             
         }
 
     }
+    //private void Dash()
+    //{
+    //    Vector2 dir = playerInput.normalized;
+    //    rb.velocity = Vector2.zero;
+    //    rb.AddForce(dir * dashForce, ForceMode2D.Impulse);
+    //}
     public void HitByCar(Transform carPos, float speed)
     {
         //only hurt and bounce back if car is moving
         float bounce = bounceForce;
         Debug.Log(speed);
-        if(speed >= 0.1f)
+        if(speed >= 0.1f && !invincible)
         {
             FlowManager.instance.OnPlayerCollision();
             stopPlayerInput = true;
@@ -159,16 +191,17 @@ public class PlayerMovement : MonoBehaviour
 
     public void CameraCalculations()
     {
+        Debug.Log("camera calc");
         cameraPos = Camera.main.transform.position;
         bottomLeft = Camera.main.ScreenToWorldPoint(cameraPos);
         topRight = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth + cameraPos.x, Camera.main.pixelHeight + cameraPos.y));
         cameraRect = new Rect(bottomLeft.x, bottomLeft.y, topRight.x - bottomLeft.x, topRight.y - bottomLeft.y);
-        transform.position = cameraPos;
+        //transform.position = cameraPos;
     }
     private IEnumerator PlayerHitWait()
     {
         //yield return new WaitForSeconds(playerHitWait * Time.timeScale);
-
+        invincible = true;
         for(int i=0; i< hurtFlashAmt; i++)
         {
             spriteRend.color = Color.red;
@@ -178,6 +211,7 @@ public class PlayerMovement : MonoBehaviour
         }
         spriteRend.color = ogCol;
         stopPlayerInput = false;
+        invincible = false;
     }
 
 }

@@ -51,6 +51,8 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
     }
     public void DiscardSign(RoadSign sign)
     {
+        SKAudioManager.instance.PlaySound("signdelete");
+
         sign.shape = SignShape.None;
         sign.color = SignColor.None;
         sign.type = SignType.None;
@@ -93,9 +95,10 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
         if (!RuntimeData.signsDiscovered.Contains(type))
         {
             NewSignPanel.instance.SetState(true);
+
+            FlowManager.instance.Pause();
+            SKUtils.InsertToList(RuntimeData.signsDiscovered, type, false);
         }
-        FlowManager.instance.Pause();
-        SKUtils.InsertToList(RuntimeData.signsDiscovered, type, false);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -114,6 +117,8 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
     {
         if (sign == null || sign.shape == SignShape.None)
         {
+            SKAudioManager.instance.PlaySound("door flapping alt");
+
             UIManager.instance.SetState_ShapeFactoryPanel(true);
             inFactory = true;
         }
@@ -123,6 +128,8 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
     {
         if (sign == null || sign.color == SignColor.None)
         {
+            SKAudioManager.instance.PlaySound("door flapping alt");
+
             UIManager.instance.SetState_ColorFactoryPanel(true);
             inFactory = true;
         }

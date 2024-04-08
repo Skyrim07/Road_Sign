@@ -22,7 +22,7 @@ public class SignSlot : MonoBehaviour
     {
         if (isPlayerIn)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 if (signs.Count == 0)
                     PlayerPlaceSign();
@@ -40,6 +40,8 @@ public class SignSlot : MonoBehaviour
             {
                 Destroy(sign.gameObject);
             }
+            SKAudioManager.instance.PlaySound("signdelete");
+
             LevelManager.instance.OnDeleteSlot();
             signs.Clear();
         }
@@ -53,16 +55,17 @@ public class SignSlot : MonoBehaviour
             PlayerLogic.instance.DestroySign();
 
             LevelManager.instance.OnPlaceSlot();
+
         }
         else
         {
-           
+            SKAudioManager.instance.PlaySound("cantplace"); //add variation
         }
     }
 
     private void InstantiateSignObject(SignType sign)
     {
-        SKAudioManager.instance.PlaySound("signplace1");
+        SKAudioManager.instance.PlaySound("signplace1"); //add variation
         if(sign ==SignType.Stop)
         {
             GameObject inst = Instantiate(CommonReference.instance.stopSignPF, transform);
