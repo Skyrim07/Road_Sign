@@ -17,7 +17,16 @@ public class LevelManager : SKMonoSingleton<LevelManager>
             {
                 LoadSignSlots();
             });
-     
+            SKUtils.InvokeAction(.2f, () =>
+            {
+                Transform sp = GameObject.FindGameObjectWithTag("SpawnPoint").transform;
+                if (sp)
+                {
+                    PlayerLogic.instance.transform.position = sp.position;
+                }
+            });
+
+
         }));
     }
 

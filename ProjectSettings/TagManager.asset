@@ -10,6 +10,7 @@ TagManager:
   - Destination
   - SignSlot
   - Pedestrian
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX
