@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Intersection : MonoBehaviour
@@ -10,6 +11,28 @@ public class Intersection : MonoBehaviour
     public List<Road> roads = new List<Road>();
     public List<Sign> signs = new List<Sign>();
 
+
+    private Vector2[] directions = new Vector2[] {Vector2.down, Vector2.left, Vector2.up, Vector2.right};
+    private void Awake()
+    {
+        Road[] r = new Road[roads.Count];
+        //Initialize connecting roads
+        for (int i = 0; i < directions.Length; i++)
+        {
+            RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, directions[i], 2f);
+            foreach (RaycastHit2D hit in hits)
+            {
+                if (hit.transform.GetComponent<Road>() != null)
+                {
+                    r[i]=hit.transform.GetComponent<Road>();
+                    break;
+                }
+            }
+        }
+
+        roads = new List<Road>(r);
+
+    }
 
     public Road GetRoadRightOf(Road road)
     {

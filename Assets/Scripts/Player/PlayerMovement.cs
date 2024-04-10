@@ -58,7 +58,8 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-
+        if (RuntimeData.isLevelComplete) return;
+       
 
         anim.SetBool("Walk", playerInput.sqrMagnitude > 0);
 
@@ -74,7 +75,9 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if(cameraPos != Camera.main.transform.position)
+        if (RuntimeData.isLevelComplete) return;
+
+        if (cameraPos != Camera.main.transform.position)
         {
             CameraCalculations();
         }
