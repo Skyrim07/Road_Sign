@@ -19,7 +19,7 @@ public class LevelManager : SKMonoSingleton<LevelManager>
             });
             SKUtils.InvokeAction(.2f, () =>
             {
-                Transform sp = GameObject.FindGameObjectWithTag("SpawnPoint").transform;
+                Transform sp = GameObject.FindGameObjectWithTag("SpawnPoint")?.transform;
                 if (sp)
                 {
                     PlayerLogic.instance.transform.position = sp.position;

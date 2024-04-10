@@ -7,7 +7,7 @@ public class UIManager : SKMonoSingleton<UIManager>
 {
     [SerializeField] SKUIPanel colorFactoryPanel, shapeFactoryPanel;
     [SerializeField] SKUIPanel winPanel;
-    [SerializeField] SKUIPanel deathPanel, ticketPanel, crashPanel;
+    [SerializeField] SKUIPanel deathPanel, ticketPanel, crashPanel, hatPanel;
     [SerializeField] SKUIPanel tutPanel;
     [SerializeField] SKSlider progressBar;
 
@@ -29,7 +29,10 @@ public class UIManager : SKMonoSingleton<UIManager>
     {
        // progressBar.SetValue(value01);
     }
-
+    public void SetState_HatPanel(bool active)
+    {
+        hatPanel.SetState(active);
+    }
     public void SetState_FailPanel(bool active)
     {
         ticketPanel.SetState(active);
