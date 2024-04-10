@@ -63,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
 
         anim.SetBool("Walk", playerInput.sqrMagnitude > 0);
 
-        if (playerInput.sqrMagnitude > 0)
+        if (playerInput.sqrMagnitude > 0 && RuntimeData.timeScale>0)
         {
             float orientation = Mathf.Atan2(playerInput.y, playerInput.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0, 0, orientation - 90);
