@@ -9,6 +9,7 @@ public class LevelManager : SKMonoSingleton<LevelManager>
         EventDispatcher.AddListener(EventDispatcher.Common, EventRef.ON_LOAD_LEVEL, new SKEvent(() =>
         {
             PlayerLogic.instance.SetHealth(3);
+            PlayerLogic.instance.sign = null;
             RuntimeData.isLevelComplete = false;
             RuntimeData.crashCount = 0;
             RuntimeData.currentSignCount = 0;
