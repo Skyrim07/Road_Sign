@@ -134,7 +134,7 @@ public class PlayerMovement : MonoBehaviour
 
         float moveCurve = playerMovementCurve.Evaluate(Time.time);
 
-        rb.AddForce(playerInput * moveForce * moveCurve, ForceMode2D.Force);
+        rb.AddForce(playerInput * moveForce * moveCurve * RuntimeData.timeScale, ForceMode2D.Force);
 
 
         if (rb.velocity.magnitude > maxSpeed)
