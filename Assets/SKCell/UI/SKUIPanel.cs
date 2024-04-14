@@ -35,7 +35,7 @@ namespace SKCell
         private void Awake()
         {
             onStateChanged += (b) => { };
-            anim = SKUtils.GetComponentNonAlloc<SKUIAnimation>(gameObject);
+            anim = GetComponent<SKUIAnimation>();
             if (rootPanel != null)
             {
                 rootPanel.leafPanels.Add(this);
@@ -129,9 +129,6 @@ namespace SKCell
         #region Virtual Events
         public virtual void OnPanelActivated()
         {
-            if (active)
-                return;
-
             active = true;
             if(anim)
             anim.SetState(true);
@@ -139,9 +136,6 @@ namespace SKCell
         }
         public virtual void OnPanelDeactivated()
         {
-            if (!active)
-                return;
-
             active = false;
             if (anim)
                 anim.SetState(false);

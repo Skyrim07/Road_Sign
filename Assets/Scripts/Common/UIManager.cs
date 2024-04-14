@@ -31,6 +31,8 @@ public class UIManager : SKMonoSingleton<UIManager>
     }
     public void SetState_HatPanel(bool active)
     {
+        if(active)
+            HatPanel.instance.UpdateInfo();
         hatPanel.SetState(active);
     }
     public void SetState_FailPanel(bool active)
