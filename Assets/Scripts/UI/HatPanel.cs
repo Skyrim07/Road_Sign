@@ -1,18 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class HatPanel : MonoBehaviour
+using SKCell;
+public class HatPanel : SKMonoSingleton<HatPanel>
 {
-    // Start is called before the first frame update
+    [SerializeField] Transform hatSlotContainer;
+
+    HatSlot currentHatSlot;
+    SKUIPanel panel;
     void Start()
     {
-        
+        panel = GetComponent<SKUIPanel>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateInfo()
     {
-        
+        for (int i = 0; i < hatSlotContainer.childCount; i++)
+        {
+            hatSlotContainer.GetChild(i).GetComponent<HatSlot>().UpdateInfo();  
+        }
+    }
+    public void OnPressExit()
+    {
+        panel.SetState(false);
+    }
+    public void OnSelectHatSlot(HatSlot hatSlot)
+    {
+        if (currentHatSlot != null && currentHatSlot != hatSlot)
+            currentHatSlot.OnDeselect();
+        currentHatSlot = hatSlot;
     }
 }

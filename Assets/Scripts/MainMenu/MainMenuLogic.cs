@@ -18,6 +18,10 @@ public class MainMenuLogic : MonoBehaviour
     {
 
     }
+    public void OnPressHatButton()
+    {
+        UIManager.instance.SetState_HatPanel(true);
+    }
     public void OnPressQuitButton()
     {
         Application.Quit();
