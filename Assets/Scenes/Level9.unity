@@ -1108,6 +1108,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1932633215275262602, guid: 961d10bb279c6f4458f93a64aa5538ee, type: 3}
+      propertyPath: restrictions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1932633215275262602, guid: 961d10bb279c6f4458f93a64aa5538ee, type: 3}
+      propertyPath: restrictions.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262607, guid: 961d10bb279c6f4458f93a64aa5538ee, type: 3}
       propertyPath: m_Name
       value: Road_Segment (1)
@@ -3711,7 +3719,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1249600462839010602, guid: 94e2b95840943cb48befb84280743544, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1249600462839010613, guid: 94e2b95840943cb48befb84280743544, type: 3}
       propertyPath: m_RootOrder
@@ -3846,6 +3854,14 @@ PrefabInstance:
     - target: {fileID: 1932633215275262600, guid: 961d10bb279c6f4458f93a64aa5538ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1932633215275262602, guid: 961d10bb279c6f4458f93a64aa5538ee, type: 3}
+      propertyPath: restrictions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1932633215275262602, guid: 961d10bb279c6f4458f93a64aa5538ee, type: 3}
+      propertyPath: restrictions.Array.data[0]
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262607, guid: 961d10bb279c6f4458f93a64aa5538ee, type: 3}
       propertyPath: m_Name
