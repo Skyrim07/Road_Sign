@@ -268,6 +268,11 @@ public class Car : MonoBehaviour
         FlowManager.instance.OnCollisionHappens(0.5f, gameObject);
         Destroy(gameObject);
     }
+    private void OnHitTrain(Train train)
+    {
+        FlowManager.instance.OnCollisionHappens(0.5f, gameObject);
+        Destroy(gameObject);
+    }
     private void OnHitPlayer(PlayerMovement player)
     {
         //FlowManager.instance.OnPlayerCollision();
@@ -292,6 +297,10 @@ public class Car : MonoBehaviour
         if (collision.TryGetComponent<Car>(out var car))
         {
             OnHitCar(car);
+        }
+        if (collision.TryGetComponent<Train>(out var train))
+        {
+            OnHitTrain(train);
         }
         if (collision.TryGetComponent<Road>(out var road))
         {
