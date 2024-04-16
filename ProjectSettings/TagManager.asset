@@ -11,6 +11,7 @@ TagManager:
   - SignSlot
   - Pedestrian
   - SpawnPoint
+  - Train
   layers:
   - Default
   - TransparentFX

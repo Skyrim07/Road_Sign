@@ -336,7 +336,7 @@ public class Car : MonoBehaviour
                 RaycastHit2D[] hits = Physics2D.RaycastAll(frontPos.position, dir.normalized, dir.magnitude);
                 foreach(var hit in hits)
                 {
-                    if (hit.transform != null && (hit.transform.CompareTag("Car") || hit.transform.CompareTag("Pedestrian")))
+                    if (hit.transform != null && (hit.transform.CompareTag("Car") || hit.transform.CompareTag("Pedestrian") || hit.transform.CompareTag("Train")))
                     {
                         freeTime = 0;
                         break;
