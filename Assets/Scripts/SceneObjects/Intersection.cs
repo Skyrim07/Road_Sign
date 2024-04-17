@@ -70,8 +70,10 @@ public class Intersection : MonoBehaviour
 
 
         Road res = candidate[Random.Range(0, candidate.Count)];
-        while (res == null)
+        int iter = 0;
+        while (res == null && iter<5)
         {
+            iter++;
             res = candidate[Random.Range(0, candidate.Count)];
         }
         return res;
