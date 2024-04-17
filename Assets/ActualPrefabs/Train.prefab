@@ -263,6 +263,7 @@ GameObject:
   - component: {fileID: 270152303708465639}
   - component: {fileID: 270152303708465638}
   - component: {fileID: 270152303708465641}
+  - component: {fileID: 5769323321677400100}
   m_Layer: 0
   m_Name: Train
   m_TagString: Train
@@ -326,6 +327,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.6345537, y: 16.586226}
   m_EdgeRadius: 0
+--- !u!50 &5769323321677400100
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270152303708465636}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &270152303742824056
 GameObject:
   m_ObjectHideFlags: 0
