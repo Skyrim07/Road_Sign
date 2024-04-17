@@ -10706,7 +10706,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4913664435362797949, guid: d24f807ddf7b62442bdb9145e6db21ac, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.8900013
+      value: -6.85
       objectReference: {fileID: 0}
     - target: {fileID: 4913664435362797949, guid: d24f807ddf7b62442bdb9145e6db21ac, type: 3}
       propertyPath: m_LocalPosition.y
@@ -10791,6 +10791,14 @@ PrefabInstance:
     - target: {fileID: 7382036407867967124, guid: d24f807ddf7b62442bdb9145e6db21ac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7382036408512706708, guid: d24f807ddf7b62442bdb9145e6db21ac, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 7382036408512706708, guid: d24f807ddf7b62442bdb9145e6db21ac, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8965340432537298946, guid: d24f807ddf7b62442bdb9145e6db21ac, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.size
