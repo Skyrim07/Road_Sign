@@ -67,6 +67,8 @@ public class LevelManager : SKMonoSingleton<LevelManager>
 
     public void OnLevelComplete()
     {
+        SKAudioManager.instance.StopMusic();
+        SKAudioManager.instance.PlayMusic("Real Success", false, 0, 1);
         RuntimeData.isLevelComplete = true;
         UIManager.instance.SetState_WinPanel(true);
     }
