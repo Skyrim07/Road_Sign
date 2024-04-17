@@ -53,7 +53,7 @@ public class FlowManager : SKMonoSingleton<FlowManager>
         SKSceneManager.instance.LoadSceneAsync("loading", scene.ToString());
         if(scene == SceneTitle.Level1)
         {
-            StartCoroutine(WaitToLoad(3));
+            //StartCoroutine(WaitToLoad(3));
         }
   
     }
