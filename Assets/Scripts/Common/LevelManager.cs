@@ -10,6 +10,7 @@ public class LevelManager : SKMonoSingleton<LevelManager>
         {
             PlayerLogic.instance.SetHealth(3);
             PlayerLogic.instance.sign = null;
+            PlayerSignSlot.instance.UpdateVisual();
             RuntimeData.isLevelComplete = false;
             RuntimeData.crashCount = 0;
             RuntimeData.currentSignCount = 0;
