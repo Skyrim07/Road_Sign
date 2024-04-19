@@ -21,6 +21,8 @@ public class FlowManager : SKMonoSingleton<FlowManager>
         });
         SKUtils.AddKeyDownAction(KeyCode.Escape, () =>
         {
+            if (!UIManager.instance.CanOpenPausePanel())
+                return;
             if (RuntimeData.isPaused)
                 UnPause();
             else
@@ -53,7 +55,7 @@ public class FlowManager : SKMonoSingleton<FlowManager>
         SKSceneManager.instance.LoadSceneAsync("loading", scene.ToString());
         if(scene == SceneTitle.Level1)
         {
-            StartCoroutine(WaitToLoad(3));
+            //StartCoroutine(WaitToLoad(3));
         }
   
     }
@@ -63,6 +65,7 @@ public class FlowManager : SKMonoSingleton<FlowManager>
         RuntimeData.isPaused = true;
         RuntimeData.timeScale = 0.0f;
 
+        UIManager.instance.buttonPauseResume.Select();
         print("pause");
     }
 

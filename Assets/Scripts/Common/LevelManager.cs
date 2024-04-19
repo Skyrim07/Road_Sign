@@ -10,6 +10,7 @@ public class LevelManager : SKMonoSingleton<LevelManager>
         {
             PlayerLogic.instance.SetHealth(3);
             PlayerLogic.instance.sign = null;
+            PlayerSignSlot.instance.UpdateVisual();
             RuntimeData.isLevelComplete = false;
             RuntimeData.crashCount = 0;
             RuntimeData.currentSignCount = 0;
@@ -67,6 +68,8 @@ public class LevelManager : SKMonoSingleton<LevelManager>
 
     public void OnLevelComplete()
     {
+        SKAudioManager.instance.StopMusic();
+        SKAudioManager.instance.PlayMusic("Real Success", false, 0, 1);
         RuntimeData.isLevelComplete = true;
         UIManager.instance.SetState_WinPanel(true);
     }
