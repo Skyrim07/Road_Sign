@@ -3032,11 +3032,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262602, guid: 961d10bb279c6f4458f93a64aa5538ee, type: 3}
       propertyPath: restrictions.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262602, guid: 961d10bb279c6f4458f93a64aa5538ee, type: 3}
       propertyPath: restrictions.Array.data[0]
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1932633215275262602, guid: 961d10bb279c6f4458f93a64aa5538ee, type: 3}
+      propertyPath: restrictions.Array.data[1]
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262607, guid: 961d10bb279c6f4458f93a64aa5538ee, type: 3}
       propertyPath: m_Name
@@ -4628,11 +4632,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262602, guid: 961d10bb279c6f4458f93a64aa5538ee, type: 3}
       propertyPath: restrictions.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262602, guid: 961d10bb279c6f4458f93a64aa5538ee, type: 3}
       propertyPath: restrictions.Array.data[0]
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1932633215275262602, guid: 961d10bb279c6f4458f93a64aa5538ee, type: 3}
+      propertyPath: restrictions.Array.data[1]
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262607, guid: 961d10bb279c6f4458f93a64aa5538ee, type: 3}
       propertyPath: m_Name
@@ -4973,11 +4981,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7042048422126348230, guid: d37af53de4821684ab72ec5701bdc6e8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.0300765
+      value: 5.0300756
       objectReference: {fileID: 0}
     - target: {fileID: 7042048422126348230, guid: d37af53de4821684ab72ec5701bdc6e8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.046558
+      value: 8.156244
       objectReference: {fileID: 0}
     - target: {fileID: 7042048422126348230, guid: d37af53de4821684ab72ec5701bdc6e8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6562,6 +6570,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262602, guid: 961d10bb279c6f4458f93a64aa5538ee, type: 3}
       propertyPath: restrictions.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1932633215275262602, guid: 961d10bb279c6f4458f93a64aa5538ee, type: 3}
+      propertyPath: restrictions.Array.data[1]
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262607, guid: 961d10bb279c6f4458f93a64aa5538ee, type: 3}
@@ -6855,7 +6867,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8680928660278528508, guid: cdf4e8e288214464cb2a8886958d6def, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.692048
+      value: 13.442048
       objectReference: {fileID: 0}
     - target: {fileID: 8680928660278528508, guid: cdf4e8e288214464cb2a8886958d6def, type: 3}
       propertyPath: m_LocalPosition.y
@@ -8426,7 +8438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8680928660278528508, guid: cdf4e8e288214464cb2a8886958d6def, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.307952
+      value: -3.057952
       objectReference: {fileID: 0}
     - target: {fileID: 8680928660278528508, guid: cdf4e8e288214464cb2a8886958d6def, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9291,11 +9303,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262602, guid: 961d10bb279c6f4458f93a64aa5538ee, type: 3}
       propertyPath: restrictions.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262602, guid: 961d10bb279c6f4458f93a64aa5538ee, type: 3}
       propertyPath: restrictions.Array.data[0]
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1932633215275262602, guid: 961d10bb279c6f4458f93a64aa5538ee, type: 3}
+      propertyPath: restrictions.Array.data[1]
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262607, guid: 961d10bb279c6f4458f93a64aa5538ee, type: 3}
       propertyPath: m_Name
@@ -9344,7 +9360,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262600, guid: 961d10bb279c6f4458f93a64aa5538ee, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.47536
+      value: 4.22536
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262600, guid: 961d10bb279c6f4458f93a64aa5538ee, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9380,10 +9396,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262602, guid: 961d10bb279c6f4458f93a64aa5538ee, type: 3}
       propertyPath: restrictions.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262602, guid: 961d10bb279c6f4458f93a64aa5538ee, type: 3}
       propertyPath: restrictions.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1932633215275262602, guid: 961d10bb279c6f4458f93a64aa5538ee, type: 3}
+      propertyPath: restrictions.Array.data[1]
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262607, guid: 961d10bb279c6f4458f93a64aa5538ee, type: 3}
@@ -11256,6 +11276,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262602, guid: 961d10bb279c6f4458f93a64aa5538ee, type: 3}
       propertyPath: restrictions.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1932633215275262602, guid: 961d10bb279c6f4458f93a64aa5538ee, type: 3}
+      propertyPath: restrictions.Array.data[1]
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262607, guid: 961d10bb279c6f4458f93a64aa5538ee, type: 3}
