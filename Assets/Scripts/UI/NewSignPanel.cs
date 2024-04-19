@@ -10,6 +10,16 @@ public class NewSignPanel : SKMonoSingleton<NewSignPanel>
         panel = GetComponent<SKUIPanel>();
     }
 
+    private void Update()
+    {
+        if (panel.active)
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                SetState(false);
+            }
+        }
+    }
     public void SetState(bool active)
     {
         panel.SetState(active);

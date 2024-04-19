@@ -25,6 +25,7 @@ public class UIManager : SKMonoSingleton<UIManager>
         }
 
     }
+
     public void SetValue_ProgressBar(float value01)
     {
        // progressBar.SetValue(value01);
