@@ -400,7 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 303261a65ee7d7f49b47fbbba1858613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isEnterDirectly: 0
+  isEnterDirectly: 1
   indicatorAnim: {fileID: 3788684367511860701}
 --- !u!212 &3788684366568169559
 SpriteRenderer:
@@ -467,7 +467,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.34397185, y: 0}
+  m_Offset: {x: 0.3124984, y: 0.25557634}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -478,7 +478,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.3642013, y: 1}
+  m_Size: {x: 0.6718055, y: 1.5111525}
   m_EdgeRadius: 0
 --- !u!1 &3788684366864490086
 GameObject:
