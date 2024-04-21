@@ -1474,7 +1474,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: This is the sloat where you can placeyour road signs.
+  m_text: This is the slot where you can place your road signs.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 771056ee28530804881623991f4127ae, type: 2}
   m_sharedMaterial: {fileID: 2236357658417079656, guid: 771056ee28530804881623991f4127ae, type: 2}
@@ -4550,7 +4550,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'This is your remasining health.
+  m_text: 'This is your remaining health.
 
     Losing all of them means DEATH!'
   m_isRightToLeft: 0
