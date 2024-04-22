@@ -28,6 +28,8 @@ public class PlayerSignSlot : SKMonoSingleton<PlayerSignSlot>
                 return null;
             case SignType.Stop:
                 return CommonReference.instance.sprite_StopSign;
+            case SignType.Rail:
+                return CommonReference.instance.sprite_RailSign;
             default:
                 return null;
         }
