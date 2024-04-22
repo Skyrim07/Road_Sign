@@ -38,7 +38,7 @@ public class CarSpawner : MonoBehaviour
     {
         interval = Random.Range(spawnIntervalMin, spawnIntervalMax);
     }
-    private void SpawnCar()
+    private protected virtual void SpawnCar()
     {
         GameObject car = Instantiate(carPrefabs[Random.Range(0, carPrefabs.Length)], transform.position, Quaternion.Euler(0, 0, angle));
 
