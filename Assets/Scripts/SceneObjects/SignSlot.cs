@@ -72,6 +72,12 @@ public class SignSlot : MonoBehaviour
             inst.transform.Rotate(0, 0, angle);
             signs.Add(inst.GetComponent<Sign>());
         }
+        if (sign == SignType.Rail)
+        {
+            GameObject inst = Instantiate(CommonReference.instance.railSignPF, transform);
+            inst.transform.Rotate(0, 0, angle);
+            signs.Add(inst.GetComponent<Sign>());
+        }
     }
 
     private void OnPlayerEnter()
