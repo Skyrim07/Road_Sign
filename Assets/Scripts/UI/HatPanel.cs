@@ -40,5 +40,7 @@ public class HatPanel : SKMonoSingleton<HatPanel>
           
             hatSpriteContainer.GetChild(i).gameObject.SetActive(PersistentData.equippedHat == i);
         }
+
+        PlayerLogic.instance.UpdateHatVisual();
     }
 }

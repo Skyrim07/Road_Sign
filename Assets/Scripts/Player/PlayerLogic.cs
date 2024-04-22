@@ -10,6 +10,16 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
     private KeyCode discardSign = KeyCode.X;
     private bool inFactory;
 
+    public Transform hatsContainer;
+
+    public void UpdateHatVisual()
+    {
+        for (int i = 0; i < hatsContainer.childCount; i++)
+        {
+            hatsContainer.GetChild(i).gameObject.SetActive(PersistentData.equippedHat == i);
+        }
+    }
+
    public static bool HasValidSign()
     {
         bool has = true;
