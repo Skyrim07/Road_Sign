@@ -12,9 +12,9 @@ public class CommonReference : SKMonoSingleton<CommonReference>
 
     public Sprite sprite_transparent,sprite_octogon, sprite_diamond;
 
-    public Sprite sprite_StopSign;
+    public Sprite sprite_StopSign, sprite_RailSign;
 
-    public GameObject stopSignPF;
+    public GameObject stopSignPF, railSignPF;
 
     public GameObject carExplosionFx;
 }

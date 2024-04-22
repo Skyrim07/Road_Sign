@@ -12,7 +12,9 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
 
    public static bool HasValidSign()
     {
-        return PlayerLogic.instance.sign != null && PlayerLogic.instance.sign.type != SignType.None;
+        bool has = true;
+        has &= PlayerLogic.instance.sign != null && PlayerLogic.instance.sign.type != SignType.None;
+        return has;
     }
     public void AddHealth(int delta)
     {
@@ -85,6 +87,10 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
         {
             OnSignCreated(SignType.Stop);
         }
+        if (sign.color == SignColor.Blue && sign.shape == SignShape.Diamond)
+        {
+            OnSignCreated(SignType.Rail);
+        }
     }
 
     public void OnSignCreated(SignType type)
@@ -94,7 +100,10 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
         sign.color = SignColor.None;
         if (!RuntimeData.signsDiscovered.Contains(type))
         {
-            NewSignPanel.instance.SetState(true);
+            if(type == SignType.Stop)
+                NewSignPanel.instance.SetState(true);
+            if (type == SignType.Rail)
+                NewSignPanel_2.instance.SetState(true);
 
             FlowManager.instance.Pause();
             SKUtils.InsertToList(RuntimeData.signsDiscovered, type, false);

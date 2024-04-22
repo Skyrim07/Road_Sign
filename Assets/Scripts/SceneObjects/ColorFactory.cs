@@ -46,7 +46,8 @@ public class ColorFactory : SKMonoSingleton<ColorFactory>
 public enum SignType
 {
     None,
-    Stop
+    Stop,
+    Rail
 }
 public enum SignBehaviourType
 {

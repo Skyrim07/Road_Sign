@@ -5,6 +5,7 @@ using SKCell;
 
 public class SignSlot : MonoBehaviour
 {
+    public SignType signType = SignType.Stop;
     public List<Sign> signs = new List<Sign>();
     public Road road;
     public float angle;
@@ -48,7 +49,7 @@ public class SignSlot : MonoBehaviour
     }
     private void PlayerPlaceSign()
     {
-        if(PlayerLogic.HasValidSign())
+        if(PlayerLogic.HasValidSign() && PlayerLogic.instance.sign.type == signType)
         {
             indicatorAnim.Disappear();
             InstantiateSignObject(PlayerLogic.instance.sign.type);
@@ -72,6 +73,12 @@ public class SignSlot : MonoBehaviour
             inst.transform.Rotate(0, 0, angle);
             signs.Add(inst.GetComponent<Sign>());
         }
+        if (sign == SignType.Rail)
+        {
+            GameObject inst = Instantiate(CommonReference.instance.railSignPF, transform);
+            inst.transform.Rotate(0, 0, angle);
+            signs.Add(inst.GetComponent<Sign>());
+        }
     }
 
     private void OnPlayerEnter()
@@ -79,7 +86,7 @@ public class SignSlot : MonoBehaviour
         isPlayerIn = true;
         if (signs.Count == 0)
         {
-            if (PlayerLogic.HasValidSign())
+            if (PlayerLogic.HasValidSign() && PlayerLogic.instance.sign.type == signType)
             {
                 indicatorAnim.Appear();
             }
