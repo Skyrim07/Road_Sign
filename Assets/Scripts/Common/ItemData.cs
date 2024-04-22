@@ -10,4 +10,13 @@ public class ItemData
     {
         return signBehaviour[signType];
     }
+
+    public static Sprite GetHatSprite_Top(int id)
+    {
+        return Resources.Load<Sprite>($"Hats/top_{id}");
+    }
+    public static Sprite GetHatSprite_Front(int id)
+    {
+        return Resources.Load<Sprite>($"Hats/front_{id}");
+    }
 }
