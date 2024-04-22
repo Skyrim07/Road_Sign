@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SKCell;
-public class NewSignPanel_2 : SKMonoSingleton<NewSignPanel>
+public class NewSignPanel_2 : SKMonoSingleton<NewSignPanel_2>
 {
     public SKUIPanel panel;
     private void Start()
