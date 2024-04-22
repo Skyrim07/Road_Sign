@@ -37,10 +37,11 @@ public class HatSlot : MonoBehaviour
     {
         if (!PersistentData.hatUnlocked.Contains(id))
             return;
+        PersistentData.equippedHat = id;
         HatPanel.instance.OnSelectHatSlot(this);
         anim.SetBool("Appear", true);
 
-        PersistentData.equippedHat = id; 
+   
     }
     public void OnDeselect()
     {

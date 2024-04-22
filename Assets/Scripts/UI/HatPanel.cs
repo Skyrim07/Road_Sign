@@ -5,7 +5,7 @@ using SKCell;
 public class HatPanel : SKMonoSingleton<HatPanel>
 {
     [SerializeField] Transform hatSlotContainer;
-
+    [SerializeField] Transform hatSpriteContainer;
     HatSlot currentHatSlot;
     SKUIPanel panel;
     void Start()
@@ -19,6 +19,11 @@ public class HatPanel : SKMonoSingleton<HatPanel>
         {
             hatSlotContainer.GetChild(i).GetComponent<HatSlot>().UpdateInfo();  
         }
+        for (int i = 0; i < hatSpriteContainer.childCount; i++)
+        {
+            hatSpriteContainer.GetChild(i).gameObject.SetActive(PersistentData.equippedHat == i);
+        }
+
     }
     public void OnPressExit()
     {
@@ -29,5 +34,11 @@ public class HatPanel : SKMonoSingleton<HatPanel>
         if (currentHatSlot != null && currentHatSlot != hatSlot)
             currentHatSlot.OnDeselect();
         currentHatSlot = hatSlot;
+
+        for (int i = 0; i < hatSpriteContainer.childCount; i++)
+        {
+          
+            hatSpriteContainer.GetChild(i).gameObject.SetActive(PersistentData.equippedHat == i);
+        }
     }
 }
