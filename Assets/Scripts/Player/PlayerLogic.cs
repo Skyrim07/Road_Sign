@@ -5,7 +5,6 @@ using SKCell;
 
 public class PlayerLogic : SKMonoSingleton<PlayerLogic>
 {
-
     public RoadSign sign;
     private KeyCode discardSign = KeyCode.X;
     private bool inFactory;
@@ -17,6 +16,7 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
         for (int i = 0; i < hatsContainer.childCount; i++)
         {
             hatsContainer.GetChild(i).gameObject.SetActive(PersistentData.equippedHat == i);
+            SKAudioManager.instance.PlaySound("hat equip");
         }
     }
 
@@ -43,7 +43,8 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
     }
     public void OnGetColor(SignColor color)
     {
-        SKAudioManager.instance.PlaySound("paint3");
+        int randomSound = Random.Range(1, 3);
+        SKAudioManager.instance.PlaySound($"paint{randomSound}");
         if (sign == null) 
         {
             sign = new RoadSign();
