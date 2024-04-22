@@ -2249,7 +2249,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &185377037
 Transform:
   m_ObjectHideFlags: 0
@@ -5104,12 +5104,13 @@ MonoBehaviour:
   pausePanel: {fileID: 542561645}
   pause_TitleText: {fileID: 104259256}
   red: {r: 0.8962264, g: 0.17285708, b: 0.17285708, a: 1}
-  blue: {r: 0.20656818, g: 0.33985078, b: 0.9339623, a: 1}
+  blue: {r: 0.9921569, g: 0.8117648, b: 0.20000002, a: 1}
   sprite_transparent: {fileID: 0}
   sprite_octogon: {fileID: 21300000, guid: d31d42daf1c3a7045975da4ab8c0f733, type: 3}
-  sprite_diamond: {fileID: 21300000, guid: 02277804dda16ab4fa108b013b257fa7, type: 3}
+  sprite_diamond: {fileID: 21300000, guid: 001bfa98a4a314d4992174e8f39a9681, type: 3}
   sprite_StopSign: {fileID: 21300000, guid: 10494b142dedec54188406c85c1d525b, type: 3}
   stopSignPF: {fileID: 1431314900385517537, guid: fd4a76fe8c0c72840ac17fdba5a27b96, type: 3}
+  railSignPF: {fileID: 1431314900385517537, guid: 34ba83c6ba83571419715a76eb588ebe, type: 3}
   carExplosionFx: {fileID: 3166828853555324025, guid: ec602449a53dcbc40b65cc4d3eed83e2, type: 3}
 --- !u!1 &541392006
 GameObject:
@@ -8798,7 +8799,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a4220908f64e0b240b97e79c6d92c530, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b0d0e35f8c02f074e8c5101f39d6171e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -19635,6 +19636,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShapeButton
       objectReference: {fileID: 0}
+    - target: {fileID: 5281685864591675002, guid: bd998c88b6dcdfc438feddf5666aff3d, type: 3}
+      propertyPath: m_text
+      value: Circle
+      objectReference: {fileID: 0}
+    - target: {fileID: 5281685864766762443, guid: bd998c88b6dcdfc438feddf5666aff3d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 001bfa98a4a314d4992174e8f39a9681, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd998c88b6dcdfc438feddf5666aff3d, type: 3}
 --- !u!114 &5281685863915920946 stripped
