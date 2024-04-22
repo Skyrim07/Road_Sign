@@ -324,15 +324,16 @@ public class Car : MonoBehaviour
         watchedSigns.Add(sign);
         if(sign.type == SignType.Stop || sign.type == SignType.Rail)
         {
-            StartCoroutine(StopSign());
+            StartCoroutine(StopSign(sign.type));
         }
     }
 
-    private IEnumerator StopSign()
+    private IEnumerator StopSign(SignType type)
     {
         targetSpeed = 0;
         float freeTime = 0;
         isInStopSign = true;
+        if(type == SignType.Stop)
         yield return new WaitForSeconds(stopWaitTime);
 
         bool isFree = false;
