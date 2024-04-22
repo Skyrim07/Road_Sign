@@ -1,18 +1,13 @@
+using SKCell;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrainSpawner : MonoBehaviour
+public class TrainSpawner : CarSpawner
 {
-    // Start is called before the first frame update
-    void Start()
+    private protected override void SpawnCar()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        base.SpawnCar();
+        SKAudioManager.instance.PlaySound("train horn");
     }
 }

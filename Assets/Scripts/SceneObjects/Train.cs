@@ -8,9 +8,8 @@ public class Train : MonoBehaviour
     public float speed;
     void Start()
     {
-        
+        SKAudioManager.instance.PlayIdentifiableSound("train","train",true);
     }
-
     void FixedUpdate()
     {
         transform.Translate((transform.rotation * Vector2.up) * speed * Time.fixedDeltaTime * RuntimeData.timeScale, Space.World);
@@ -20,11 +19,16 @@ public class Train : MonoBehaviour
     {
         player.HitByCar(transform, speed);
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.collider.TryGetComponent<PlayerMovement>(out var player))
+        if (collision.TryGetComponent<PlayerMovement>(out var player))
         {
             OnHitPlayer(player);
+        }
+        if (collision.TryGetComponent<Destination>(out var dest))
+        {
+            Destroy(gameObject,5f);
+            SKAudioManager.instance.StopIdentifiableSound("train", 2f);
         }
     }
 }
