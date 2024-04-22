@@ -60,13 +60,15 @@ public class SignSlot : MonoBehaviour
         }
         else
         {
-            SKAudioManager.instance.PlaySound("cantplace"); //add variation
+            int randomSound = Random.Range(1, 2);
+            SKAudioManager.instance.PlaySound($"cantplace{randomSound}");
         }
     }
 
     private void InstantiateSignObject(SignType sign)
     {
-        SKAudioManager.instance.PlaySound("signplace1"); //add variation
+        int randomSound = Random.Range(1, 2);
+        SKAudioManager.instance.PlaySound($"signplace{randomSound}");
         if(sign ==SignType.Stop)
         {
             GameObject inst = Instantiate(CommonReference.instance.stopSignPF, transform);
