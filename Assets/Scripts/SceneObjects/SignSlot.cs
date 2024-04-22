@@ -56,7 +56,8 @@ public class SignSlot : MonoBehaviour
             PlayerLogic.instance.DestroySign();
 
             LevelManager.instance.OnPlaceSlot();
-
+            int randomSound = Random.Range(1, 2);
+            SKAudioManager.instance.PlaySound($"signplace{randomSound}");
         }
         else
         {
@@ -67,8 +68,7 @@ public class SignSlot : MonoBehaviour
 
     private void InstantiateSignObject(SignType sign)
     {
-        int randomSound = Random.Range(1, 2);
-        SKAudioManager.instance.PlaySound($"signplace{randomSound}");
+        
         if(sign ==SignType.Stop)
         {
             GameObject inst = Instantiate(CommonReference.instance.stopSignPF, transform);
