@@ -10742,8 +10742,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: NewSignPanel, Assembly-CSharp
+      - m_Target: {fileID: 2079885277}
+        m_TargetAssemblyTypeName: NewSignPanel_2, Assembly-CSharp
         m_MethodName: SetState
         m_Mode: 6
         m_Arguments:
