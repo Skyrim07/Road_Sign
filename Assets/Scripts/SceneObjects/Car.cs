@@ -322,7 +322,7 @@ public class Car : MonoBehaviour
             return;
 
         watchedSigns.Add(sign);
-        if(sign.type == SignType.Stop)
+        if(sign.type == SignType.Stop || sign.type == SignType.Rail)
         {
             StartCoroutine(StopSign());
         }
