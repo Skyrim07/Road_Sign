@@ -9,6 +9,8 @@ public class LevelManager : SKMonoSingleton<LevelManager>
         EventDispatcher.AddListener(EventDispatcher.Common, EventRef.ON_LOAD_LEVEL, new SKEvent(() =>
         {
             PlayerLogic.instance.SetHealth(3);
+            PlayerLogic.instance.sign = null;
+            PlayerSignSlot.instance.UpdateVisual();
             RuntimeData.isLevelComplete = false;
             RuntimeData.crashCount = 0;
             RuntimeData.currentSignCount = 0;
@@ -17,7 +19,16 @@ public class LevelManager : SKMonoSingleton<LevelManager>
             {
                 LoadSignSlots();
             });
-     
+            SKUtils.InvokeAction(.2f, () =>
+            {
+                Transform sp = GameObject.FindGameObjectWithTag("SpawnPoint")?.transform;
+                if (sp)
+                {
+                    PlayerLogic.instance.transform.position = sp.position;
+                }
+            });
+
+
         }));
     }
 

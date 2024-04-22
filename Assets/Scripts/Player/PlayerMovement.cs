@@ -58,11 +58,12 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-
+        if (RuntimeData.isLevelComplete) return;
+       
 
         anim.SetBool("Walk", playerInput.sqrMagnitude > 0);
 
-        if (playerInput.sqrMagnitude > 0)
+        if (playerInput.sqrMagnitude > 0 && RuntimeData.timeScale>0)
         {
             float orientation = Mathf.Atan2(playerInput.y, playerInput.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0, 0, orientation - 90);
@@ -74,7 +75,9 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if(cameraPos != Camera.main.transform.position)
+        if (RuntimeData.isLevelComplete) return;
+
+        if (cameraPos != Camera.main.transform.position)
         {
             CameraCalculations();
         }
@@ -131,7 +134,7 @@ public class PlayerMovement : MonoBehaviour
 
         float moveCurve = playerMovementCurve.Evaluate(Time.time);
 
-        rb.AddForce(playerInput * moveForce * moveCurve, ForceMode2D.Force);
+        rb.AddForce(playerInput * moveForce * moveCurve * RuntimeData.timeScale, ForceMode2D.Force);
 
 
         if (rb.velocity.magnitude > maxSpeed)

@@ -2,17 +2,20 @@ using SKCell;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : SKMonoSingleton<UIManager> 
 {
-    [SerializeField] SKUIPanel colorFactoryPanel, shapeFactoryPanel;
-    [SerializeField] SKUIPanel winPanel;
-    [SerializeField] SKUIPanel deathPanel, ticketPanel, crashPanel;
+    public SKUIPanel colorFactoryPanel, shapeFactoryPanel;
+    public SKUIPanel winPanel;
+    public SKUIPanel deathPanel, ticketPanel, crashPanel, hatPanel;
     [SerializeField] SKUIPanel tutPanel;
     [SerializeField] SKSlider progressBar;
 
     [SerializeField] CrashIndicator crashIndicator;
     [SerializeField] Transform lifeIconContainer;
+
+    public Button buttonPauseResume;
 
     private LifeIcon[] lifeIcons;
 
@@ -25,11 +28,69 @@ public class UIManager : SKMonoSingleton<UIManager>
         }
 
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            if (winPanel.active)
+            {
+                FlowManager.instance.LoadNextLevel();
+                SetState_WinPanel(false);
+                SKAudioManager.instance.PlaySound("UI3");
+            }
+            if (deathPanel.active)
+            {
+                FlowManager.instance.RestartLevel();
+                SetState_DeathPanel(false);
+                SKAudioManager.instance.PlaySound("UI3");
+            }
+            if (crashPanel.active)
+            {
+                FlowManager.instance.RestartLevel();
+                SetState_CrashPanel(false);
+                SKAudioManager.instance.PlaySound("UI3");
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (winPanel.active)
+            {
+                FlowManager.instance.LoadMainMenu();
+                SetState_WinPanel(false);
+                SKAudioManager.instance.PlaySound("UI3");
+            }
+            if (deathPanel.active)
+            {
+                FlowManager.instance.LoadMainMenu();
+                SetState_DeathPanel(false);
+                SKAudioManager.instance.PlaySound("UI3");
+            }
+        }
+    }
+
+    public bool CanOpenPausePanel()
+    {
+        bool can = true;
+        can &= !deathPanel.active;
+        can &= !winPanel.active;
+        can &= !NewSignPanel.instance.panel.active;
+        can &= !crashPanel.active;
+        can &= !colorFactoryPanel.active;
+        can &= !shapeFactoryPanel.active;
+        print(can);
+        return can;
+    }
     public void SetValue_ProgressBar(float value01)
     {
        // progressBar.SetValue(value01);
     }
-
+    public void SetState_HatPanel(bool active)
+    {
+        if(active)
+            HatPanel.instance.UpdateInfo();
+        hatPanel.SetState(active);
+    }
     public void SetState_FailPanel(bool active)
     {
         ticketPanel.SetState(active);

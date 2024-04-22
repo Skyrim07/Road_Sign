@@ -268,6 +268,11 @@ public class Car : MonoBehaviour
         FlowManager.instance.OnCollisionHappens(0.5f, gameObject);
         Destroy(gameObject);
     }
+    private void OnHitTrain(Train train)
+    {
+        FlowManager.instance.OnCollisionHappens(0.5f, gameObject);
+        Destroy(gameObject);
+    }
     private void OnHitPlayer(PlayerMovement player)
     {
         //FlowManager.instance.OnPlayerCollision();
@@ -293,6 +298,10 @@ public class Car : MonoBehaviour
         {
             OnHitCar(car);
         }
+        if (collision.TryGetComponent<Train>(out var train))
+        {
+            OnHitTrain(train);
+        }
         if (collision.TryGetComponent<Road>(out var road))
         {
             OnEnterRoad(road);
@@ -313,7 +322,7 @@ public class Car : MonoBehaviour
             return;
 
         watchedSigns.Add(sign);
-        if(sign.type == SignType.Stop)
+        if(sign.type == SignType.Stop || sign.type == SignType.Rail)
         {
             StartCoroutine(StopSign());
         }
@@ -336,7 +345,7 @@ public class Car : MonoBehaviour
                 RaycastHit2D[] hits = Physics2D.RaycastAll(frontPos.position, dir.normalized, dir.magnitude);
                 foreach(var hit in hits)
                 {
-                    if (hit.transform != null && (hit.transform.CompareTag("Car") || hit.transform.CompareTag("Pedestrian")))
+                    if (hit.transform != null && (hit.transform.CompareTag("Car") || hit.transform.CompareTag("Pedestrian") || hit.transform.CompareTag("Train")))
                     {
                         freeTime = 0;
                         break;

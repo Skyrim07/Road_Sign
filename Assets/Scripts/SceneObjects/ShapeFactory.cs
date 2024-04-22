@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SKCell;
+using UnityEngine.UI;
 
 public class ShapeFactory : SKMonoSingleton<ShapeFactory>
 {
+    [SerializeField] Button buttonDiamond, buttonOctagon;
     bool canSelect = false;
     public void Init()
     {
         canSelect = true;
+        buttonDiamond.Select();
     }
     public void OnSelectOctogon()
     {

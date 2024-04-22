@@ -23,7 +23,7 @@ public class ColorFactory : SKMonoSingleton<ColorFactory>
     private void Update()
     {
         if (!isMoving) return;
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             StopRotation();
         }
@@ -46,7 +46,8 @@ public class ColorFactory : SKMonoSingleton<ColorFactory>
 public enum SignType
 {
     None,
-    Stop
+    Stop,
+    Rail
 }
 public enum SignBehaviourType
 {

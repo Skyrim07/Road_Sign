@@ -4,12 +4,22 @@ using UnityEngine;
 using SKCell;
 public class NewSignPanel : SKMonoSingleton<NewSignPanel>
 {
-    SKUIPanel panel;
+    public SKUIPanel panel;
     private void Start()
     {
         panel = GetComponent<SKUIPanel>();
     }
 
+    private void Update()
+    {
+        if (panel.active)
+        {
+            if (Input.GetKeyDown(KeyCode.Return)|| Input.GetKeyDown(KeyCode.Escape))
+            {
+                SetState(false);
+            }
+        }
+    }
     public void SetState(bool active)
     {
         panel.SetState(active);

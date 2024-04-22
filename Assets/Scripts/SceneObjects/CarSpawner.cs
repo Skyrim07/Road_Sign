@@ -20,7 +20,13 @@ public class CarSpawner : MonoBehaviour
     {
         GetNewInterval();
         if (spawnAtStart)
-            SpawnCar();
+        {
+            SKUtils.InvokeAction(1f, () =>
+            {
+                SpawnCar();
+            });
+        }
+ 
     }
     private void Update()
     {
