@@ -20,9 +20,9 @@ public class Train : MonoBehaviour
     {
         player.HitByCar(transform, speed);
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.TryGetComponent<PlayerMovement>(out var player))
+        if (collision.collider.TryGetComponent<PlayerMovement>(out var player))
         {
             OnHitPlayer(player);
         }
