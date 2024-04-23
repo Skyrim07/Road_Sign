@@ -49,7 +49,7 @@ MonoBehaviour:
   spawnIntervalMax: 7
   spawnAtStart: 1
   carPrefabs:
-  - {fileID: 1462646810527717736, guid: 59756ba13d8f14e47ab463cd7e6db98f, type: 3}
-  - {fileID: 1462646810527717736, guid: c0a953879e72a774db459e1ab86a1bc1, type: 3}
-  - {fileID: 1462646810527717736, guid: 114b145e210e0f04dac965c893413e03, type: 3}
-  - {fileID: 1462646810527717736, guid: 0be05ec72a456c64788bd52b92812b08, type: 3}
+  - {fileID: 1462646810527717736, guid: 711c7e69a4503d140b051d8bdc2b4b0e, type: 3}
+  - {fileID: 1462646810527717736, guid: 9622892b4b06be84ba5788b8e6491fe9, type: 3}
+  - {fileID: 1462646810527717736, guid: 3e35a24cd2b757c488a6a3cf3432d8af, type: 3}
+  - {fileID: 1462646810527717736, guid: d3b5889715ccde54cbdc9ad41a20d8cb, type: 3}
