@@ -8,6 +8,25 @@ public class GlobalLibrary
     {
         {SceneCategory.All, new SceneTitle[]{SceneTitle.MainMenu, SceneTitle.Level0, SceneTitle.Level1, SceneTitle.Level2, SceneTitle.Level3, SceneTitle.Level4, SceneTitle.Level5, SceneTitle.Level6, SceneTitle.Level7, SceneTitle.Level8, SceneTitle.Level9, SceneTitle.Level10, SceneTitle.Level11, SceneTitle.Level12, SceneTitle.Level13, SceneTitle.Level14, SceneTitle.Level15} },
     };
+    public static readonly Dictionary<SceneTitle, float> MaxCrashCounts = new Dictionary<SceneTitle, float>
+    {
+        { SceneTitle.Level0, 10f },
+        { SceneTitle.Level1, 10f },
+        { SceneTitle.Level2, 10f },
+        { SceneTitle.Level3, 10f },
+        { SceneTitle.Level4, 10f },
+        { SceneTitle.Level5, 10f },
+        { SceneTitle.Level6, 10f },
+        { SceneTitle.Level7, 15f },
+        { SceneTitle.Level8, 15f },
+        { SceneTitle.Level9, 10f },
+        { SceneTitle.Level10, 15f },
+        { SceneTitle.Level11, 20f },
+        { SceneTitle.Level12, 10f },
+        { SceneTitle.Level13, 10f },
+        { SceneTitle.Level14, 10f },
+        { SceneTitle.Level15, 10f }
+    };
 
 }
 public enum SceneCategory

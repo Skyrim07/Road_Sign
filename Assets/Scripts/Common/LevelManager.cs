@@ -14,6 +14,7 @@ public class LevelManager : SKMonoSingleton<LevelManager>
             RuntimeData.isLevelComplete = false;
             RuntimeData.crashCount = 0;
             RuntimeData.currentSignCount = 0;
+            RuntimeData.crashCountMax = GlobalLibrary.MaxCrashCounts[RuntimeData.currentScene];
             UIManager.instance.UpdateCrashIndicator();
             SKUtils.InvokeAction(1f, () =>
             {

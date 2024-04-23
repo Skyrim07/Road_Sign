@@ -130,11 +130,11 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.28866667}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 0, y: 93.7025033688}
+      - - {x: 0, y: 93.70251}
         - {x: -128, y: -128}
         - {x: 128, y: -128}
       physicsShape:
-      - - {x: 0, y: 93.7025033688}
+      - - {x: 0, y: 93.70251}
         - {x: -128, y: -128}
         - {x: 128, y: -128}
       tessellationDetail: 0
