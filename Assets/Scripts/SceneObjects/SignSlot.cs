@@ -56,17 +56,19 @@ public class SignSlot : MonoBehaviour
             PlayerLogic.instance.DestroySign();
 
             LevelManager.instance.OnPlaceSlot();
-
+            int randomSound = Random.Range(1, 2);
+            SKAudioManager.instance.PlaySound($"signplace{randomSound}");
         }
         else
         {
-            SKAudioManager.instance.PlaySound("cantplace"); //add variation
+            int randomSound = Random.Range(1, 2);
+            SKAudioManager.instance.PlaySound($"cantplace{randomSound}");
         }
     }
 
     private void InstantiateSignObject(SignType sign)
     {
-        SKAudioManager.instance.PlaySound("signplace1"); //add variation
+        
         if(sign ==SignType.Stop)
         {
             GameObject inst = Instantiate(CommonReference.instance.stopSignPF, transform);
