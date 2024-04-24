@@ -14,4 +14,16 @@ public class BGMPlayer : MonoBehaviour
         SKAudioManager.instance.StopMusic();
         SKAudioManager.instance.PlayMusic(track, reset, 0, 1);
     }
+    private void Update()
+    {
+        if (RuntimeData.isPaused)
+        {
+            SKAudioManager.instance.ChangeMusicVolume(0.2f);
+        }
+        else
+        {
+            //SKAudioManager.instance.StopIdentifiableSound("pause loop");
+            SKAudioManager.instance.ChangeMusicVolume(1f);
+        }
+    }
 }

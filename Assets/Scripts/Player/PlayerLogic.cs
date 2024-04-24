@@ -111,6 +111,7 @@ public class PlayerLogic : SKMonoSingleton<PlayerLogic>
         sign.color = SignColor.None;
         if (!RuntimeData.signsDiscovered.Contains(type))
         {
+            SKAudioManager.instance.PlaySound("Hat Get");
             if(type == SignType.Stop)
                 NewSignPanel.instance.SetState(true);
             if (type == SignType.Rail)

@@ -26,12 +26,15 @@ public class FlowManager : SKMonoSingleton<FlowManager>
             if (RuntimeData.isPaused)
             {
                 SKAudioManager.instance.PlaySound("honkunpause1");
+                SKAudioManager.instance.StopIdentifiableSound("pause loop");
+                
                 UnPause();
             }
                 
             else
             {
                 SKAudioManager.instance.PlaySound("honkpause1");
+                SKAudioManager.instance.PlayIdentifiableSound("pause loop", "pause loop", true, 1f, 0.1f);
                 Pause();
                 CommonReference.instance.pausePanel.SetState(true);
                // CommonReference.instance.pause_TitleText.textAnimator.PlayTypeWriter();
@@ -56,6 +59,9 @@ public class FlowManager : SKMonoSingleton<FlowManager>
     }
     public void LoadScene(SceneTitle scene)
     {
+        SKAudioManager.instance.StopSound();
+        SKAudioManager.instance.StopIdentifiableSound("pause loop");
+        RuntimeData.isPaused = false;
         RuntimeData.currentScene = scene;
         SKSceneManager.instance.LoadSceneAsync("loading", scene.ToString());
         if(scene == SceneTitle.Level1)
