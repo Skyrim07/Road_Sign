@@ -128,6 +128,8 @@ public class FlowManager : SKMonoSingleton<FlowManager>
     }
     public void LevelFail()
     {
+        SKAudioManager.instance.musicAudioSource.Stop();
+        SKAudioManager.instance.PlaySound("guilty");
         RuntimeData.timeScale = 0;
         UIManager.instance.SetState_CrashPanel(true);
     }
