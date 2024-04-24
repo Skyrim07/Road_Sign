@@ -24,9 +24,14 @@ public class FlowManager : SKMonoSingleton<FlowManager>
             if (!UIManager.instance.CanOpenPausePanel())
                 return;
             if (RuntimeData.isPaused)
+            {
+                SKAudioManager.instance.PlaySound("honkunpause1");
                 UnPause();
+            }
+                
             else
             {
+                SKAudioManager.instance.PlaySound("honkpause1");
                 Pause();
                 CommonReference.instance.pausePanel.SetState(true);
                // CommonReference.instance.pause_TitleText.textAnimator.PlayTypeWriter();
@@ -61,7 +66,7 @@ public class FlowManager : SKMonoSingleton<FlowManager>
     }
     public void Pause()
     {
-        SKAudioManager.instance.PlaySound("honkpause1");
+        
         RuntimeData.isPaused = true;
         RuntimeData.timeScale = 0.0f;
 
@@ -71,7 +76,7 @@ public class FlowManager : SKMonoSingleton<FlowManager>
 
     public void UnPause()
     {
-        SKAudioManager.instance.PlaySound("honkunpause1");
+        
         RuntimeData.isPaused = false;
         RuntimeData.timeScale = 1.0f;
         CommonReference.instance.pausePanel.SetState(false);
