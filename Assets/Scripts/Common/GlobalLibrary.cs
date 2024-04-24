@@ -10,6 +10,7 @@ public class GlobalLibrary
     };
     public static readonly Dictionary<SceneTitle, float> MaxCrashCounts = new Dictionary<SceneTitle, float>
     {
+        { SceneTitle.MainMenu, 10f },
         { SceneTitle.Level0, 10f },
         { SceneTitle.Level1, 10f },
         { SceneTitle.Level2, 10f },
