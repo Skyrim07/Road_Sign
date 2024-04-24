@@ -108,7 +108,7 @@ public class FlowManager : SKMonoSingleton<FlowManager>
     }
     public void OnPlayerCollision()
     {
-        SKAudioManager.instance.PlaySound("hit");
+        SKAudioManager.instance.PlaySound("car_hit3");
 
         if (RuntimeData.isLevelComplete) return;
 
