@@ -16,7 +16,7 @@ public class MainMenuLogic : MonoBehaviour
     }
     public void OnPressSettingsButton()
     {
-
+        UIManager.instance.SetState_CreditsPanel(true);
     }
     public void OnPressHatButton()
     {
