@@ -53,6 +53,10 @@ public class FlowManager : SKMonoSingleton<FlowManager>
         UnPause();
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
     public void LoadNextLevel()
     {
         LoadScene((SceneTitle)((int)RuntimeData.currentScene + 1));

@@ -24,6 +24,6 @@ public class MainMenuLogic : MonoBehaviour
     }
     public void OnPressQuitButton()
     {
-        Application.Quit();
+        UIManager.instance.SetState_QuitConfirmPanel(true);
     }
 }
