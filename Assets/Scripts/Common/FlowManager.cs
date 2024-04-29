@@ -92,10 +92,11 @@ public class FlowManager : SKMonoSingleton<FlowManager>
 
     public void OnCollisionHappens(float increase, GameObject crash)
     {
+        if (RuntimeData.isLevelComplete) return;
         GameObject fx = Instantiate(CommonReference.instance.carExplosionFx, crash.transform.position, Quaternion.identity);
         Destroy(fx, 5);
 
-        if (RuntimeData.isLevelComplete) return;
+     
 
         RuntimeData.crashCount += increase;
         LevelManager.instance.AddProgressValue(-.15f);
