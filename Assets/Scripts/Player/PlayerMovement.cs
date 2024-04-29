@@ -75,7 +75,12 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (RuntimeData.isLevelComplete) return;
+        if (RuntimeData.isLevelComplete)
+        {
+            rb.velocity = Vector2.zero;
+            return;
+        }
+
 
         if (cameraPos != Camera.main.transform.position)
         {
