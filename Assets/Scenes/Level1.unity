@@ -7658,6 +7658,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 467968566}
     m_Modifications:
+    - target: {fileID: 2100028565114075078, guid: cd8461bdf3ad5d74698fd1a3da59c858, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2100028565114075078, guid: cd8461bdf3ad5d74698fd1a3da59c858, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 494805439
+      objectReference: {fileID: 0}
     - target: {fileID: 3788684365853772580, guid: cd8461bdf3ad5d74698fd1a3da59c858, type: 3}
       propertyPath: m_Name
       value: ColorFactory
@@ -7705,6 +7713,14 @@ PrefabInstance:
     - target: {fileID: 3788684365853772587, guid: cd8461bdf3ad5d74698fd1a3da59c858, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788684366980307985, guid: cd8461bdf3ad5d74698fd1a3da59c858, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788684366980307985, guid: cd8461bdf3ad5d74698fd1a3da59c858, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 494805439
       objectReference: {fileID: 0}
     - target: {fileID: 4264775297006826744, guid: cd8461bdf3ad5d74698fd1a3da59c858, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.size
