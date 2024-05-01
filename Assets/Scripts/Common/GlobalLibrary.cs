@@ -24,9 +24,9 @@ public class GlobalLibrary
         { SceneTitle.Level10, 15f },
         { SceneTitle.Level11, 20f },
         { SceneTitle.Level12, 25f },
-        { SceneTitle.Level13, 10f },
-        { SceneTitle.Level14, 10f },
-        { SceneTitle.Level15, 10f }
+        { SceneTitle.Level13, 20f },
+        { SceneTitle.Level14, 25f },
+        { SceneTitle.Level15, 30f }
     };
 
 }
