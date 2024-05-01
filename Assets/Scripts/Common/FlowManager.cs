@@ -12,8 +12,17 @@ public class FlowManager : SKMonoSingleton<FlowManager>
     private void Start()
     {
         Application.targetFrameRate = 60;
+#if UNITY_EDITOR
         sceneTitle = (SceneTitle)PlayerPrefs.GetInt("StartScene");
         LoadScene(sceneTitle);
+#endif
+#if !UNITY_EDITOR
+SKUtils.InvokeAction(.2f, ()=>{
+        LoadScene(SceneTitle.MainMenu);
+
+});
+
+#endif
 
         SKUtils.AddKeyDownAction(KeyCode.LeftAlt, () =>
         {
