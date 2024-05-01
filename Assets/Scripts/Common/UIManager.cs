@@ -11,6 +11,7 @@ public class UIManager : SKMonoSingleton<UIManager>
     public SKUIPanel deathPanel, ticketPanel, crashPanel, hatPanel, creditsPanel, quitConfirmPanel;
     [SerializeField] SKUIPanel tutPanel;
     [SerializeField] SKSlider progressBar;
+    public SKText levelTextPauseMenu;
 
     [SerializeField] CrashIndicator crashIndicator;
     [SerializeField] Transform lifeIconContainer;

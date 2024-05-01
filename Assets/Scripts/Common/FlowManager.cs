@@ -46,6 +46,7 @@ SKUtils.InvokeAction(.2f, ()=>{
                 SKAudioManager.instance.PlayIdentifiableSound("pause loop", "pause loop", true, 1f, 0.1f);
                 Pause();
                 CommonReference.instance.pausePanel.SetState(true);
+                UIManager.instance.levelTextPauseMenu.UpdateTextDirectly($"Level {RuntimeData.currentScene.ToString().Substring(5)}");
                // CommonReference.instance.pause_TitleText.textAnimator.PlayTypeWriter();
             }
 
