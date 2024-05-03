@@ -1737,6 +1737,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 1.0837488
       objectReference: {fileID: 0}
+    - target: {fileID: 3788684367713439246, guid: cd8461bdf3ad5d74698fd1a3da59c858, type: 3}
+      propertyPath: m_text
+      value: Shape Factory
+      objectReference: {fileID: 0}
     - target: {fileID: 4008317305083040717, guid: cd8461bdf3ad5d74698fd1a3da59c858, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -1911,6 +1915,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4264775297006826744, guid: cd8461bdf3ad5d74698fd1a3da59c858, type: 3}
+    - {fileID: 3788684366568169557, guid: cd8461bdf3ad5d74698fd1a3da59c858, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: cd8461bdf3ad5d74698fd1a3da59c858, type: 3}
 --- !u!4 &336232707 stripped
 Transform:
@@ -1960,6 +1965,30 @@ PolygonCollider2D:
       - {x: 0.5916922, y: -1.7805156}
       - {x: 1.1158897, y: -1.3048891}
       - {x: 2.0348163, y: -1.3004489}
+--- !u!95 &336232710 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3788684367511860701, guid: cd8461bdf3ad5d74698fd1a3da59c858, type: 3}
+  m_PrefabInstance: {fileID: 336232706}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &336232711 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3788684366568169553, guid: cd8461bdf3ad5d74698fd1a3da59c858, type: 3}
+  m_PrefabInstance: {fileID: 336232706}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &336232712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 336232711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed2db71cd52635641b9d3d9823867b28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEnterDirectly: 0
+  indicatorAnim: {fileID: 336232710}
 --- !u!1 &343501054
 GameObject:
   m_ObjectHideFlags: 0
