@@ -86,15 +86,45 @@ public class UIManager : SKMonoSingleton<UIManager>
     {
        // progressBar.SetValue(value01);
     }
+    [SerializeField] Button hatFirstButton;
     public void SetState_HatPanel(bool active)
     {
         if(active)
             HatPanel.instance.UpdateInfo();
         hatPanel.SetState(active);
+
+        if (active)
+        {
+            hatFirstButton.Select();
+        }
+        else
+        {
+            if(MainMenuLogic.instance != null)
+            {
+                SKUtils.InvokeAction(.2f, () =>
+                {
+                    MainMenuLogic.instance.firstButton.Select();
+                });
+             
+            }
+            else
+            {
+
+            }
+        }
     }
+    public Button creditPanelFirstButton;
     public void SetState_CreditsPanel(bool active)
     {
         creditsPanel.SetState(active);
+        if (active)
+        {
+            creditPanelFirstButton.Select();
+        }
+        else
+        {
+            MainMenuLogic.instance.firstButton.Select();
+        }
     }
     public void SetState_QuitConfirmPanel(bool active)
     {
