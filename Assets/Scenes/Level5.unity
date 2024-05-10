@@ -5163,9 +5163,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angle: 180
-  spawnIntervalMin: 4
-  spawnIntervalMax: 8
-  spawnAtStart: 1
+  spawnIntervalMin: 3
+  spawnIntervalMax: 7
+  spawnAtStart: 0
   carPrefabs:
   - {fileID: 1462646810527717736, guid: f8acbddce3b7e5346a7a33352a2b92b5, type: 3}
   - {fileID: 1462646810527717736, guid: 2cc501cbd5ec8f84b9ac0e1a5ef1bc62, type: 3}
@@ -6181,11 +6181,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1932633213323274791, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.00000011247009
       objectReference: {fileID: 0}
     - target: {fileID: 1932633213323274791, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.5
+      value: -3.9326441
       objectReference: {fileID: 0}
     - target: {fileID: 1932633213628955655, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6978,12 +6978,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angle: 270
-  spawnIntervalMin: 4
-  spawnIntervalMax: 8
+  spawnIntervalMin: 3
+  spawnIntervalMax: 5
   spawnAtStart: 1
   carPrefabs:
   - {fileID: 1462646810527717736, guid: f8acbddce3b7e5346a7a33352a2b92b5, type: 3}
-  - {fileID: 1462646810527717736, guid: 2cc501cbd5ec8f84b9ac0e1a5ef1bc62, type: 3}
   - {fileID: 1462646810527717736, guid: 18fdcd92f21db6246a42e2ec84918641, type: 3}
 --- !u!1 &1040308860
 GameObject:
@@ -8284,6 +8283,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2001372291}
     m_Modifications:
+    - target: {fileID: 1932633213628955655, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1932633213628955655, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.8343138
+      objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262600, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -8668,8 +8675,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 436682200}
     m_Modifications:
     - target: {fileID: 1932633213628955655, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1932633213628955655, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.713
+      value: -1.8788106
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262600, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
       propertyPath: m_RootOrder
@@ -8867,12 +8878,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angle: 90
-  spawnIntervalMin: 4
-  spawnIntervalMax: 8
+  spawnIntervalMin: 3
+  spawnIntervalMax: 5
   spawnAtStart: 1
   carPrefabs:
   - {fileID: 1462646810527717736, guid: f8acbddce3b7e5346a7a33352a2b92b5, type: 3}
-  - {fileID: 1462646810527717736, guid: 2cc501cbd5ec8f84b9ac0e1a5ef1bc62, type: 3}
   - {fileID: 1462646810527717736, guid: 18fdcd92f21db6246a42e2ec84918641, type: 3}
 --- !u!4 &1385872647
 Transform:
@@ -10067,9 +10077,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angle: 0
-  spawnIntervalMin: 4
-  spawnIntervalMax: 8
-  spawnAtStart: 1
+  spawnIntervalMin: 3
+  spawnIntervalMax: 7
+  spawnAtStart: 0
   carPrefabs:
   - {fileID: 1462646810527717736, guid: f8acbddce3b7e5346a7a33352a2b92b5, type: 3}
   - {fileID: 1462646810527717736, guid: 2cc501cbd5ec8f84b9ac0e1a5ef1bc62, type: 3}
@@ -11467,11 +11477,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1932633213323274791, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.00000011247009
       objectReference: {fileID: 0}
     - target: {fileID: 1932633213323274791, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.63
+      value: -4.062644
       objectReference: {fileID: 0}
     - target: {fileID: 1932633213628955655, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
       propertyPath: m_LocalPosition.y

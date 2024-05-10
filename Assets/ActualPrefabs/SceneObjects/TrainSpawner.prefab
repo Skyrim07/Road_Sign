@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angle: 90
-  spawnIntervalMin: 20
-  spawnIntervalMax: 20
+  spawnIntervalMin: 12
+  spawnIntervalMax: 12
   spawnAtStart: 1
   carPrefabs:
   - {fileID: 270152303708465636, guid: 67e8dce99d3bf5e4aacbc60200ed6c0d, type: 3}

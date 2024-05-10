@@ -7755,6 +7755,14 @@ PrefabInstance:
       propertyPath: angle
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 43544725536699185, guid: f6eb48bc034e82246bde30243b8b006d, type: 3}
+      propertyPath: spawnIntervalMax
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 43544725536699185, guid: f6eb48bc034e82246bde30243b8b006d, type: 3}
+      propertyPath: spawnIntervalMin
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 43544725536699186, guid: f6eb48bc034e82246bde30243b8b006d, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -9566,6 +9574,14 @@ PrefabInstance:
       propertyPath: angle
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 43544725536699185, guid: f6eb48bc034e82246bde30243b8b006d, type: 3}
+      propertyPath: spawnIntervalMax
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 43544725536699185, guid: f6eb48bc034e82246bde30243b8b006d, type: 3}
+      propertyPath: carPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 1462646810527717736, guid: 18fdcd92f21db6246a42e2ec84918641, type: 3}
     - target: {fileID: 43544725536699186, guid: f6eb48bc034e82246bde30243b8b006d, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -10658,6 +10674,10 @@ PrefabInstance:
     - target: {fileID: 43544725536699185, guid: f6eb48bc034e82246bde30243b8b006d, type: 3}
       propertyPath: angle
       value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 43544725536699185, guid: f6eb48bc034e82246bde30243b8b006d, type: 3}
+      propertyPath: spawnIntervalMax
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 43544725536699186, guid: f6eb48bc034e82246bde30243b8b006d, type: 3}
       propertyPath: m_RootOrder

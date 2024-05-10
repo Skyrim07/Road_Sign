@@ -1277,6 +1277,14 @@ PrefabInstance:
       propertyPath: angle
       value: 270
       objectReference: {fileID: 0}
+    - target: {fileID: 43544725536699185, guid: f6eb48bc034e82246bde30243b8b006d, type: 3}
+      propertyPath: spawnIntervalMax
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 43544725536699185, guid: f6eb48bc034e82246bde30243b8b006d, type: 3}
+      propertyPath: carPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 1462646810527717736, guid: 18fdcd92f21db6246a42e2ec84918641, type: 3}
     - target: {fileID: 43544725536699186, guid: f6eb48bc034e82246bde30243b8b006d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2455,6 +2463,14 @@ PrefabInstance:
       propertyPath: angle
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 43544725536699185, guid: f6eb48bc034e82246bde30243b8b006d, type: 3}
+      propertyPath: spawnIntervalMax
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 43544725536699185, guid: f6eb48bc034e82246bde30243b8b006d, type: 3}
+      propertyPath: carPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 1462646810527717736, guid: 18fdcd92f21db6246a42e2ec84918641, type: 3}
     - target: {fileID: 43544725536699186, guid: f6eb48bc034e82246bde30243b8b006d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -6742,6 +6758,10 @@ PrefabInstance:
       propertyPath: angle
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8450904179548631472, guid: a6451b7827639e246b9be5b5498df686, type: 3}
+      propertyPath: spawnIntervalMin
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6451b7827639e246b9be5b5498df686, type: 3}
 --- !u!4 &1289160705 stripped
@@ -8146,6 +8166,14 @@ PrefabInstance:
     - target: {fileID: 8450904179548631472, guid: a6451b7827639e246b9be5b5498df686, type: 3}
       propertyPath: angle
       value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450904179548631472, guid: a6451b7827639e246b9be5b5498df686, type: 3}
+      propertyPath: spawnIntervalMax
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450904179548631472, guid: a6451b7827639e246b9be5b5498df686, type: 3}
+      propertyPath: spawnIntervalMin
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6451b7827639e246b9be5b5498df686, type: 3}

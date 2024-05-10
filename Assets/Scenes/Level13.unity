@@ -5958,6 +5958,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8450904179548631472, guid: a6451b7827639e246b9be5b5498df686, type: 3}
+      propertyPath: spawnIntervalMax
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450904179548631472, guid: a6451b7827639e246b9be5b5498df686, type: 3}
+      propertyPath: spawnIntervalMin
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6451b7827639e246b9be5b5498df686, type: 3}
 --- !u!4 &981836546 stripped
@@ -12687,6 +12695,14 @@ PrefabInstance:
     - target: {fileID: 8450904179548631472, guid: a6451b7827639e246b9be5b5498df686, type: 3}
       propertyPath: angle
       value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450904179548631472, guid: a6451b7827639e246b9be5b5498df686, type: 3}
+      propertyPath: spawnIntervalMax
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450904179548631472, guid: a6451b7827639e246b9be5b5498df686, type: 3}
+      propertyPath: spawnIntervalMin
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6451b7827639e246b9be5b5498df686, type: 3}
