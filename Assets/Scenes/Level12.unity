@@ -1531,6 +1531,18 @@ PrefabInstance:
       propertyPath: angle
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 43544725536699185, guid: f6eb48bc034e82246bde30243b8b006d, type: 3}
+      propertyPath: spawnIntervalMax
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 43544725536699185, guid: f6eb48bc034e82246bde30243b8b006d, type: 3}
+      propertyPath: spawnIntervalMin
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 43544725536699185, guid: f6eb48bc034e82246bde30243b8b006d, type: 3}
+      propertyPath: carPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 1462646810527717736, guid: 18fdcd92f21db6246a42e2ec84918641, type: 3}
     - target: {fileID: 43544725536699186, guid: f6eb48bc034e82246bde30243b8b006d, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -3533,6 +3545,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262602, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
       propertyPath: restrictions.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1932633215275262602, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
+      propertyPath: restrictions.Array.data[1]
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262607, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
@@ -6198,6 +6214,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262602, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
       propertyPath: restrictions.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1932633215275262602, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
+      propertyPath: restrictions.Array.data[1]
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262607, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
@@ -7495,6 +7515,18 @@ PrefabInstance:
       propertyPath: angle
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 43544725536699185, guid: f6eb48bc034e82246bde30243b8b006d, type: 3}
+      propertyPath: spawnIntervalMax
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 43544725536699185, guid: f6eb48bc034e82246bde30243b8b006d, type: 3}
+      propertyPath: spawnIntervalMin
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 43544725536699185, guid: f6eb48bc034e82246bde30243b8b006d, type: 3}
+      propertyPath: carPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 1462646810527717736, guid: 18fdcd92f21db6246a42e2ec84918641, type: 3}
     - target: {fileID: 43544725536699186, guid: f6eb48bc034e82246bde30243b8b006d, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -8628,6 +8660,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 951018329}
     m_Modifications:
+    - target: {fileID: 1932633213628955655, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0000063787447
+      objectReference: {fileID: 0}
+    - target: {fileID: 1932633213628955655, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.0978649
+      objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262600, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -10805,6 +10845,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 691801773}
     m_Modifications:
+    - target: {fileID: 1932633213628955655, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.00000016731136
+      objectReference: {fileID: 0}
+    - target: {fileID: 1932633213628955655, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.1187198
+      objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262600, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -10864,6 +10912,10 @@ PrefabInstance:
     - target: {fileID: 1932633215275262602, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
       propertyPath: restrictions.Array.data[0]
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1932633215275262602, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
+      propertyPath: restrictions.Array.data[1]
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1932633215275262607, guid: c2298b6228708544e9ea4e47b195ea12, type: 3}
       propertyPath: m_Name
